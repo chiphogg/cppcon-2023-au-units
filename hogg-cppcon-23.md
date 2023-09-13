@@ -102,7 +102,7 @@ This makes the whole _ecosystem_ stronger, and it meets the _community's_ needs 
 
 ---
 
-# Choosing a units library
+# Framework for choosing a units library
 
 Notes:
 
@@ -246,6 +246,10 @@ _these specific libraries_ .
 
 ---
 
+# Au and alternatives
+
+---
+
 ## Libraries considered
 
 Notes:
@@ -261,8 +265,8 @@ This library stands out for being _extremely_ accessible and low friction --- se
 so easy to get started and to use.
 
 Next we have the SI library, whose amazingly inviting logo promotes a solid and user-friendly set of
-APIs.  Despite being newer, it has skyrocketed up the GitHub stars chart, with no sign of slowing
-down.
+APIs.  Despite being relatively newer, it has skyrocketed up the GitHub stars chart, with no sign of
+slowing down.
 
 Finally, we have mp-units, which takes full advantage of bleeding edge post-C++20 features to see
 just how far we can take our interfaces.  Besides being a top-notch units library you can use
@@ -282,20 +286,23 @@ Notes:
 So, in the "can you get it" stage, question 1 of our framework, we start with the C++ standard
 compatibility.  Where is each library?
 
-No surprise here, boost is the compatibility champ, supporting all versions.
+No surprise here, boost is the compatibility champ, supporting all versions of C++.
 
 I think in today's world, C++14 is a strong local optimum.  The marginal exclusion compared to C++11
 is very small, but the features you gain are extremely useful for units libraries.  Both Au and
 nholthaus units live here.
 
-I think C++17 makes less sense.  You lose a much bigger chunk of users, but the features you gain
-mostly don't impact end user interfaces.  That said, I think C++17 adoption is _rapidly_ expanding,
-so I expect this to matter much less very soon.
+I think C++17 makes less sense _right this minute_.  You lose a much bigger chunk of users, but the
+features you gain mostly help with implementation details, not end user interfaces.  That said,
+C++17 adoption is _rapidly_ expanding, so I expect this to matter much less very soon.
 
 C++20, where mp-units lives, excludes the majority of users, but this steep cost buys amazingly
-useful features.  But think about what this criterion actually means.  This exclusion refers to _all
-projects_, but what matters for you is _your project_.  So this is either a complete dealbreaker for
-projects that can't use C++20, or a complete non-factor for projects which can.
+useful features, especially concepts.
+
+Also, keep in mind how this criterion works in practice.  When we measure exclusion, we're looking
+at _all C++ projects simultaneously_.  What matters for _you_ is _your project_ only.  So for
+example: if you're in the 29% that can use C++20, it doesn't matter that others are excluded; this
+is a complete non-factor for _you_.
 
 ## 1. Can you get it?  b) Delivery mechanism
 
@@ -394,19 +401,141 @@ TODO:
 Notes:
 
 Now for the third question in our framework, we can finally start evaluating units library features.
-We'll start with what we view as the most important.  Naturally, these tend to be particular
+We'll emphasize those we consider the most important.  Naturally, these tend to be particular
 strengths of Au.  The next section will look at some other features where we fall short.
 
-We won't have time to compare every library on every criterion, but we'll mention other libraries
-where appropriate.
+We won't have time to compare every library on every criterion --- you can see our doc website for
+that --- but we will mention other libraries where appropriate.
+
+---
+
+## Same program, only safer
+
+Notes:
+
+The first feature is to be _agnostic_ as to the _underlying numeric types_ in the program.  Some
+projects just use `double` everywhere, which is fine.  But others may store their quantities in
+`float`, or various integral types, which is very common in embedded applications.
+
+The best value proposition which a units library can provide is: _same program, only safer_.  If
+somebody without a units library is storing a value in some type, then we should let them use that
+_same type_ under the hood.  Otherwise, we complicate their decision: to get the safety they want,
+we force them to evaluate this superfluous change to their program at the same time.
+
+With Au, it's very easy to turn an arbitrary type into a quantity.  The _name of the unit_ is
+a function: you can pass it any numeric value, and get a quantity of that _same type_.  So, `6` is
+an `int`; `feet(6)` is a `Quantity<Feet, int>`.
+
+All of the libraries listed here support customizing the numeric type.  However, with nholthaus,
+this isn't present in the user-facing interfaces: there's a single global type which defaults to
+`double` and gets used for all quantity types.
 
 ---
 
 ## Conversion safety
 
+chrono code goes here
+
+```cpp
+QuantityU32<Nano<Seconds>> dt = seconds(5);
+```
+
+```
+error: conversion from 'Quantity<au::Seconds,int>' to non-scalar type 'Quantity<au::Nano<au::Seconds>,unsigned int>' requested
+```
+
+Notes:
+
+Of course, being able to store integers is one thing.  What happens to them in calculations is quite
+another --- especially when those calculations involve unit conversions.
+
+We have some intuition from the chrono library here, which uses integers heavily and has a proven
+track record doing so.  Let's take a duration of integer seconds.
+
+- We can assign it to an integer _millisecond_ duration, because we know that's exact.
+- We _can't_ assign it to an integer _minutes_ duration, because that could truncate!
+- We _can_ assign it to a _floating point_ minutes duration, because that will be more accurate.
+
+Any units library that is designed to support integers should follow this policy as a baseline.  The
+nholthaus and SI libraries primarily have floating point applications in mind, so they silently
+permit the truncation in the middle case.  Boost, mp-units, and Au all prevent it.
+
+That said, this is only a baseline.  Consider this case in the chrono library, where we store
+nanoseconds in a 32-bit integer.  We initialize it with a small number, 5 seconds.  Instead of
+storing 5 billion, we find just 705 million, which is only 0.7 seconds!  Well of course we do,
+because 5 billion can't fit in a 32-bit integer.  But the point is that there's another kind of risk
+with integers: besides _truncation_, there's _overflow_.
+
+The chrono library strategy for overflow is to provide user-facing types where overflow is unlikely.
+Storing nanoseconds in uint32 is _not_ idiomatic chrono usage; you would use
+`std::chrono::nanoseconds`, which is at least 64 bits.  But this kind of strategy doesn't scale to
+a whole system of quantities, where new dimensions can get created on the fly.
+
+**(click)**
+
+Here's the corresponding Au code.
+
+**(click)**
+
+And here's the result: a compiler error.  Au knows this conversion multiplies by 1 billion, and it's
+using a type whose max value is less than 5 billion.  Au considers the overflow risk too high, and
+it prevents it from compiling.
+
+---
+
+## More conversion safety: the "safety surface"
+
+Safety surface from blog post
+
+Notes:
+
+Since this is a function of both the conversion factor, and the size of the integer being used, we
+can visualize this in a plot.
+
+For each integer size, and each conversion factor, there is some smallest value that would overflow.
+We prevent the conversion when that value is small enough to be "scary".  What's "scary"?  Well, we
+definitely want people to feel confident using values less than 1000, because for those values they
+can't jump to the next SI prefix up.  Our threshold gives some breathing room at over 2000, which
+lets us support conversion factors of a million in a 32-bit signed integer.
+
+If we trace the boundary between permitted and forbidden conversions, we get this _overflow safety
+surface_.  The practical effect is that users feel empowered to choose the integer types that best
+suit their program, because they know that Au is watching out for the dangerous conversions.
+
+**(click)**
+
+In terms of libraries, the nholthaus and SI libraries don't protect against truncation; boost and
+mp-units follow the chrono library policy; and only Au has the overflow safety surface.  I would
+like to see other libraries try it out in practice.
+
 ---
 
 ## Unit safety
+
+Notes:
+
+Here's an important principle which I love to emphasize: unit safety.
+
+We say that a program is "unit safe" when the correct handling of physical units can be verified in
+_each individual line_, by inspection, in isolation.
+
+This is all about minimizing cognitive load.  Once you read a unit-safe line, you're done!  You know
+that _if_ your program contains a unit error, then it lives somewhere else.
+
+The way you get this is to _name_ the unit, at the _callsite_, every time you enter or exit the
+units library.  So, with a height of 1.87 meters, when we say `height = meters(1.87)`, we have
+_named the unit_ as we enter the library.  Our value is stored safely inside of the _quantity_,
+`height`.  We know that every operation we can perform on `height` will _safeguard_ that unit
+information.  And the only way to get that value out is to _name the unit_ once again.  So, let's
+say we're serializing this in a protobuf.  We would call `proto.set_height_m(height.in(meters))`.
+This is a "unit-safe handoff".  We don't need to see a _single other line_ of our program to know
+that _this line_ handles units correctly.
+
+Now, in fairness, I have received some pushback about this interface, and the lack of a function to
+just get the underlying value without naming the unit at the callsite.  _However_, one hundred
+percent of that pushback came in the _design phase_.  In the two-plus years we've been using it in
+production, I haven't received a single complaint.  Not only is unit safety just not a burden, but
+you come to love it!  It's hard to go back to calling `.count()` on a duration.
 
 ---
 
@@ -414,20 +543,80 @@ where appropriate.
 
 Notes:
 
-Be sure to cover:
-- Don't force users to change their underlying types!  This complicates their decision.  Instead,
-  make the library a pure win!
-- Real-world-tested conversion safety matters here.
-- Embedded were first class consumers from the beginning.  Need to be good with integers; need to
-  provide unit labels as const char _array_, not just pointers!
+I'm not an embedded programmer.  So why do I claim that our library is embedded friendly?  Because
+Aurora's embedded developers have been treated as first class citizens with a seat at the table
+since the beginning of the design phase.
+
+Let's get concrete.  What makes a units library "embedded friendly"?  A few things.
+
+- First: robust support for integer types.  Again, the library shouldn't force users to change the
+  numeric types in their program just to be safer with units: don't complicate the decision!  When
+  we used the nholthaus library in embedded code, it did have this effect.  Au doesn't even have
+  a "default" storage type: they're all on equal footing.
+
+- Related to integer handling: we really need that conversion safety we talked about before.  This
+  should be a chrono duration-like policy at a minimum, but of course Au's overflow safety surface
+  is even better.
+
+- Finally: string handling.  `<iostream>` is an incredibly heavyweight dependency, so it needs to be
+  easy to exclude it.  We provide all of our unit labels as `const char` **arrays**, not `const
+  char` **pointers**, which gives us the ability to call `sizeof()` on them.  This even applies to
+  compound labels that we generate automatically on the fly, such as `(m * kg) / s^2`: even these
+  are stored in simple arrays.
+
+When we talk about meeting the needs of _the entire_ C++ community, embedded developers are
+a critical and often-overlooked part of that community.
 
 ---
 
 ## Composability
 
+Notes:
+
+Composability: this is one of my favorites.  Units almost always come from other units.  So what we
+want is for the units library to let us compose units in these same ways.
+
+We've seen that `meters` is a quantity maker: you can call it on any numeric type, and it makes
+a quantity of meters.
+
+Well, so is `meters / second`.
+
+And `kilo(meters) / hour`.
+
+And `meters / squared(second)`.
+
+You can call any of these quantity makers to make a quantity.  The fluidity of combining units and
+prefixes to make new units makes the library a delight to use.
+
+Au was the only library I knew with this kind of composability for about a year, although most of
+that time predates our open source release.  Happily, this is no longer the case: the V2 interfaces
+of mp-units are every bit as fluently composable as Au.  I don't know of any other libraries that
+come close, though.
+
 ---
 
 ## Unit-aware inverses
+
+Notes:
+
+Here's a fun one.  Say we have a process running at 400 Hz.  What's the period, as an integer?
+
+Well, period is one over frequency.  But one over 400... as an _integer_... that simply truncates to
+zero, right?
+
+In seconds, yes, it does.  But we could represent this period as 2500 _microseconds_!
+
+The key here is that if you specify the units for your result, then this _implies_ the units we
+should use for 1.  We can represent 1 in different units, different _dimensionless_ units.
+
+Solve this equation for 1: we can see that its units should be the **product** of the units for
+period and frequency.  Hertz times milliseconds... that equals millionths.  One is one million
+millionths.  Therefore, the program we generate under the hood will divide 400 into one million.
+
+Here's the software API we use to express this.  `inverse_as(micro(seconds), hertz(400));`.  This
+gives `micro(seconds)(2'500)`.  I haven't seen this in any other units library.  I'd like to see it
+explored more.  In fact, I'd like to see it taken further --- maybe with more general _quotients_
+instead of only exact inverses.  I think there's fertile ground here.
 
 ---
 
@@ -490,3 +679,5 @@ Notes:
 hey don't forget to say that bazel will work out of the box
 
 also later on, do a screenshot of the alternatives page.  Say we'll show these principles in action.
+
+mention tutorials?  And how to develop?
