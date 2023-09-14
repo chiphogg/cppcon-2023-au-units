@@ -113,28 +113,81 @@ As a framework for making this decision, I suggest asking the following three qu
 
 1. First: _can you get it_ in your project?
 
+This question considers both the C++ standard version which the library uses, and the mechanism for
+delivering the library to your project.
+
 2. Second: what does it _cost_, in terms of developer experience?
 
-3. Third: only then do we ask, how do its "units-specific" features compare to other libraries?
+This question covers the main reasons that teams who _could_ use a units library choose _not to use
+one at all_.  These are:
+    a) how much does it slow down compilation?  And,
+    b) how hard are the compiler errors to _understand_, and to _fix_?
+
+3. Third question: how do its "units-specific" features compare to other libraries?
+
+Here, there are many, _many_ considerations.  We'll only have time to touch on a few in this talk.
 
 ---
 
-## 1. Can you get it?
-
-Two parts:
-
-- C++ version compatibility
-- Delivery mechanism
+## Full comparison
 
 Notes:
 
-We start with: "can you get it?"  By this we mean two things.  First, there's the "hard dealbreaker"
-of C++ version compatibility.  Then, there's the "soft dealbreaker" of delivery mechanism, or how
-you integrate the library into your project.
+However, if you want a fuller comparison, you can check out the "alternatives" page on our
+documentation website.
+
+You can see here we have screenshots of the comparison table for each of the three questions in the
+framework.  The rows represent the points of comparison, and the columns represent the units
+libraries we're comparing.
+
+So here you can see visually: the units library features in question 3 are far, _far_ more numerous
+than the others.  Of course, not all rows are created equal, and the ones higher up tend to be more
+important than the ones lower down, sometimes much more.
 
 ---
 
-### C++ version compatibility
+# Au and alternatives
+
+Notes:
+
+But before we get into those rows, let's introduce the columns: which units libraries we're
+comparing.  Here, too, there are too many to cover, and they range from obscure hobby projects to
+those that aspire to rigor and production quality.  To narrow it down to a reasonable number, we
+included two categories of library.  First, there's any library with _at least as many GitHub stars_
+as Au.  And second...
+
+---
+
+## Libraries considered
+
+Notes:
+
+...there's _boost units_.  We're waiving the GitHub stars requirement because this library has been
+around since before work started on _creating GitHub_.  It's notable for the rigor and clarity of
+its documentation, and for being ahead of its time in many ways: they were _so close_ to inventing
+vector space magnitudes, for example.
+
+Next up, the nholthaus library made a splash in 2016, kickstarting the modern C++ units library
+revolution.  Until last month, it had the most GitHub stars of any units library in _any_ language.
+This library's hallmark is being _extremely_ accessible and low friction --- seriously, it's just so
+easy to get started and to use.
+
+Next we have the SI library, whose amazingly inviting logo promotes a solid and user-friendly set of
+APIs.  Despite being relatively newer, it has skyrocketed up the GitHub stars chart, with no sign of
+slowing down.
+
+Finally, we have mp-units, which takes full advantage of bleeding edge post-C++20 features to see
+just how far we can take our interfaces.  Besides being a top-notch units library you can use
+_today_, it also serves as a vehicle for designing a possible future standard units library.  And
+just this year, the library underwent a _major_ overhaul with its V2 interfaces.  It's a stunning
+leap forward in composability, simplicity, and power: very exciting!
+
+Again: there are _many_ other options out there, but these leading libraries give a good flavor for
+the comparison.  Now let's see our decision framework in action.
+
+---
+
+## 1. Can you get it?  a) C++ standard compatibility
 
 2023 ISO survey: https://isocpp.org/files/papers/CppDevSurvey-2023-summary.pdf
 
@@ -144,6 +197,7 @@ Align with list of new features for each version
 
 Notes:
 
+For the first question --- "can you get it?" --- we start by checking C++ standard compatibility.
 Each new C++ standard brings the benefits of new features, but also the cost of excluding more and
 more users.
 
@@ -153,27 +207,35 @@ users, with C++14 close behind at 85%.  C++17 is significantly lower, at 73%, an
 a cliff at 29%.  So to move up a rung on this ladder and justify leaving people behind, you really
 need to get some major benefit from that new version.
 
-Now, what new features does each version bring?
-- C++14 gives us more sophisticated `constexpr` functions, and `auto` return type deduction.
-- C++17 brings `constexpr` if, fold expressions, and inline variables.
-- C++20 has concepts, which are huge, and non-type template parameters.
+So where do the libraries show up on this chart?
 
-By the way, already we can see why there are different niches in the C++ units library ecosystem.
-C++20 concepts have a massive effect on end user interfaces: they really change the way we write
-code.  If we want to design a future standard units library, we want to take full advantage of these
-features!  But of course, this also excludes the wide majority of the C++ community _today_.  Thus,
-there's also a separate role for a high-quality library which targets these older standards.  Again:
-the ecosystem should serve as many users as possible for as much of the time as possible.
+No surprise here, boost is the compatibility champ, supporting all versions of C++.
 
----
+I think in today's world, C++14 is a strong local optimum.  The marginal exclusion compared to C++11
+is very small, but the features you gain are extremely useful for units libraries.  Both Au and
+nholthaus units live here.
 
-### Delivery mechanism
+I think C++17 makes less sense _right this minute_.  On the one hand, you lose a much bigger chunk
+of users.  On the other, the features you do gain mostly help with implementation details, not end
+user interfaces.  That said, C++17 adoption is _rapidly_ expanding, so I expect this to matter much
+less very soon.
 
-Figure ideas:
+C++20, where mp-units lives, does exclude the majority of users, but this steep cost buys amazingly
+useful features, especially concepts.  And think about it: if the library's goal is to help design
+a standard units library, then of course it should liberally use features from all _previous_
+standards without fear.
 
-- dependency graph of small files
-    - below this, figures for bazel, cmake, conan
-- one long file
+Also, keep in mind how this criterion works in practice.  When we measure exclusion, we're looking
+at _all C++ projects simultaneously_.  What matters for _you_ is _your project_ only.  So for
+example: if you're in the 29% that can use C++20, it doesn't matter that others are excluded; this
+is a complete non-factor for _you_.
+
+## 1. Can you get it?  b) Delivery mechanism
+
+Show same figure as before, with logos under which category
+
+- First click: Au logo in 2 places
+- Second click: screenshot (or text box?) of manifest showing up on top
 
 Notes:
 
@@ -192,128 +254,9 @@ The single header approach is less flexible: you get everything in the header, a
 of it.  But it makes up for that by its stunningly easy delivery: it's just one file that you put in
 your project.
 
----
+**(click)**
 
-## 2. Developer experience cost
-
-Two parts:
-
-- Compile time penalty
-- Compiler error readability
-
-Notes:
-
-So now we've narrowed it down to the libraries we _can_ get.  Next question: _what cost will we pay_
-in terms of basic developer experience?  This is critically important to consider up front, because
-these costs are reasons that people have historically chosen _not to use a units library at all_.
-
-For units libraries, this comes in two major categories.
-
-First, we know it will increase compile times, because the compiler is doing _more work_ to produce
-the _same program_ you would have had without the units library.  That extra work, of course, goes
-into catching mistakes that would otherwise produce incorrect programs.
-
-Second, if it finds a mistake, it produces a compiler error, so: how easy are those errors to
-understand and to correct?
-
-So that's what we're looking for in a units library: it needs to take as little time as possible to
-check our code, and when it finds a problem, it should explain what's wrong as clearly and concisely
-as possible.
-
----
-
-## 3. Units library features
-
-Notes:
-
-The third and final question has to do with the units library features.  And there are a **lot** to
-consider!  Seriously, if you've never investigated units libraries in depth, you'll probably be
-stunned by just how much differentiation there is.
-
-This is a screenshot from our documentation page which compares several leading libraries:
-basically, every library with at least as many GitHub stars as Au, plus boost units because it's
-literally been around longer than GitHub.  Each column represents one of these libraries, and _each
-row represents a feature_ by which they can be compared.
-
-Good news!  We are not going to go through the entire table in this talk.  These rows are not
-equally important, not by a long shot.  What we will do is pick a few, explain how Au approaches
-each, and discuss how it compares to other libraries.  We'll include both strengths and weaknesses
-of Au.
-
-But remember that this is question 3 in our framework, so before we do _any_ of this, we'll
-introduce the libraries we're considering, and revisit the first two questions in the context of
-_these specific libraries_ .
-
----
-
-# Au and alternatives
-
----
-
-## Libraries considered
-
-Notes:
-
-We'll start with _boost units_.  This project aimed to provide a rigorous and complete solution for
-units in C++.  It was written in 2007 before C++11 even existed, so it's compatible with basically
-everything!  It's notable for the rigor and clarity of its documentation, and for being ahead of its
-time in many ways: they were _so close_ to inventing vector space magnitudes, for example.
-
-Next up, the nholthaus library made a splash in 2016, kickstarting the modern C++ units library
-revolution.  It had the most stars of any units library in _any_ language until just last month.
-This library stands out for being _extremely_ accessible and low friction --- seriously, it's just
-so easy to get started and to use.
-
-Next we have the SI library, whose amazingly inviting logo promotes a solid and user-friendly set of
-APIs.  Despite being relatively newer, it has skyrocketed up the GitHub stars chart, with no sign of
-slowing down.
-
-Finally, we have mp-units, which takes full advantage of bleeding edge post-C++20 features to see
-just how far we can take our interfaces.  Besides being a top-notch units library you can use
-_today_, it also serves as a vehicle for designing a possible future standard units library.  And
-just this year, the library underwent a _major_ overhaul with its V2 interfaces.  It's a stunning
-leap forward in composability, simplicity, and power: very exciting!
-
-There are many other options out there, but these leading libraries give a good flavor for the
-comparison.
-
----
-
-## 1. Can you get it?  a) C++ standard compatibility
-
-Notes:
-
-So, in the "can you get it" stage, question 1 of our framework, we start with the C++ standard
-compatibility.  Where is each library?
-
-No surprise here, boost is the compatibility champ, supporting all versions of C++.
-
-I think in today's world, C++14 is a strong local optimum.  The marginal exclusion compared to C++11
-is very small, but the features you gain are extremely useful for units libraries.  Both Au and
-nholthaus units live here.
-
-I think C++17 makes less sense _right this minute_.  You lose a much bigger chunk of users, but the
-features you gain mostly help with implementation details, not end user interfaces.  That said,
-C++17 adoption is _rapidly_ expanding, so I expect this to matter much less very soon.
-
-C++20, where mp-units lives, excludes the majority of users, but this steep cost buys amazingly
-useful features, especially concepts.
-
-Also, keep in mind how this criterion works in practice.  When we measure exclusion, we're looking
-at _all C++ projects simultaneously_.  What matters for _you_ is _your project_ only.  So for
-example: if you're in the 29% that can use C++20, it doesn't matter that others are excluded; this
-is a complete non-factor for _you_.
-
-## 1. Can you get it?  b) Delivery mechanism
-
-Show same figure as before, with logos under which category
-
-- First click: Au logo in 2 places
-- Second click: screenshot (or text box?) of manifest showing up on top
-
-Notes:
-
-Now for how the libraries are delivered.  boost, SI, and mp-units are delivered as full libraries,
+Here's how the libraries shake out.  boost, SI, and mp-units are delivered as full libraries,
 which gives great flexibility, at the cost of more challenging setup.  nholthaus on the other hand
 takes this single file approach, which makes it amazingly easy to set up, but can reduce
 flexibility.  So what about Au?
@@ -337,8 +280,8 @@ read the abstract.  Of course, you're better off taking 10 minutes to make the c
 meets your needs best.
 
 But the beauty of this hybrid approach is that you can use the single file version to get started
-quickly and obtain 95% of the benefits, and then bother setting up a full install _only when you
-need it_, if ever.
+quickly.  You'll obtain probably 95% of the benefits.  Then you can bother setting up the full
+install _only when you need it_, if ever.
 
 Full disclosure: the full installation is bazel-only for now.  We're going to need to lean on the
 community for CMake support.  Pull requests welcome!
@@ -349,11 +292,16 @@ community for CMake support.  Pull requests welcome!
 
 Notes:
 
-For compile times, we only have data for Au and nholthaus, simply because our measurement setup uses
-bazel to build.  I'd really love to see a more comprehensive comparison, but this is what we have.
+Now for the _cost you pay_ in your developer experience.  We'll start with the first cost: compile
+times.  We know they will increase, because the compiler is doing _more work_ to produce the _same
+program_ you would have had without the units library.  That extra work, of course, goes into
+catching mistakes that would otherwise produce incorrect programs.
 
-We took a couple files heavy on kinematics, and rewrote them idiomatically with Au, nholthaus, and
-a baseline of no units library using raw `double`.  Here are the results.
+For this, we only have data for Au and nholthaus, simply because our measurement setup uses bazel to
+build.  I'd really love to see a more comprehensive comparison, but this is what we have.
+
+We took a couple files heavy on kinematics, and rewrote them natively and idiomatically with Au,
+nholthaus, and a baseline of no units library using raw `double`.  Here are the results.
 
 **(click)**
 
@@ -369,12 +317,14 @@ nholthaus library.
 
 **(click)**
 
-Finally, what makes the _biggest difference_ is **trimming unused units**.  In Au's case, this means
-switching from single-file to full delivery, and only including the units used in the kinematics.
-For nholthaus, this massively improves their performance.  The library has literally hundreds of
-units in that single file.  Each unit is very fast to compile, but they really do add up!
+Finally, what makes the _biggest difference_ for both files is **trimming unused units**.  In Au's
+case, this means switching from single-file to full delivery, and only including the units used in
+these functions.  For nholthaus, this massively improves their performance.  The library has
+literally hundreds of units in that single file.  Each unit is very fast to compile, but they really
+do add up!
 
-But the takeaway here is that Au simply never has a severe compile time penalty.
+But the takeaway here is that even Au's worst case is competitive with any configuration of
+nholthaus: Au simply never has a severe compile time penalty.
 
 ---
 
