@@ -869,18 +869,41 @@ we'd be glad to provide guidance as to how.
 
 Notes:
 
-Positive influences:
-- single file (nholthaus -> Au)
-- strong type units (mp-units -> Au)
-- vector space magnitudes (Au -> mp-units)
-- unit-safe interfaces (Au -> mp-units)
-- composable units (Au before mp-units, but probably not influenced)
+The first kind of interaction is when a feature in one library inspires a feature in another.  I say
+"inspires" because by and large, we don't see direct code sharing between the libraries.  It's more
+that when authors see an idea working well in another library, they go and implement it themselves
+in their own library's idiom.
 
-Negative influences:
-- dimensionless convertibility to raw number (nholthaus -> Au)
+So here are some examples.
 
-Round trip conversion between percent and raw number picks up factors of 100.  Look at each
-individual interface, and they are all individually reasonable!  They just interact badly.
+- The single file delivery that makes the nholthaus library _so easy_ to obtain was a big
+  inspiration for Au.  I think with the manifest comment, and the full install option, we even
+  improved on this.
+
+- _Strongly typed units_, originally by mp-units, was a revolution in usability --- remember those
+  nice, clear compiler errors?  So this is an Au feature inspired by mp-units.
+
+- One Au feature which mp-units now has is _unit-safe interfaces_.  It's really exciting to see
+  better support for unit safety!
+
+- _Vector space magnitudes_ is another Au feature that mp-units now has.  This is the one feature
+  I know of that wasn't just inspired; it came from direct code sharing.  See, `std::ratio` works
+  fine for the chrono library, but for a more general units library it utterly fails in multiple
+  ways.  We brought this feature to mp-units via pull request before Au was open sourced.
+
+- Finally, _composable units_ is a kind of pseudo-inspired feature.  Au did have it for almost
+  a year before mp-units, but as far as I know this was just convergent evolution rather than
+  inpsiration.
+
+There's also an example of a "negative influence".  Units libraries are laboratories for ideas, and
+sometimes those ideas don't work out.  The nholthaus library has automatic conversion from
+dimensionless quantities, like _percent_, to raw numbers.  Unfortunately, individually reasonable
+decisions end up interacting badly here, and the symptom is that the round trip implicit conversion
+picks up a factor of one hundred.  We would have provided this feature, but we were able to learn
+from their experiences and avoid the mistake.
+
+So these are some ways the libraries have interacted in their _designs_.  But they can also interact
+more directly, in the same program!
 
 ---
 
@@ -888,17 +911,65 @@ individual interface, and they are all individually reasonable!  They just inter
 
 Notes:
 
-- Show what it is
-- Mention we give this out of the box for `std::chrono::duration`
+Think about it --- if two libraries have a type that represents a quantity of seconds, _and_ if they
+use the same underlying numeric type to store the value, then those two types are _morally
+equivalent_.  It would be obnoxious if we had to get the value out from one library's type, and put
+it in the other's!
+
+Well, Au gives you the ability to "bless" one of these moral equivalancies, by specializing the
+`CorrespondingQuantity` trait.  Au's Quantity has a template constructor that checks any type to see
+if this specialization exists.  If it does, then you can pass Au quantities to APIs expecting the
+other type, and vice versa.
+
+The point of this feature is to reduce the friction for migration as much as humanly possible.  It's
+part of being a good citizen of the C++ units library ecosystem: minimizing artificial barriers
+forces each library to compete on its own merits, rather than inertia.
+
+So in this example, say we were using this `MyMeters` struct in our project, and we want to upgrade
+to Au.  We can pass our `MyMeters` values to this API that takes an int quantity of meters.  In
+fact, we can even pass it to an int quantity of micro meters!  But not nanometers, because the
+overflow risk is too high: that's right, you get the overflow safety surface here too!
+
+This feature means you can do your migration in arbitrarily small steps: migrate only one target at
+a time, without needing to update all of its callsites.
+
+True, there are limitations.  A _vector_ of quantities can't be automatically converted from one
+library's type to another's, for instance.  But in practice, this feature makes migration _much
+easier_.
+
+As we saw earlier, Au already provides this interoperability for chrono library durations.
 
 ---
 
 ## nholthaus compatibility layer
 
+Notes:
+
+We also created a compatibility layer for the nholthaus library, because we used it at Aurora before
+we had Au.  This layer is publicly available in our repo, and we explain how to use it on our doc
+website.  But here's the basic picture.
+
+Remember that the nholthaus library is a single file, `units.h`.  Well, the first thing we did was
+move it to another file, `units_impl.h`.  The new `units.h` includes Au, and it includes our
+compatibility layer code.  So now, everyone who includes the old library also has access to the new
+library, and can begin migrating APIs piece by piece as they see fit.  When a package is fully
+migrated, we can depend directly on Au instead of on the `units.h` shim!
+
+So, migrating in this way can be done _incrementally_, with minimal disruption to end users.  We've
+seen it work really well in practice.
+
 ---
 
-hey don't forget to say that bazel will work out of the box
+# Conclusion
 
-also later on, do a screenshot of the alternatives page.  Say we'll show these principles in action.
+Notes:
 
-mention tutorials?  And how to develop?
+So, that's Au, the newest member of the C++ units library ecosystem.  It's let us handle physical
+units **safely**, thanks to our pioneering unit-safe interfaces and the overflow safety surface.  It
+works **quickly**: not _just_ zero runtime overhead, but also easy installation and fast compile
+times.  And now, at long last, we are sharing it **broadly**.
+
+If you handle physical units in C++, _you owe it to yourself_ to use... well, not necessarily Au,
+but a units library that meets **your** needs _at least as well_ as Au does.
+
+I'm grateful for your time and attention, and excited to entertain your questions!
