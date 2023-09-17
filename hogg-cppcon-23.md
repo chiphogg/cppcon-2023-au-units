@@ -32,6 +32,172 @@ I will need to figure out a good way to make it flow.
 
 ---
 
+# A taste of Au
+
+Notes:
+
+Let's start by getting a small taste of the library.  We're going to speed through a couple of
+examples, and mention some concepts and resources that will make the library _so_ easy to learn.
+
+We won't linger here because even though this talk is about Au, the _main_ goal of the talk is to
+empower you to choose the units library that best meets _your_ needs.  So we'll save more time to
+that decision framework.
+
+---
+
+## Example: time to goal
+
+Notes:
+
+Let's begin with a very simple example.  We're driving at a constant speed, and we have a goal which
+is some known distance away.  How much time will it take to get there?
+
+If you don't have a units library, you'll probably do it something like this.  You've got your
+variables for distance, speed, and time.  And of course you're very careful to _specify the units_:
+you use these suffixes, like "m" for meters, and "mph" for miles per hour.  You also need to do your
+unit conversions manually, which is tedious but straightforward.  You've probably got constants like
+these in some common header file with its own unit tests.
+
+**(click)**
+
+Now here's what this looks like with Au.  We see some changes right off the bat.  First off, the
+prefixes are _gone_, because the _library_ is doing the work.  This line here, `meters(30.0)`, takes
+the value `30` and **encapsulates** it inside of a quantity.  Once it's there, it's _safe_: you can
+do any _meaningful_ thing you like, but it will _prevent_ you from making mistakes with your units.
+
+The other thing is that we can get rid of all of these conversion factors, and instead we just
+directly say what we want.  The time to goal is this ratio, _as seconds_.  When we write this line,
+the compiler computes the final conversion factor, a single number, _at compile time_, and correctly
+multiplies it.
+
+So there's work that we _were_ doing, manually checking units and conversion factors, and now the
+compiler's doing it for us.  We can _redeploy that effort_ to more exciting problems!
+
+---
+
+## Example: CPU ticks time units
+
+```cpp
+// Defined in a header somewhere:
+constexpr uint64_t CPU_CLOCK_HZ = 400'000'000;
+
+std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks) {
+    using NS_PER_TICK = std::ratio<1'000'000'000, CPU_CLOCK_HZ>;
+    return std::chrono::nanoseconds{
+        num_cpu_ticks * NS_PER_TICK::num / NS_PER_TICK::den
+    };
+}
+```
+
+```cpp
+// Defined in a header somewhere:
+constexpr uint64_t CPU_CLOCK_HZ = 400'000'000;
+
+std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks) {
+    constexpr auto cpu_ticks = inverse(hertz * mag<CPU_CLOCK_HZ>());
+    return cpu_ticks(num_cpu_ticks).as(nano(seconds));
+}
+```
+
+```cpp
+// Defined in a header somewhere:
+constexpr uint64_t CPU_CLOCK_HZ = 400'000'000;
+
+std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks) {
+    constexpr auto cpu_ticks = inverse(hertz * mag<CPU_CLOCK_HZ>());
+    return cpu_ticks(num_cpu_ticks).coerce_as(nano(seconds));
+}
+```
+
+Godbolt: https://godbolt.org/z/48vEoYjaj
+
+Notes:
+
+Here's another example.  This one's from the embedded domain.  Let's say we have hardware which
+measures timestamps as the integer number of CPU cycles that have elapsed since startup.  Now, we
+want to work with that in more familiar time units such as nanoseconds.  So we can create
+a `std::ratio` to get our conversion fraction in lowest terms, and then we do the integer math of
+multiplying and dividing.  This might even be right!  There's a 50% chance, but in the worst case
+we'll just flip the fraction.
+
+Now here's how we can do this with Au.  We can simply define an ad hoc time unit that corresponds to
+one CPU tick.  It's the inverse of the CPU frequency, which is one hertz times this _magnitude_, mag
+of CPU clock hertz.  And then we write `cpu_ticks` of `num_cpu_ticks`, which is clearly correct, and
+finally, `.as` nano seconds.
+
+This doesn't compile.  Well, of course it doesn't!  This is a truncating conversion: times 5, and
+then integer-divide by 2.  If we know what we're doing, we can coerce the compiler to disregard this
+safety check.
+
+**(click)**
+
+So, instead of dot-as, we say dot-coerce-as, and now this is correct.  And yes, Au's integer
+quantity of nanoseconds will automatically convert to the `std::chrono::nanoseconds` return type.
+
+**(click)**
+
+If we look at the assembly in godbolt, we can see that the functions do the same thing.  It's just
+that it's easier to see that the second one is correct.
+
+And this is just a no-op change.  We could reap even more benefits by moving this unit definition
+upstream in our project, and passing timestamps around our program _natively in this custom unit_!
+But this is a good start.
+
+---
+
+## Au: Interfaces and Idioms
+
+Notes:
+
+We're getting a picture of the core idioms of the library.  It's built around our workhorse type
+template, which is `Quantity`.  It basically "tags" a value of any numeric type with the _units_
+that give that value its meaning.
+
+`Quantity` is a _safe container_ for your value, because it guards the entry and exit.  To put your
+value inside, you call a function with the name of your unit.  To get the value back out, you call
+dot-in your units, which is short for "value in".  Notice the symmetry: it's as if the unit name is
+a _password_ which we set when we store our value, and which we must speak to retrieve it.
+
+For unit conversions, we use the same API, but just pass a different unit: dot-in other-units.  Of
+course, this exits the safety of the library, and makes _us_ responsible for keeping track of the
+units... ugh.  To stay _within the library_ when we do the conversion, we say dot-as instead of
+dot-in.
+
+"In" and "as" are vocabulary words with consistent meanings: "as" makes a quantity, and "in" makes
+a raw number.  So for `std::round` we also have "round_as" and "round_in", and similar for
+`std::floor` and `std::ceil`.  Note that we _definitely don't_ have `round` without a unit slot,
+because this makes no sense.  Can you round your height to the nearest integer?  No --- but you can
+round it to the nearest integer number of _feet_, or _centimeters_.  This principle is _unit
+safety_: a core principle of Au's design, which we'll mention again later.
+
+Finally, we have other vocabulary words that we can compose with these.  The newest one is "coerce",
+which tells the compiler to ignore safety checks for truncation or overflow for when you know it's
+OK to do that.  So when you see `length.coerce_as(feet)`, you'll know what it means if you learn to
+speak Au.
+
+---
+
+## Au: learning more
+
+Notes:
+
+If you want to learn _by doing_, our docs are pretty good, and I especially want to emphasize two
+resources.
+
+First, we have tutorials that you can work through, including interactive exercises.  We do expect
+that everyone will be able to just clone the repo and be up and running building and testing
+immediately, without installing anything.
+
+Second, we have a troubleshooting guide.  This contains examples of common Au compiler errors,
+explains what they mean in plain English, and shows how to fix them.  It also includes compiler
+error text from clang, gcc, and MSVC, so you can literally `Ctrl-F` on the page and start typing in
+parts of your compiler error to jump to the right section.
+
+So there we have an appetizer of sorts for the Au library.  There's much, _much_ more we could say.
+But first, I want to zoom way out and get clear on the bigger picture.
+
+---
+
 # C++ Units: the goal
 
 Notes:
