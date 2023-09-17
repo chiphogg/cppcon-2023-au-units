@@ -738,21 +738,126 @@ instead of only exact inverses.  I think there's fertile ground here.
 
 # Au: missing features
 
+Notes:
+
+So we've seen some pretty cool features of Au, which raises the question: why might you _not_ want
+it?  We'll do a quick tour of a few things we don't currently have.
+
 ---
 
 ## Decibels
+
+Notes:
+
+First off: _decibels_, and other logarithmic units like _bels_ and _nepers_.  For these, the
+nholthaus library is pretty much the only game in town.
+
+_These can be subtle._  The definition can depend on whether you're dealing with so-called "power"
+quantities or "root-power" quantities, which feels like it'll be hard to write generically.
+
+The best way forward is to accumulate a comprehensive collection of acceptance test cases from
+experts who use decibels in their daily job.  If we can get enough test cases and they're all
+mutually coherent, we can do this.  If you're a decibel expert and you have test cases to suggest...
+then, leave a YouTube comment down below; don't forget to like and subscribe to CppCon.
+
+---
+
+## Explicit systems of quantities
+
+Notes:
+
+So, Au can handle different systems of _units_: we can freely mix meters, feet, furlongs, you name
+it.  What we _can't_ do is handle two incompatible ideas about _what dimensions exist_ at the same
+time.
+
+What does that even mean?  Here's an example.  SI units measure electric fields in volts per meter,
+and magnetic fields are measured in Tesla.  In Gaussian units, they are _both_ measured in Gauss!
+They have different dimensions in SI, but the same dimension in Gaussian units.
+
+You can use SI units with Au.  You can use Gaussian units with Au!  But you _can't_ use them both in
+the _same program_.
+
+Now, this is an intentional design decision, to reduce complexity and the learning curve.  When it
+comes to APIs, having one system is like having zero: it fades into the background, and we never
+need to mention it.  What's water to a fish?
+
+So Au is basically a good 90% solution.  To be crystal clear, I mean we meet 100% of the needs of
+90% of users, **not** 90% of the needs of 100% of users.  Big difference.
 
 ---
 
 ## Quantity "kind"
 
+Notes:
+
+Next up: different "kinds" of the same quantity.  Can we compare, say, a radioactive _activity_ in
+becquerel, to a _frequency_ in hertz?  They are both equivalent to inverse seconds!
+
+With Au, we say: sure!  We don't _need_ to turn _every_ impermissible operation into a compile time
+error.  If it passes the filters of same _dimension_ and same _magnitude_, then we freely allow
+assignment, because the cost of catching these mistakes would be preventing too many legitimate use
+cases.
+
+That said, mp-units V2 has come up with a novel implementation for distinguishing different kinds.
+I think it looks very exciting and promising.  So if this is really important to you, upgrade to
+C++20 and check out mp-units.
+
 ---
 
-## Explicit systems
+### Aside: mistakes in the real world
+
+Notes:
+
+By the way: we've got 3 tiers of quantity mistakes you can make.
+
+- First, wrong dimension.  You ask for a length, you get a temperature?  Total nonsense!
+- Second, right dimension, wrong magnitude.  You thought the distance was 100 meters, but it was 100
+  yards.
+- Third, right dimension, _right magnitude_, wrong kind.  You assigned a _radioactive activity_ to
+  a _frequency_.  Au doesn't care about this, but it cares about the first two.
+
+So it feels like the first must be terrible, the second pretty bad, and the third somewhat bad.  But
+what mistakes do people make _in the real world_?
+
+The mp-units paper on safety lists 10 real-world errors, 9 of which are for quantities.  Now, most
+of these aren't **software** errors, but they do show us the kinds of mistakes that people make.
+
+Which categories do you think these will end up in?
+
+**(click)**
+
+Answer: one hundred percent are in the middle category: right dimension, wrong units.  Turns out,
+when you ask someone for a length, they tend to give you a length!  But their length of 6 might not
+be a length that you'd call 6.  So in terms of preventing bugs, handling unit conversion factors
+delivers _virtually all_ of the value.
+
+Now: please remember that preventing bugs is not the only --- _or even the primary_ --- value that
+a units library provides.  The main value is to _accelerate development_.  The _more_ checks a units
+library provides, the more _manual bug prevention effort_ we can redeploy to more interesting
+problems.  So, kinds _do_ add value; mp-units has a very promising implementation; and I, former
+skeptic, now hope to support them someday too.  All I'm saying with this slide is that this feature
+is clearly in the region of diminishing returns.
 
 ---
 
 ## Unit symbol APIs (e.g., literals)
+
+Notes:
+
+Next up: user-defined literals, or UDLs.  Wait, we don't have those?  Who doesn't love writing `3_m`
+instead of `meters(3)`?
+
+Well, we do have these internally at Aurora; they were part of the original library.  At first, we
+were going to port them over, but then mp-units abandoned them, and made some really compelling
+arguments as to why.  They don't compose; they don't support different storage types well; they're
+labor-intensive to define; and so on.  mp-units also engineered a better solution, initially called
+quantity _references_.  You can see an example here: you can write "65 times mi slash h" to get 65
+miles per hour.  This solution lets you compose units, it lets you use whatever numeric type you
+want --- it's great!
+
+Our plan is to explore some version of this approach instead of going with the popular but deeply
+flawed UDLs.  That said, if you want UDLs in your project, it's easy enough to define your own, and
+we'd be glad to provide guidance as to how.
 
 ---
 
