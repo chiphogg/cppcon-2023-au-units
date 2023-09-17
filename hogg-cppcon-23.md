@@ -7,7 +7,7 @@ thanks to the `std::chrono` library.  Today we'll learn how to bring that same e
 robustness to **all** physical quantities.  Our new open source library, Au, makes this... well,
 more than just possible; it makes it easy.
 
-But the talk isn't _just_ about Au.  It's really about the whole _ecosystem_ of such libraries that
+But this talk isn't _just_ about Au.  It's really about the whole _ecosystem_ of such libraries that
 people have written to meet this need.  The ecosystem has different niches.  And the libraries _in_
 that ecosystem influence each other, both through competition and collaboration.  These interactions
 make every participating library stronger, and it's the _entire C++ community_ who benefits.
@@ -219,13 +219,14 @@ The _full_ goal is to do this
 
 Starting _right now_, because we can't affect the past anymore.  If the vertical dimension
 shows the --- _very diverse_ --- community of C++ users, and the horizontal dimension shows time, we
-want to cover as much of this diagram as possible with good units support.
+want to cover as _much_ of this diagram as possible with units support that's as _good_ as possible.
 
 Accurately expressing our goal is the first step to getting a chance to meet it.
 
 Now, we can use this model to evaluate candidate solutions.  For example: shouldn't there be
 a _standard units library_?  I think there should!  And I'm actively collaborating with others who
-are working to make it happen on the mp-units project.  Let's see how it fits in on the diagram.
+are working to make it happen on the mp-units project --- you should come to our Open Content panel
+discussion tonight.  Now let's see how a standard units library fits in on the diagram.
 
 ---
 
@@ -256,11 +257,11 @@ doesn't yet exist past C++14.  Another project needs robust support for C++17's 
 C++20's concepts.  One project uses `double` for everything without a second thought.  Another
 project runs on embedded hardware that can only use integers.
 
-It's difficult for any one library to satisfy all of these use cases well, if not outright
-impossible.  Therefore, the ecosystem has _niches_.  It can support multiple libraries, coexisting
-for extended periods of time.  _And that's good_, because the libraries are _little laboratories_
-for how to handle units in C++.  We can try things out, and find out not just what works great, but
-also what ideas _sound promising_ but have hidden pitfalls.
+It's difficult for any one library to satisfy all of these use cases well.  Therefore, the ecosystem
+has _niches_.  It can support multiple libraries, coexisting for extended periods of time.  _And
+that's good_, because the libraries are _little laboratories_ for how to handle units in C++.  We
+can try things out, and find out not just what works great, but also what ideas _sound promising_
+but have hidden pitfalls.
 
 If we embrace that ecosystem viewpoint, we see the libraries interacting through both competition
 and collaboration.  They can adopt each others' strengths, and learn from each others' mistakes.
@@ -279,8 +280,8 @@ As a framework for making this decision, I suggest asking the following three qu
 
 1. First: _can you get it_ in your project?
 
-This question considers both the C++ standard version which the library uses, and the mechanism for
-delivering the library to your project.
+This question considers both the C++ standard version which the library requires, and the mechanism
+for delivering the library to your project.
 
 2. Second: what does it _cost_, in terms of developer experience?
 
@@ -329,9 +330,9 @@ as Au.  And second...
 Notes:
 
 ...there's _boost units_.  We're waiving the GitHub stars requirement because this library has been
-around since before work started on _creating GitHub_.  It's notable for the rigor and clarity of
-its documentation, and for being ahead of its time in many ways: they were _so close_ to inventing
-vector space magnitudes, for example.
+around since before work started on _creating GitHub_.  Boost units is notable for the rigor and
+clarity of its documentation, and for being ahead of its time in many ways: they were _so close_ to
+inventing vector space magnitudes, for example.
 
 Next up, the nholthaus library made a splash in 2016, kickstarting the modern C++ units library
 revolution.  Until last month, it had the most GitHub stars of any units library in _any_ language.
@@ -345,8 +346,8 @@ slowing down.
 Finally, we have mp-units, which takes full advantage of bleeding edge post-C++20 features to see
 just how far we can take our interfaces.  Besides being a top-notch units library you can use
 _today_, it also serves as a vehicle for designing a possible future standard units library.  And
-just this year, the library underwent a _major_ overhaul with its V2 interfaces.  It's a stunning
-leap forward in composability, simplicity, and power: very exciting!
+just this year, the library underwent a _major_ overhaul with its V2 interfaces, giving it
+a stunning leap forward in composability, simplicity, and power: very exciting!
 
 Again: there are _many_ other options out there, but these leading libraries give a good flavor for
 the comparison.  Now let's see our decision framework in action.
@@ -375,7 +376,7 @@ need to get some major benefit from that new version.
 
 So where do the libraries show up on this chart?
 
-No surprise here, boost is the compatibility champ, supporting all versions of C++.
+No surprise here, boost is the compatibility champ, supporting all versions of C++ back to 98.
 
 I think in today's world, C++14 is a strong local optimum.  The marginal exclusion compared to C++11
 is very small, but the features you gain are extremely useful for units libraries.  Both Au and
@@ -503,10 +504,12 @@ The other reason people stop using units libraries is inscrutable compiler error
 TODO:
 
 - Show:
-    - boost, extremely challenging
+    - boost, extremely challenging (https://godbolt.org/z/Wz1ohs33f)
     - nholthaus, positional arguments, need to know library details to understand what unit it is
-    - mp-units: concise and clear!
-    - Au: similar to mp-units
+      (https://godbolt.org/z/7f9YanMx1)
+    - mp-units: concise and clear! (https://godbolt.org/z/G1Y85qY9E)
+        - Note: Needed to use a newer compiler version to get C++20 support.
+    - Au: similar to mp-units (https://godbolt.org/z/ao1afvEas)
 - Strong types for units, pioneered by mp-units, is one of the two most significant advancements in
   C++ units libraries in the last decade (the other being vector space magnitudes)
 
@@ -518,7 +521,8 @@ Notes:
 
 Now for the third question in our framework, we can finally start evaluating units library features.
 We'll emphasize those we consider the most important.  Naturally, these tend to be particular
-strengths of Au.  The next section will look at some other features where we fall short.
+strengths of Au, because we focused on what we thought was important when we built it.  The next
+section will look at some other features where we fall short.
 
 We won't have time to compare every library on every criterion --- you can see our doc website for
 that --- but we will mention other libraries where appropriate.
@@ -582,10 +586,11 @@ storing 5 billion, we find just 705 million, which is only 0.7 seconds!  Well of
 because 5 billion can't fit in a 32-bit integer.  But the point is that there's another kind of risk
 with integers: besides _truncation_, there's _overflow_.
 
-The chrono library strategy for overflow is to provide user-facing types where overflow is unlikely.
-Storing nanoseconds in uint32 is _not_ idiomatic chrono usage; you would use
-`std::chrono::nanoseconds`, which is at least 64 bits.  But this kind of strategy doesn't scale to
-a whole system of quantities, where new dimensions can get created on the fly.
+Now of course, chrono takes this into account and they do have a strategy.  They designed their
+_primary user-facing_ types to make overflow unlikely. Storing nanoseconds in uint32 is _not_
+idiomatic chrono usage; you would use `std::chrono::nanoseconds`, which is at least 64 bits.  But
+this kind of strategy doesn't scale to a whole system of quantities, where new dimensions can get
+created on the fly.
 
 **(click)**
 
@@ -611,8 +616,9 @@ can visualize this in a plot.
 For each integer size, and each conversion factor, there is some smallest value that would overflow.
 We prevent the conversion when that value is small enough to be "scary".  What's "scary"?  Well, we
 definitely want people to feel confident using values less than 1000, because for those values they
-can't jump to the next SI prefix up.  Our threshold gives some breathing room at over 2000, which
-lets us support conversion factors of a million in a 32-bit signed integer.
+can't jump to the next SI prefix up.  Our threshold gives some breathing room.  It's over 2000,
+which lets us support conversion factors of a million in a 32-bit signed integer.  Go ahead and
+initialize your hertz frequency with a megahertz value!
 
 If we trace the boundary between permitted and forbidden conversions, we get this _overflow safety
 surface_.  The practical effect is that users feel empowered to choose the integer types that best
@@ -642,16 +648,16 @@ The way you get this is to _name_ the unit, at the _callsite_, every time you en
 units library.  So, with a height of 1.87 meters, when we say `height = meters(1.87)`, we have
 _named the unit_ as we enter the library.  Our value is stored safely inside of the _quantity_,
 `height`.  We know that every operation we can perform on `height` will _safeguard_ that unit
-information.  And the only way to get that value out is to _name the unit_ once again.  So, let's
-say we're serializing this in a protobuf.  We would call `proto.set_height_m(height.in(meters))`.
-This is a "unit-safe handoff".  We don't need to see a _single other line_ of our program to know
-that _this line_ handles units correctly.
+information.  And the only way to get that raw value out is to _name the unit_ once again.  So,
+let's say we're serializing this in a protobuf.  We would call
+`proto.set_height_m(height.in(meters))`.  "m", "meters": this is a "unit-safe handoff".  We don't
+need to see a _single other line_ of our program to know that _this line_ handles units correctly.
 
 Now, in fairness, I have received some pushback about this interface, and the lack of a function to
 just get the underlying value without naming the unit at the callsite.  _However_, one hundred
 percent of that pushback came in the _design phase_.  In the two-plus years we've been using it in
 production, I haven't received a single complaint.  Not only is unit safety just not a burden, but
-you come to love it!  It's hard to go back to calling `.count()` on a duration.
+you really do come to appreciate it!  It's hard to go back to calling `.count()` on a duration.
 
 ---
 
@@ -680,8 +686,8 @@ Let's get concrete.  What makes a units library "embedded friendly"?  A few thin
   compound labels that we generate automatically on the fly, such as `(m * kg) / s^2`: even these
   are stored in simple arrays.
 
-When we talk about meeting the needs of _the entire_ C++ community, embedded developers are
-a critical and often-overlooked part of that community.
+When we talk about meeting the needs of _the entire_ C++ community, remember that embedded
+developers are a critical and often-overlooked part of that community.
 
 ---
 
@@ -689,8 +695,9 @@ a critical and often-overlooked part of that community.
 
 Notes:
 
-Composability: this is one of my favorites.  Units almost always come from other units.  So what we
-want is for the units library to let us compose units in these same ways.
+Composability: this is one of my favorites.  "Mommy, where do units come from?"  Well, units almost
+always come from _combining other units_.  So what we want is for the units library to let us
+compose units in these same ways.
 
 We've seen that `meters` is a quantity maker: you can call it on any numeric type, and it makes
 a quantity of meters.
