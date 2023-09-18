@@ -570,7 +570,7 @@ boon for end users.
 Godbolt links:
     - boost (https://godbolt.org/z/Wz1ohs33f)
     - nholthaus (https://godbolt.org/z/7f9YanMx1)
-    - mp-units (https://godbolt.org/z/G1Y85qY9E)
+    - mp-units (https://godbolt.org/z/8WzYnx54E)
         - Note: Needed to use a newer compiler version to get C++20 support.
     - Au (https://godbolt.org/z/ao1afvEas)
 -->
