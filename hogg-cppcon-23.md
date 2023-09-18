@@ -14,21 +14,62 @@ make every participating library stronger, and it's the _entire C++ community_ w
 
 ---
 
-## Placeholder for transition slides
+## Units library: basic concept
 
 Notes:
 
-TODO: I am struggling with what to write here.  I want to try to cover the following ideas:
+Let's start by getting on the same page about what a units library is.
 
-- Sequel to CppCon 2021 talk (whose main points I'll briefly summarize)
-    - Last talk: here's what to look for (but no existing _available_ library has it).  Now you
-      _can_ have nice things!
-- Who is Aurora and what does "safely, quickly, broadly" mean?
-- What is a units library?
-    - Value proposition: catch mistakes when you _build_, at no cost when you _run_.
-    - Use diagram from blog post to illustrate
+Suppose you have a variable that has units, like this distance measured in meters.  Without a units
+library, _you're_ on the hook for keeping track of those units.  _With_ a units library, you have
+a special _type_ that knows about the units, so the compiler will keep track of them.  It's as if we
+can "tag" this variable with the units, in a way that shifts the burden to the compiler.
 
-I will need to figure out a good way to make it flow.
+The amazing and beautiful thing is that this "tag" gets optimized out when we build the program.  If
+you've written correct code, the compiler will produce _the same program_ you would have had without
+the library.  This means there's no runtime penalty!
+
+But what's even better is what happens when you write _incorrect_ code.  Without a units library,
+you'll get what you usually get: it produces a _silently incorrect program_, which is insidious.
+_With_ a units library, though, it produces a compiler error to tell you what mistake you made!
+
+---
+
+## Aurora Innovation
+
+Notes:
+
+This kind of safety is critically important where I work, which is Aurora Innovation.  Our mission
+is to bring the benefits of self-driving technology to the world _safely, quickly, and broadly_ ---
+in that order.  In building our product, the Aurora Driver, we have _many_ use cases for tracking
+physical units in C++: everything from embedded systems, to the autonomy stack, to remote assistance
+and user interfaces --- it's a ubiquitous need.  And while tracking units is a very small part of
+the problem, it's also critically important, and we need to solve it _robustly_ so we can keep our
+focus on harder problems.
+
+---
+
+## Flashback: CppCon 2021
+
+Notes:
+
+This isn't our first units talk at CppCon.  We also presented a talk in 2021 which explained what
+we'd learned from our experience handling units in C++.  The talk was well received and worth your
+time, but I'll highlight a few key points.
+
+First: actual unit errors are surprisingly rare, even _without_ a units library.  So what's the
+point of using one?  The point is that they're rare thanks to _a lot of manual work_.  The
+**primary** value of a units library is to let you **redeploy** that effort to more interesting
+problems.
+
+Second: it's the _interfaces_ that determine how much developer velocity you'll _actually_ gain.  We
+listed some key properties, like unit safety, conversion safety, the ability to fluently mix numeric
+types, and so on.  We listed all these properties... but the only units library that had them was
+our _internal_ library.
+
+Thankfully, things have improved in two years.  First, the ideas have been out there, and started
+influencing other units libraries.  But second, at long last, our own library, Au, is now fully
+publicly available.
 
 ---
 
@@ -40,7 +81,7 @@ Let's start by getting a small taste of the library.  We're going to speed throu
 examples, and mention some concepts and resources that will make the library _so_ easy to learn.
 
 We won't linger here because even though this talk is about Au, the _main_ goal of the talk is to
-empower you to choose the units library that best meets _your_ needs.  So we'll save more time to
+empower you to choose the units library that best meets _your_ needs.  So we'll devote more time to
 that decision framework.
 
 ---
