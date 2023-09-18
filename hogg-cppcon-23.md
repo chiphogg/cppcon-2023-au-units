@@ -540,19 +540,40 @@ nholthaus: Au simply never has a severe compile time penalty.
 
 Notes:
 
-The other reason people stop using units libraries is inscrutable compiler errors.
+The other reason people stop using units libraries is inscrutable compiler errors.  We'll look at
+a very simple example: we'll try initializing a _speed_ with a distance _times_ a duration, instead
+of divided by.
 
-TODO:
+So here's what we get with boost.  I think this shows why despite the amazing benefits, many
+projects have opted _not_ to use a units library over the years.  This is very forbidding.  We're
+also for some reason mentioning kelvins and candelas multiple times.
 
-- Show:
-    - boost, extremely challenging (https://godbolt.org/z/Wz1ohs33f)
-    - nholthaus, positional arguments, need to know library details to understand what unit it is
-      (https://godbolt.org/z/7f9YanMx1)
-    - mp-units: concise and clear! (https://godbolt.org/z/G1Y85qY9E)
+Next up is nholthaus.  It's not really any easier to understand.  These `std::ratio<0, 1>`'s that
+litter the text are the _exponents for the dimensions_.  These are positional arguments.  So
+basically, we still have the problem that we have to mention every dimension, even the irrelevant
+ones, only now we can't even know what they are unless we read the library source code.
+
+Now for mp-units.  Since it's C++20 only, I switched to a newer compiler.  But that's not the reason
+this is _such_ a breath of fresh air.  It's because of a feature which mp-units pioneered: _opaque
+unit types_.  What this means in practice is that when you say "meter", it's an actual, simple type,
+not an alias that resolves to a complicated compound template.  I think this is one of the two most
+significant advancements in C++ units libraries in the past decade, the other being vector space
+magnitudes.
+
+So how about Au's compiler errors?  Similarly concise: we have opaque unit types as well.  In some
+ways they may be a little easier to read: you can see that this is the _product_ of meters and
+seconds up here, and the _product_ of meters and _seconds-to-the-minus-one_ down here.  But in any
+case, both Au and mp-units keep these compiler errors _short_ and _human-readable_: a tremendous
+boon for end users.
+
+<!--
+Godbolt links:
+    - boost (https://godbolt.org/z/Wz1ohs33f)
+    - nholthaus (https://godbolt.org/z/7f9YanMx1)
+    - mp-units (https://godbolt.org/z/G1Y85qY9E)
         - Note: Needed to use a newer compiler version to get C++20 support.
-    - Au: similar to mp-units (https://godbolt.org/z/ao1afvEas)
-- Strong types for units, pioneered by mp-units, is one of the two most significant advancements in
-  C++ units libraries in the last decade (the other being vector space magnitudes)
+    - Au (https://godbolt.org/z/ao1afvEas)
+-->
 
 ---
 
@@ -562,8 +583,8 @@ Notes:
 
 Now for the third question in our framework, we can finally start evaluating units library features.
 We'll emphasize those we consider the most important.  Naturally, these tend to be particular
-strengths of Au, because we focused on what we thought was important when we built it.  The next
-section will look at some other features where we fall short.
+strengths of Au, because we focused on what we thought was important when we built it.  The section
+_after_ this one will look at some other features where we fall short.
 
 We won't have time to compare every library on every criterion --- you can see our doc website for
 that --- but we will mention other libraries where appropriate.
@@ -622,10 +643,10 @@ nholthaus and SI libraries primarily have floating point applications in mind, s
 permit the truncation in the middle case.  Boost, mp-units, and Au all prevent it.
 
 That said, this is only a baseline.  Consider this case in the chrono library, where we store
-nanoseconds in a 32-bit integer.  We initialize it with a small number, 5 seconds.  Instead of
-storing 5 billion, we find just 705 million, which is only 0.7 seconds!  Well of course we do,
-because 5 billion can't fit in a 32-bit integer.  But the point is that there's another kind of risk
-with integers: besides _truncation_, there's _overflow_.
+nanoseconds in a 32-bit integer.  We initialize it with a small number of seconds, 5 seconds.
+Instead of storing 5 billion nanoseconds, we find just 705 million, which is only 0.7 seconds!  Well
+of course we do, because 5 billion can't fit in a 32-bit integer.  But the point is that there's
+another kind of risk with integers: besides _truncation_, there's _overflow_.
 
 Now of course, chrono takes this into account and they do have a strategy.  They designed their
 _primary user-facing_ types to make overflow unlikely. Storing nanoseconds in uint32 is _not_
@@ -639,9 +660,9 @@ Here's the corresponding Au code.
 
 **(click)**
 
-And here's the result: a compiler error.  Au knows this conversion multiplies by 1 billion, and it's
-using a type whose max value is less than 5 billion.  Au considers the overflow risk too high, and
-it prevents it from compiling.
+And here's the result: a compiler error.  Au knows this conversion multiplies by 1 billion, and it
+knows the max value of the type is less than 5 billion.  Au considers the overflow risk too high,
+and it prevents it from compiling.
 
 ---
 
@@ -651,8 +672,8 @@ Safety surface from blog post
 
 Notes:
 
-Since this is a function of both the conversion factor, and the size of the integer being used, we
-can visualize this in a plot.
+In general, overflow risk is a function of both the conversion factor, and the size of the integer
+being used.  Thus, we can visualize this in a plot.
 
 For each integer size, and each conversion factor, there is some smallest value that would overflow.
 We prevent the conversion when that value is small enough to be "scary".  What's "scary"?  Well, we
