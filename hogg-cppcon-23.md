@@ -16,19 +16,58 @@ make every participating library stronger, and it's the _entire C++ community_ w
 
 ## Units library: basic concept
 
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+
+```cpp [1-2]
+// No units library:
+double distance_m;
+
+
+
+
+```
+
+</div><div class="fragment fade-in" data-fragment-index="1">
+
+```cpp [4-5]
+// No units library:
+double distance_m;
+
+// With units library:
+Quantity<Meters, double> distance;
+```
+
+</div>
+</div>
+
+<div class="fragment" data-fragment-index="2" style="width: 50%; display: block; float: left;">
+<img src="./02_basic_concept_0_left.png" style="width: 50%; padding: 0; margin: 0">
+</div>
+
+<div class="fragment" data-fragment-index="3"style="width: 50%; display: block; float: left;">
+<img src="./02_basic_concept_1_right.png" style="width: 50%; padding: 0; margin: 0">
+</div>
+
 Notes:
 
 Let's start by getting on the same page about what a units library is.
 
 Suppose you have a variable that has units, like this distance measured in meters.  Without a units
-library, _you're_ on the hook for keeping track of those units.  _With_ a units library, you have
-a special _type_ that knows about the units, so the compiler will keep track of them.  It's as if we
-can "tag" this variable with the units, in a way that shifts the burden to the compiler.
+library, _you're_ on the hook for keeping track of those units --- see the "underscore-m" on the
+variable name?
 
+**(click)**
+_With_ a units library, you have a special _type_ that knows about the units.  It's as if we can
+apply the units as a "tag", to say _this_ double is a _quantity of meters_, in a way that shifts the
+burden to the compiler (and lets us drop the underscore-m).
+
+**(click)**
 The amazing and beautiful thing is that this "tag" gets optimized out when we build the program.  If
 you've written correct code, the compiler will produce _the same program_ you would have had without
 the library.  This means there's no runtime penalty!
 
+**(click)**
 But what's even better is what happens when you write _incorrect_ code.  Without a units library,
 you'll get what you usually get: it produces a _silently incorrect program_, which is insidious.
 _With_ a units library, though, it produces a compiler error to tell you what mistake you made!
