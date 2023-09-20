@@ -92,25 +92,27 @@ focus on harder problems.
 
 ## Flashback: CppCon 2021
 
+<img src="./cppcon-2021.png" class="r-stretch">
+
 Notes:
 
 This isn't our first units talk at CppCon.  We also presented a talk in 2021 which explained what
-we'd learned from our experience handling units in C++.  The talk was well received and worth your
-time, but I'll highlight a few key points.
+we'd learned from our experience handling units in C++.  The talk was well received and is still
+worth your time, but I'll highlight a few key points for those who missed it.
 
 First: actual unit errors are surprisingly rare, even _without_ a units library.  So what's the
-point of using one?  The point is that they're rare thanks to _a lot of manual work_.  The
+point of using one?  The point is that the _reason_ they're rare is _lots of manual work_.  The
 **primary** value of a units library is to let you **redeploy** that effort to more interesting
 problems.
 
-Second: it's the _interfaces_ that determine how much developer velocity you'll _actually_ gain.  We
-listed some key properties, like unit safety, conversion safety, the ability to fluently mix numeric
-types, and so on.  We listed all these properties... but the only units library that had them was
-our _internal_ library.
+Second: it's the _quality of the interfaces_ that determine how much of that developer velocity you
+can actually _capture_.  We listed some key properties to look for, like unit safety, conversion
+safety, fluent mixing of numeric types, and so on.  Unfortunately, the only units library that had
+_all_ these features was our _internal-only_ library.
 
-Thankfully, things have improved in two years.  First, the ideas have been out there, and started
-influencing other units libraries.  But second, at long last, our own library, Au, is now fully
-publicly available.
+Thankfully, things have improved in two years.  First, the ideas have been out there for two years,
+and started influencing other units libraries.  But second, at long last, our own library, Au, is
+now fully publicly available.
 
 ---
 
