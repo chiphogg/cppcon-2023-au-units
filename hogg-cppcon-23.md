@@ -438,6 +438,8 @@ at _all C++ projects simultaneously_.  What matters for _you_ is _your project_ 
 example: if you're in the 29% that can use C++20, it doesn't matter that others are excluded; this
 is a complete non-factor for _you_.
 
+---
+
 ## 1. Can you get it?  b) Delivery mechanism
 
 Show same figure as before, with logos under which category
