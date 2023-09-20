@@ -572,7 +572,7 @@ boon for end users.
 Godbolt links:
     - boost (https://godbolt.org/z/Wz1ohs33f)
     - nholthaus (https://godbolt.org/z/7f9YanMx1)
-    - mp-units (https://godbolt.org/z/8WzYnx54E)
+    - mp-units (https://godbolt.org/z/nEd7ncWhe)
         - Note: Needed to use a newer compiler version to get C++20 support.
     - Au (https://godbolt.org/z/ao1afvEas)
 -->
@@ -722,6 +722,9 @@ just get the underlying value without naming the unit at the callsite.  _However
 percent of that pushback came in the _design phase_.  In the two-plus years we've been using it in
 production, I haven't received a single complaint.  Not only is unit safety just not a burden, but
 you really do come to appreciate it!  It's hard to go back to calling `.count()` on a duration.
+
+In terms of other libraries, mp-units is the only one I know which follows this principle, and its
+unit safety is every bit the equal of Au.
 
 ---
 
