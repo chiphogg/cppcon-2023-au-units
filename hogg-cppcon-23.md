@@ -76,6 +76,8 @@ _With_ a units library, though, it produces a compiler error to tell you what mi
 
 ## Aurora Innovation
 
+<img src="./aurora-truck-car.jpg" class="r-stretch">
+
 Notes:
 
 This kind of safety is critically important where I work, which is Aurora Innovation.  Our mission
