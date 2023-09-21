@@ -212,12 +212,19 @@ compiler's doing it for us.  We can _redeploy that effort_ to more exciting prob
 
 ---
 
-## Example: CPU ticks time units
+## Example: "CPU ticks" time units
 
-```cpp
-// Defined in a header somewhere:
+
+```cpp []
 constexpr uint64_t CPU_CLOCK_HZ = 400'000'000;
 
+// API to implement:
+std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks);
+```
+
+<div class="poor fragment fade-in" data-fragment-index="1">
+
+```cpp []
 std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks) {
     using NS_PER_TICK = std::ratio<1'000'000'000, CPU_CLOCK_HZ>;
     return std::chrono::nanoseconds{
@@ -226,48 +233,74 @@ std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks) {
 }
 ```
 
-```cpp
-// Defined in a header somewhere:
-constexpr uint64_t CPU_CLOCK_HZ = 400'000'000;
+</div>
+<div class="good fragment fade-in" data-fragment-index="2">
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="2">
 
+```cpp [2]
 std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks) {
     constexpr auto cpu_ticks = inverse(hertz * mag<CPU_CLOCK_HZ>());
     return cpu_ticks(num_cpu_ticks).as(nano(seconds));
 }
 ```
 
-```cpp
-// Defined in a header somewhere:
-constexpr uint64_t CPU_CLOCK_HZ = 400'000'000;
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="3">
 
+```cpp [3]
+std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks) {
+    constexpr auto cpu_ticks = inverse(hertz * mag<CPU_CLOCK_HZ>());
+    return cpu_ticks(num_cpu_ticks).as(nano(seconds));
+}
+```
+
+</div>
+<div class="fragment fade-in" data-fragment-index="4">
+
+```cpp [3]
 std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks) {
     constexpr auto cpu_ticks = inverse(hertz * mag<CPU_CLOCK_HZ>());
     return cpu_ticks(num_cpu_ticks).coerce_as(nano(seconds));
 }
 ```
 
-Godbolt: https://godbolt.org/z/48vEoYjaj
+</div>
+</div>
+</div>
+
+<div class="fragment fade-in-then-out cover" data-fragment-index="5">
+<img src="./elapsed-time-godbolt.png" style="width: 800px; height: auto;">
+</div>
+<div class="fragment" data-fragment-index="6"></div>
+
+<!-- Godbolt: https://godbolt.org/z/48vEoYjaj -->
 
 Notes:
 
 Here's another example.  This one's from the embedded domain.  Let's say we have hardware which
 measures timestamps as the integer number of CPU cycles that have elapsed since startup.  Now, we
-want to work with that in more familiar time units such as nanoseconds.  So we can create
-a `std::ratio` to get our conversion fraction in lowest terms, and then we do the integer math of
-multiplying and dividing.  This might even be right!  There's a 50% chance, but in the worst case
-we'll just flip the fraction.
+want to work with that in more familiar time units such as nanoseconds.
 
-Now here's how we can do this with Au.  We can simply define an ad hoc time unit that corresponds to
-one CPU tick.  It's the inverse of the CPU frequency, which is one hertz times this _magnitude_, mag
-of CPU clock hertz.  And then we write `cpu_ticks` of `num_cpu_ticks`, which is clearly correct, and
-finally, `.as` nano seconds.
+**(click)**
+So without Au, we can create a `std::ratio` to get our conversion fraction in lowest terms, and then
+we do the integer math of multiplying and dividing. This might even be right!  There's a 50% chance,
+but in the worst case we'll just flip the fraction.
+
+**(click)**
+_With_ Au, we can simply define an _ad hoc time unit_, `cpu_ticks` that corresponds to one CPU tick.
+It's the inverse of the CPU frequency, which is one hertz times this _magnitude_, mag
+of CPU clock hertz.
+
+**(click)**
+And then we write `cpu_ticks` of `num_cpu_ticks`, which is clearly correct, and finally, `.as` nano
+seconds.
 
 This doesn't compile.  Well, of course it doesn't!  This is a truncating conversion: times 5, and
 then integer-divide by 2.  If we know what we're doing, we can coerce the compiler to disregard this
 safety check.
 
 **(click)**
-
 So, instead of dot-as, we say dot-coerce-as, and now this is correct.  And yes, Au's integer
 quantity of nanoseconds will automatically convert to the `std::chrono::nanoseconds` return type.
 
