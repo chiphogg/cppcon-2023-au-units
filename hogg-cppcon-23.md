@@ -131,6 +131,8 @@ that decision framework.
 
 ## Example: time to goal
 
+<!-- TODO: time permitting, visualize the situation before the first column pops up? -->
+
 <div class="container">
 <div class="poor fragment">
 
