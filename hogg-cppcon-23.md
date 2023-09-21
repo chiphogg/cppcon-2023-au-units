@@ -131,28 +131,79 @@ that decision framework.
 
 ## Example: time to goal
 
+<div class="container">
+<div class="poor fragment">
+
+### No units library
+
+```cpp
+const double dist_to_goal_m = 30.0;
+const double speed_mph = 25.0;
+const double speed_mps =
+  speed_mph * MPS_PER_MPH;
+const double time_to_goal_s =
+  dist_to_goal_m / speed_mps;
+```
+
+<div class="fragment">
+
+```cpp
+// unit_conversions.hh
+constexpr auto CM_PER_MI =
+  2.54 * 12.0 * 5280.0;
+constexpr auto M_PER_MI =
+  CM_PER_MI / 100.0;
+constexpr auto S_PER_H = 3600.0;
+
+constexpr auto MPS_PER_MPH =
+  M_PER_MI / S_PER_H;
+```
+
+</div>
+
+</div>
+<div class="good fragment">
+
+### Au
+
+```cpp
+const auto dist_to_goal = meters(30.0);
+const auto speed = (miles / hour)(25.0);
+
+
+const auto time_to_goal =
+  (dist_to_goal / speed).as(seconds);
+```
+
+</div>
+</div>
+
+
 Notes:
 
 Let's begin with a very simple example.  We're driving at a constant speed, and we have a goal which
 is some known distance away.  How much time will it take to get there?
 
+**(click)**
 If you don't have a units library, you'll probably do it something like this.  You've got your
 variables for distance, speed, and time.  And of course you're very careful to _specify the units_:
 you use these suffixes, like "m" for meters, and "mph" for miles per hour.  You also need to do your
-unit conversions manually, which is tedious but straightforward.  You've probably got constants like
-these in some common header file with its own unit tests.
+unit conversions manually, which is tedious but straightforward.
 
 **(click)**
+You've probably got constants like these in some common header file with its own unit tests.
 
+**(click)**
 Now here's what this looks like with Au.  We see some changes right off the bat.  First off, the
-prefixes are _gone_, because the _library_ is doing the work.  This line here, `meters(30.0)`, takes
-the value `30` and **encapsulates** it inside of a quantity.  Once it's there, it's _safe_: you can
-do any _meaningful_ thing you like, but it will _prevent_ you from making mistakes with your units.
+suffixes _vanish_ from the variable names, because the _library_ is doing the work.  This first line,
+`meters(30.0)`, takes the value `30.0` and **encapsulates** it inside of a quantity.  Once it's
+there, it's _safe_: you can do any _meaningful_ thing you like, but it will _prevent_ you from
+making mistakes with your units.
 
 The other thing is that we can get rid of all of these conversion factors, and instead we just
-directly say what we want.  The time to goal is this ratio, _as seconds_.  When we write this line,
-the compiler computes the final conversion factor, a single number, _at compile time_, and correctly
-multiplies it.
+directly state what we want.  The time to goal is this ratio, _as seconds_.  When we write this
+line, the compiler computes the final conversion factor, a single number equivalent to
+`MPS_PER_MPH`, _at compile time_, and correctly multiplies it.
 
 So there's work that we _were_ doing, manually checking units and conversion factors, and now the
 compiler's doing it for us.  We can _redeploy that effort_ to more exciting problems!

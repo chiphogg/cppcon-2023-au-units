@@ -10,3 +10,11 @@ figcaption {
 .r-stack > * {
     width: 100%;
 }
+
+.good {
+  background-color: #abd9e9;
+}
+
+.poor {
+  background-color: #fdae61;
+}
