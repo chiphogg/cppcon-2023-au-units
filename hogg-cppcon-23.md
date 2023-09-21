@@ -933,9 +933,12 @@ period and frequency.  Hertz times milliseconds... that equals millionths.  One 
 millionths.  Therefore, the program we generate under the hood will divide 400 into one million.
 
 Here's the software API we use to express this.  `inverse_as(micro(seconds), hertz(400));`.  This
-gives `micro(seconds)(2'500)`.  I haven't seen this in any other units library.  I'd like to see it
-explored more.  In fact, I'd like to see it taken further --- maybe with more general _quotients_
-instead of only exact inverses.  I think there's fertile ground here.
+gives `micro(seconds)(2'500)`.
+
+As for other units libraries: mp-units added such a function in the past two weeks, and I haven't
+seen this in any other units library.  I'd like to see it explored more.  In fact, I'd like to see
+it taken further --- maybe with more general _quotients_ instead of only exact inverses.  I think
+there's fertile ground here.
 
 ---
 
