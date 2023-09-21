@@ -45,7 +45,7 @@ Quantity<Meters, double> distance;
 <img src="./02_basic_concept_0_left.png" style="width: 50%; padding: 0; margin: 0">
 </div>
 
-<div class="fragment" data-fragment-index="3"style="width: 50%; display: block; float: left;">
+<div class="fragment" data-fragment-index="3" style="width: 50%; display: block; float: left;">
 <img src="./02_basic_concept_1_right.png" style="width: 50%; padding: 0; margin: 0">
 </div>
 
