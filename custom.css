@@ -26,3 +26,8 @@ div.cover {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
+.reveal .slides {
+    border: 5px solid black;
+    min-height: 100%;
+}
