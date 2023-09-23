@@ -317,6 +317,8 @@ But this is a good start.
 
 ## Au: Interfaces and Idioms
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 We're getting a picture of the core idioms of the library.  It's built around our workhorse type
@@ -349,6 +351,8 @@ speak Au.
 
 ## Au: learning more
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 If you want to learn _by doing_, our docs are pretty good, and I especially want to emphasize two
@@ -370,6 +374,8 @@ But first, I want to zoom way out and get clear on the bigger picture.
 
 # C++ Units: the goal
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 What are we trying to accomplish when we write a units library?  Sounds obvious: it's to provide
@@ -379,6 +385,8 @@ correct.  Well, that's true, but it's only _part_ of the goal.
 ---
 
 ## All of the people, all of the time
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -402,6 +410,8 @@ discussion tonight.  Now let's see how a standard units library fits in on the d
 
 ## Standard units library?
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 The sad news is that there's literally zero chance for a standard units library before C++29.  So it
@@ -419,6 +429,8 @@ of libraries.
 ---
 
 ## The C++ Units Library Ecosystem
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -440,6 +452,8 @@ This makes the whole _ecosystem_ stronger, and it meets the _community's_ needs 
 ---
 
 # Framework for choosing a units library
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -468,6 +482,8 @@ Here, there are many, _many_ considerations.  We'll only have time to touch on a
 
 ## Full comparison
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 However, if you want a fuller comparison, you can check out the "alternatives" page on our
@@ -485,6 +501,8 @@ important than the ones lower down, sometimes much more.
 
 # Au and alternatives
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 But before we get into those rows, let's introduce the columns: which units libraries we're
@@ -496,6 +514,8 @@ as Au.  And second...
 ---
 
 ## Libraries considered
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -525,6 +545,8 @@ the comparison.  Now let's see our decision framework in action.
 ---
 
 ## 1. Can you get it?  a) C++ standard compatibility
+
+<!-- TODO(slide contents) -->
 
 2023 ISO survey: https://isocpp.org/files/papers/CppDevSurvey-2023-summary.pdf
 
@@ -570,6 +592,8 @@ is a complete non-factor for _you_.
 ---
 
 ## 1. Can you get it?  b) Delivery mechanism
+
+<!-- TODO(slide contents) -->
 
 Show same figure as before, with logos under which category
 
@@ -629,6 +653,8 @@ community for CMake support.  Pull requests welcome!
 
 ## 2. DevEx cost?  a) Compile times
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 Now for the _cost you pay_ in your developer experience.  We'll start with the first cost: compile
@@ -668,6 +694,8 @@ nholthaus: Au simply never has a severe compile time penalty.
 ---
 
 ## 2. DevEx cost?  b) Compiler errors
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -710,6 +738,8 @@ Godbolt links:
 
 # Au: core features
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 Now for the third question in our framework, we can finally start evaluating units library features.
@@ -723,6 +753,8 @@ that --- but we will mention other libraries where appropriate.
 ---
 
 ## Same program, only safer
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -746,6 +778,8 @@ this isn't present in the user-facing interfaces: there's a single global type w
 ---
 
 ## Conversion safety
+
+<!-- TODO(slide contents) -->
 
 chrono code goes here
 
@@ -799,6 +833,8 @@ and it prevents it from compiling.
 
 ## More conversion safety: the "safety surface"
 
+<!-- TODO(slide contents) -->
+
 Safety surface from blog post
 
 Notes:
@@ -826,6 +862,8 @@ like to see other libraries try it out in practice.
 ---
 
 ## Unit safety
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -859,6 +897,8 @@ unit safety is every bit the equal of Au.
 
 ## Embedded friendliness
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 I'm not an embedded programmer.  So why do I claim that our library is embedded friendly?  Because
@@ -889,6 +929,8 @@ developers are a critical and often-overlooked part of that community.
 
 ## Composability
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 Composability: this is one of my favorites.  "Mommy, where do units come from?"  Well, units almost
@@ -915,6 +957,8 @@ come close, though.
 ---
 
 ## Unit-aware inverses
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -944,6 +988,8 @@ there's fertile ground here.
 
 # Au: missing features
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 So we've seen some pretty cool features of Au, which raises the question: why might you _not_ want
@@ -952,6 +998,8 @@ it?  We'll do a quick tour of a few things we don't currently have.
 ---
 
 ## Decibels
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -969,6 +1017,8 @@ then, leave a YouTube comment down below; don't forget to like and subscribe to 
 ---
 
 ## Explicit systems of quantities
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -994,6 +1044,8 @@ So Au is basically a good 90% solution.  To be crystal clear, I mean we meet 100
 
 ## Quantity "kind"
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 Next up: different "kinds" of the same quantity.  Can we compare, say, a radioactive _activity_ in
@@ -1011,6 +1063,8 @@ C++20 and check out mp-units.
 ---
 
 ### Aside: mistakes in the real world
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -1048,6 +1102,8 @@ is clearly in the region of diminishing returns.
 
 ## Unit symbol APIs (e.g., literals)
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 Next up: user-defined literals, or UDLs.  Wait, we don't have those?  Who doesn't love writing `3_m`
@@ -1069,9 +1125,13 @@ we'd be glad to provide guidance as to how.
 
 # Inter-library interactions
 
+<!-- TODO(slide contents) -->
+
 ---
 
 ## Feature inspirations
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
@@ -1115,6 +1175,8 @@ more directly, in the same program!
 
 ## Corresponding quantity mechanism
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 Think about it --- if two libraries have a type that represents a quantity of seconds, _and_ if they
@@ -1149,6 +1211,8 @@ As we saw earlier, Au already provides this interoperability for chrono library 
 
 ## nholthaus compatibility layer
 
+<!-- TODO(slide contents) -->
+
 Notes:
 
 We also created a compatibility layer for the nholthaus library, because we used it at Aurora before
@@ -1167,6 +1231,8 @@ seen it work really well in practice.
 ---
 
 # Conclusion
+
+<!-- TODO(slide contents) -->
 
 Notes:
 
