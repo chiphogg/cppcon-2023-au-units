@@ -213,7 +213,7 @@
          y="251.27885"
          id="tspan32307">T value_ = <tspan
    style="fill:#c50087;fill-opacity:1"
-   id="tspan69716">5.74147</tspan></tspan></text>
+   id="tspan69716">5.74147</tspan>;</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10.5833px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.264583"
@@ -236,9 +236,9 @@
          style="text-align:start;text-anchor:start;stroke-width:0.264583"
          x="-49.511112"
          y="68.79158"
-         id="tspan49823">q = <tspan
+         id="tspan49823"><tspan
    style="fill:#392eff;fill-opacity:1"
-   id="tspan77055">meters</tspan>(x)</tspan></text>
+   id="tspan77055">    meters</tspan>(x)</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10.7499px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.268747"
@@ -259,7 +259,7 @@
          style="text-align:start;text-anchor:start;stroke-width:0.268747"
          x="159.86156"
          y="69.054871"
-         id="tspan16369">q.in(<tspan
+         id="tspan16369"> .in(<tspan
    style="fill:#392eff;fill-opacity:1"
    id="tspan125345">meters</tspan>)    <tspan
    style="fill:#c50087;fill-opacity:1"
@@ -284,7 +284,7 @@
          style="text-align:start;text-anchor:start;stroke-width:0.268747"
          x="53.315624"
          y="199.10187"
-         id="tspan95591">q.as(<tspan
+         id="tspan95591"> .as(<tspan
    style="fill:#790099;fill-opacity:1"
    id="tspan146627">feet</tspan>)</tspan></text>
     <text
@@ -307,7 +307,7 @@
          style="text-align:start;text-anchor:start;stroke-width:0.268747"
          x="151.70367"
          y="159.45636"
-         id="tspan98946">q.in(<tspan
+         id="tspan98946"> .in(<tspan
    style="fill:#790099;fill-opacity:1"
    id="tspan137193">feet</tspan>)    <tspan
    style="fill:#c50087;fill-opacity:1"
@@ -403,5 +403,55 @@
        style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="m 238.12501,66.145833 h 21.16666"
        id="path93712" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.7499px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:end;text-anchor:end;stroke-width:0.268747"
+       x="60.311382"
+       y="105.06428"
+       id="text115284"><tspan
+         sodipodi:role="line"
+         id="tspan115276"
+         style="text-align:end;text-anchor:end;stroke-width:0.268747"
+         x="60.311382"
+         y="105.06428" /><tspan
+         sodipodi:role="line"
+         style="text-align:end;text-anchor:end;stroke-width:0.268747"
+         x="60.311382"
+         y="118.50166"
+         id="tspan115278" /><tspan
+         sodipodi:role="line"
+         style="text-align:end;text-anchor:end;stroke-width:0.268747"
+         x="60.311378"
+         y="131.93903"
+         id="tspan115282">round_<tspan
+   style="font-weight:bold"
+   id="tspan125718">as</tspan>(<tspan
+   style="text-align:end;text-anchor:end;fill:#790099;fill-opacity:1"
+   id="tspan115280">feet</tspan>, _)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.7499px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.268747"
+       x="117.6595"
+       y="105.06428"
+       id="text121248"><tspan
+         sodipodi:role="line"
+         id="tspan121240"
+         style="text-align:start;text-anchor:start;stroke-width:0.268747"
+         x="117.6595"
+         y="105.06428" /><tspan
+         sodipodi:role="line"
+         style="text-align:start;text-anchor:start;stroke-width:0.268747"
+         x="117.6595"
+         y="118.50166"
+         id="tspan121242" /><tspan
+         sodipodi:role="line"
+         style="text-align:start;text-anchor:start;stroke-width:0.268747"
+         x="117.6595"
+         y="131.93903"
+         id="tspan121246">round_<tspan
+   style="font-weight:bold"
+   id="tspan124456">in</tspan>(<tspan
+   style="text-align:start;text-anchor:start;fill:#790099;fill-opacity:1"
+   id="tspan121244">feet</tspan>, _)</tspan></text>
   </g>
 </svg>
