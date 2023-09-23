@@ -317,35 +317,55 @@ But this is a good start.
 
 ## Au: Interfaces and Idioms
 
-<!-- TODO(slide contents) -->
+<div class="r-stack">
+<img class="fragment fade-in-then-out" height="800px" src="./figures/quantity/quantity_01_base.svg">
+<img class="fragment fade-in-then-out" height="800px" src="./figures/quantity/quantity_02_value.svg">
+<img class="fragment fade-in-then-out" height="800px" src="./figures/quantity/quantity_03_meters.svg">
+<img class="fragment fade-in-then-out" height="800px" src="./figures/quantity/quantity_04_in_meters.svg">
+<img class="fragment fade-in-then-out" height="800px" src="./figures/quantity/quantity_05_in_feet.svg">
+<img class="fragment fade-in-then-out" height="800px" src="./figures/quantity/quantity_06_as_feet.svg">
+<img class="fragment fade-in-then-out" height="800px" src="./figures/quantity/quantity_07_round.svg">
+</div>
 
 Notes:
 
-We're getting a picture of the core idioms of the library.  It's built around our workhorse type
-template, which is `Quantity`.  It basically "tags" a value of any numeric type with the _units_
-that give that value its meaning.
+We're getting a picture of the core idioms of the library.
 
-`Quantity` is a _safe container_ for your value, because it guards the entry and exit.  To put your
-value inside, you call a function with the name of your unit.  To get the value back out, you call
-dot-in your units, which is short for "value in".  Notice the symmetry: it's as if the unit name is
+**(click)**
+It's built around our workhorse type template, which is `Quantity`.  It basically "tags" a value of
+any numeric type with the _units_ that give that value its meaning.  `Quantity` is a _safe
+container_ for your value, because it guards the entry and exit.
+
+**(click)**
+Say you have a value of this type.
+
+**(click)**
+To put your value inside, you call a function with the name of your unit; say, "meters".
+
+**(click)**
+To get the value back out, you call dot-in meters.  Notice the symmetry: it's as if the unit name is
 a _password_ which we set when we store our value, and which we must speak to retrieve it.
 
-For unit conversions, we use the same API, but just pass a different unit: dot-in other-units.  Of
+**(click)**
+For unit conversions, we use the same API, but just pass a different unit: dot-in "feet".  Of
 course, this exits the safety of the library, and makes _us_ responsible for keeping track of the
-units... ugh.  To stay _within the library_ when we do the conversion, we say dot-as instead of
-dot-in.
+units... ugh.  To stay _within the library_ when we do the conversion,
+
+**(click)**
+we say dot-as instead of dot-in, giving us a new Quantity type with the **new** units.
 
 "In" and "as" are vocabulary words with consistent meanings: "as" makes a quantity, and "in" makes
-a raw number.  So for `std::round` we also have "round_as" and "round_in", and similar for
-`std::floor` and `std::ceil`.  Note that we _definitely don't_ have `round` without a unit slot,
-because this makes no sense.  Can you round your height to the nearest integer?  No --- but you can
-round it to the nearest integer number of _feet_, or _centimeters_.  This principle is _unit
-safety_: a core principle of Au's design, which we'll mention again later.
+a raw number.  So for `std::round`,
 
-Finally, we have other vocabulary words that we can compose with these.  The newest one is "coerce",
-which tells the compiler to ignore safety checks for truncation or overflow for when you know it's
-OK to do that.  So when you see `length.coerce_as(feet)`, you'll know what it means if you learn to
-speak Au.
+**(click)**
+we also have "round_as" and "round_in", and similar for `std::floor` and `std::ceil`.  Note that we
+_definitely don't_ have `round` without a unit slot, because this makes no sense.  Can you round
+your height to the nearest integer?  No --- but you can round it to the nearest integer number of
+_feet_, or _centimeters_.  This principle is _unit safety_: a core principle of Au's design, which
+we'll mention again later.
+
+There are other vocabulary words that combine with these, such as "coerce" to ignore safety checks
+when you're working with integers, but these are the most important.
 
 ---
 

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="351.89581mm"
+   height="264.58334mm"
+   viewBox="0 0 351.89581 264.58335"
+   version="1.1"
+   id="svg34944"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="inkscape_01.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview34946"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.5499273"
+     inkscape:cx="171.8409"
+     inkscape:cy="659.17804"
+     inkscape:window-width="3370"
+     inkscape:window-height="1376"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid35119"
+       originx="55.5625"
+       originy="-10.583333" />
+  </sodipodi:namedview>
+  <defs
+     id="defs34941">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path192801" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:0.625;stroke-linejoin:round"
+         id="path192813" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(55.562496,-10.583333)">
+    <rect
+       style="fill:#abd9e9;stroke:#000000;stroke-width:0.529167;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect21815"
+       width="174.88951"
+       height="98.620216"
+       x="20.407511"
+       y="20.312368" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:center;text-anchor:middle;stroke-width:0.264583"
+       x="31.75"
+       y="26.458332"
+       id="text36489"><tspan
+         sodipodi:role="line"
+         id="tspan36487"
+         style="stroke-width:0.264583"
+         x="31.75"
+         y="26.458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.264583"
+       x="46.270664"
+       y="42.333332"
+       id="text44149"><tspan
+         sodipodi:role="line"
+         id="tspan44147"
+         style="font-weight:bold;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="46.270664"
+         y="42.333332">Quantity&lt;<tspan
+   style="text-align:start;text-anchor:start;fill:#392eff;fill-opacity:1"
+   id="tspan105927">Meters</tspan>, T&gt;</tspan><tspan
+         sodipodi:role="line"
+         style="font-weight:bold;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="46.270664"
+         y="55.562458"
+         id="tspan167661" /><tspan
+         sodipodi:role="line"
+         style="font-weight:normal;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="46.270664"
+         y="68.79158"
+         id="tspan171927">T value_;</tspan></text>
+  </g>
+</svg>
