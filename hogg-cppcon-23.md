@@ -1,4 +1,4 @@
-# (Title image placeholder)
+<section data-background="./The_Au_Library-_TitleCard_copy.png" data-background-size="contain">
 
 Notes:
 
