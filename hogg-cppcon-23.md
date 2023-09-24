@@ -513,7 +513,38 @@ Here, there are many, _many_ considerations.  We'll only have time to touch on a
 
 ## Full comparison
 
-<!-- TODO(slide contents) -->
+<div class="container">
+
+<div>
+<div class="fragment">
+
+1. Can you get it?
+
+<img src="./figures/full_comparison/table_1_can_you_get_it.png">
+
+</div>
+<div class="fragment">
+
+2. What does it cost?
+
+<img src="./figures/full_comparison/table_2_what_does_it_cost.png">
+
+</div>
+</div>
+
+<div>
+<div class="fragment">
+
+3. "Units library specific" features:
+
+<div style="height: 700px;">
+<img src="./figures/full_comparison/table_3_units_library_features.png">
+</div>
+
+</div>
+</div>
+
+</div>
 
 Notes:
 
