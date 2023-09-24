@@ -371,7 +371,10 @@ when you're working with integers, but these are the most important.
 
 ## Au: learning more
 
-<!-- TODO(slide contents) -->
+<div class="container">
+<img style="margin: 10px; "class="fragment" src="./figures/au-tutorial.png">
+<img style="margin: 10px; "class="fragment" src="./figures/au-troubleshooting.png">
+</div>
 
 Notes:
 
@@ -393,8 +396,6 @@ But first, I want to zoom way out and get clear on the bigger picture.
 ---
 
 # C++ Units: the goal
-
-<!-- TODO(slide contents) -->
 
 Notes:
 
