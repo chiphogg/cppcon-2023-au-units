@@ -551,13 +551,20 @@ Notes:
 However, if you want a fuller comparison, you can check out the "alternatives" page on our
 documentation website.
 
-You can see here we have screenshots of the comparison table for each of the three questions in the
-framework.  The rows represent the points of comparison, and the columns represent the units
-libraries we're comparing.
+Here are screenshots of the comparison table for each question in the framework:
 
-So here you can see visually: the units library features in question 3 are far, _far_ more numerous
-than the others.  Of course, not all rows are created equal, and the ones higher up tend to be more
-important than the ones lower down, sometimes much more.
+- **(click)** one,
+- **(click)** two,
+- **(click)** and three.
+
+The rows represent the points of comparison, and the columns represent the units libraries we're
+comparing.
+
+We can see visually: there are _many_ features that distinguish units libraries in the third table,
+once you've got past the gauntlet of the first two tables.  Of course, not all rows are created
+equal, and the ones higher up tend to be more important than the ones lower down, sometimes much
+more.  Don't worry about the details: we'll hit the highlights _in this talk_, and you can always
+browse the full tables on our website.
 
 ---
 
