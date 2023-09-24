@@ -845,7 +845,7 @@ boost::units::quantity<boost::units::si::velocity> v =
   (5 * boost::units::si::meters) * (1.0 * boost::units::si::seconds);
 ```
 
-#### Error: 
+#### Error:
 
 <pre><code class="compiler-error txt"><script type="text/template">
 x86-64 gcc 7.1
@@ -941,7 +941,7 @@ units::velocity::meters_per_second_t v =
   units::length::meter_t{5.0} * units::time::second_t{1.0};
 ```
 
-#### Error: 
+#### Error:
 
 <pre><code class="compiler-error txt"><script type="text/template">
 x86-64 gcc 7.1
@@ -999,7 +999,7 @@ Compiler returned: 1
 quantity<si::metre / si::second> v1 = (5.0 * m) * (1.0 * s);
 ```
 
-#### Error: 
+#### Error:
 
 <pre><code class="compiler-error txt"><script type="text/template">
 x86-64 gcc 13.1
@@ -1025,10 +1025,10 @@ Compiler returned: 1
 #### Code:
 
 ```cpp
-Quantity<UnitQuotientT<Meters, Seconds>, double> v = meters(5.0) * seconds(1.0);
+Quantity<decltype(Meters{} / Seconds{}), double> v = meters(5.0) * seconds(1.0);
 ```
 
-#### Error: 
+#### Error:
 
 <pre><code class="compiler-error txt"><script type="text/template">
 x86-64 gcc 7.1
@@ -1040,7 +1040,7 @@ x86-64 gcc 7.1
 'au::Quantity<au::UnitProduct<au::Meters, au::Seconds>, double>' to non-scalar type
 'au::Quantity<au::UnitProduct<au::Meters, au::Pow<au::Seconds, -1> >, double>'
 requested
-   Quantity<UnitQuotientT<Meters, Seconds>, double> v = meters(5.0) * seconds(1.0);
+   Quantity<decltype(Meters{} / Seconds{}), double> v = meters(5.0) * seconds(1.0);
                                                         ~~~~~~~~~~~~^~~~~~~~~~~~~~
 Compiler returned: 1
 </script></code></pre>
