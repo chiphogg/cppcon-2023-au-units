@@ -37,8 +37,13 @@ table.libraries-considered td {
   padding-left: 0.5em;
 }
 
-table.libraries-considered td img {
+table td {
+  vertical-align: middle;
+}
+
+table td img {
   height: 90px;
+  zoom: 0.5;
 }
 
 table.libraries-considered td.repo {
@@ -49,4 +54,14 @@ table.libraries-considered td.repo::before {
   content:url("./figures/github-mark.svg");
   zoom: 0.5;
   margin-right: 1em;
+}
+
+td.squish {
+  font-size: 60%;
+}
+
+.cpp-version {
+  background-size: 100% auto;
+  display: inline-block;
+  min-width: 500px;
 }

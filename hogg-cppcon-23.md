@@ -648,15 +648,44 @@ the comparison.  Now let's see our decision framework in action.
 
 ---
 
-## 1. Can you get it?  a) C++ standard compatibility
+## 1. Can you get it?<br>a) C++ standard compatibility
 
-<!-- TODO(slide contents) -->
+<table>
+  <tr>
+    <th></th>
+    <th>C++ Version</th>
+    <th>Example features</th>
+  </tr>
+  <tr>
+    <td><img src="./figures/libraries/mp-units.png"></td>
+    <td class="cpp-version" style="background-image: url('./figures/cpp-versions/20.svg');">C++20</td>
+    <td class="squish">Concepts<br>Non-type template parameters</td>
+  </tr>
+  <tr>
+    <td><img src="./figures/libraries/SI.png"></td>
+    <td class="cpp-version" style="background-image: url('./figures/cpp-versions/17.svg');">C++17</td>
+    <td class="squish">Fold expressions<br><code>constexpr</code> if</td>
+  </tr>
+  <tr>
+    <td><img src="./figures/libraries/nholthaus.png"><img src="./figures/libraries/Au.png"></td>
+    <td class="cpp-version" style="background-image: url('./figures/cpp-versions/14.svg');">C++14</td>
+    <td class="squish">More permissive <code>constexpr</code><br><code>auto</code> return type</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td class="cpp-version" style="background-image: url('./figures/cpp-versions/11.svg');">C++11</td>
+    <td class="squish">Primitive <code>constexpr</code><br>Variadic templates<br><code>static_assert</code></td>
+  </tr>
+  <tr>
+    <td><img src="./figures/libraries/boost.png"></td>
+    <td>C++98/03</td>
+    <td></td>
+  </tr>
+</table>
 
+<!--
 2023 ISO survey: https://isocpp.org/files/papers/CppDevSurvey-2023-summary.pdf
-
-Make a plot for C++11,14,17,20
-
-Align with list of new features for each version
+-->
 
 Notes:
 
@@ -695,7 +724,7 @@ is a complete non-factor for _you_.
 
 ---
 
-## 1. Can you get it?  b) Delivery mechanism
+## 1. Can you get it?<br>b) Delivery mechanism
 
 <!-- TODO(slide contents) -->
 
