@@ -570,8 +570,6 @@ browse the full tables on our website.
 
 # Au and alternatives
 
-<!-- TODO(slide contents) -->
-
 Notes:
 
 But before we get into those rows, let's introduce the columns: which units libraries we're
@@ -584,7 +582,38 @@ as Au.  And second...
 
 ## Libraries considered
 
-<!-- TODO(slide contents) -->
+<table class="libraries-considered">
+  <tr>
+    <th></th>
+    <th>Library Name</th>
+    <th>GitHub repo</th>
+  </tr>
+  <tr>
+    <td><img src="./figures/libraries/boost.png"></td>
+    <td>Boost Units</td>
+    <td class="repo">boostorg/units</td>
+  </tr>
+  <tr class="fragment">
+    <td><img src="./figures/libraries/nholthaus.png"></td>
+    <td>nholthaus units</td>
+    <td class="repo">nholthaus/units</td>
+  </tr>
+  <tr class="fragment">
+    <td><img src="./figures/libraries/SI.png"></td>
+    <td>SI</td>
+    <td class="repo">bernedom/SI</td>
+  </tr>
+  <tr class="fragment">
+    <td><img src="./figures/libraries/mp-units.png"></td>
+    <td>mp-units</td>
+    <td class="repo">mpusz/mp-units</td>
+  </tr>
+  <tr class="fragment">
+    <td><img src="./figures/libraries/Au.png"></td>
+    <td>Au</td>
+    <td class="repo">aurora-opensource/au</td>
+  </tr>
+</table>
 
 Notes:
 
@@ -593,20 +622,26 @@ around since before work started on _creating GitHub_.  Boost units is notable f
 clarity of its documentation, and for being ahead of its time in many ways: they were _so close_ to
 inventing vector space magnitudes, for example.
 
+**(click)**
 Next up, the nholthaus library made a splash in 2016, kickstarting the modern C++ units library
 revolution.  Until last month, it had the most GitHub stars of any units library in _any_ language.
 This library's hallmark is being _extremely_ accessible and low friction --- seriously, it's just so
 easy to get started and to use.
 
+**(click)**
 Next we have the SI library, whose amazingly inviting logo promotes a solid and user-friendly set of
 APIs.  Despite being relatively newer, it has skyrocketed up the GitHub stars chart, with no sign of
 slowing down.
 
+**(click)**
 Finally, we have mp-units, which takes full advantage of bleeding edge post-C++20 features to see
 just how far we can take our interfaces.  Besides being a top-notch units library you can use
 _today_, it also serves as a vehicle for designing a possible future standard units library.  And
 just this year, the library underwent a _major_ overhaul with its V2 interfaces, giving it
 a stunning leap forward in composability, simplicity, and power: very exciting!
+
+**(click)**
+And of course, here we are.
 
 Again: there are _many_ other options out there, but these leading libraries give a good flavor for
 the comparison.  Now let's see our decision framework in action.

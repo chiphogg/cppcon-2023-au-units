@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="46.041813mm"
+   height="15.006373mm"
+   viewBox="0 0 46.041813 15.006373"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="nholthaus.svg"
+   inkscape:export-filename="/home/chogg/cppcon-2023-au-units/figures/libraries/nholthaus.png"
+   inkscape:export-xdpi="200"
+   inkscape:export-ydpi="200"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.2652217"
+     inkscape:cx="4.19385"
+     inkscape:cy="104.84625"
+     inkscape:window-width="3370"
+     inkscape:window-height="1376"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2">
+    <rect
+       x="43.965637"
+       y="264.26312"
+       width="248.43727"
+       height="74.605194"
+       id="rect14042" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-21.5395,-71.825834)">
+    <rect
+       style="opacity:1;fill:#fefefe;fill-opacity:1;stroke:#000000;stroke-width:0.374517;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect23388"
+       width="45.667297"
+       height="14.631856"
+       x="21.726759"
+       y="72.013092"
+       ry="5.4483509" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.49032px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:center;text-anchor:middle;stroke-width:0.187258"
+       x="44.749889"
+       y="81.856155"
+       id="text2300"><tspan
+         sodipodi:role="line"
+         id="tspan2298"
+         style="stroke-width:0.187258"
+         x="44.749889"
+         y="81.856155">nholthaus</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text14040"
+       style="font-size:40px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:center;white-space:pre;shape-inside:url(#rect14042);fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+</svg>
