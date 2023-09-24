@@ -786,7 +786,11 @@ community for CMake support.  Pull requests welcome!
 
 ## 2. DevEx cost?  a) Compile times
 
-<!-- TODO(slide contents) -->
+<div class="r-stack">
+<img class="fragment fade-in-then-out" src="./figures/compile-time/cumulative_compile_times_1_base.png">
+<img class="fragment fade-in-then-out" src="./figures/compile-time/cumulative_compile_times_2_base-noio.png">
+<img class="fragment fade-in-then-out" src="./figures/compile-time/cumulative_compile_times_3_base-noio-split.png">
+</div>
 
 Notes:
 
