@@ -832,7 +832,222 @@ nholthaus: Au simply never has a severe compile time penalty.
 
 ## 2. DevEx cost?  b) Compiler errors
 
-<!-- TODO(slide contents) -->
+<div class="r-stack">
+
+<div class="fragment fade-in-then-out">
+
+<img src="./figures/libraries/boost.png">
+
+#### Code:
+
+```cpp
+boost::units::quantity<boost::units::si::velocity> v =
+  (5 * boost::units::si::meters) * (1.0 * boost::units::si::seconds);
+```
+
+#### Error: 
+
+<pre><code class="compiler-error txt"><script type="text/template">
+x86-64 gcc 7.1
+
+<Compilation failed>
+
+<source>: In function 'int main(int, char**)':
+<source>:9:38: error: conversion from
+'boost::units::multiply_typeof_helper<boost::units::quantity<boost::units::unit<
+boost::units::list<boost::units::dim<boost::units::length_base_dimension,
+boost::units::static_rational<1> >, boost::units::dimensionless_type>,
+boost::units::homogeneous_system<boost::units::list<boost::units::si::
+meter_base_unit,
+boost::units::list<boost::units::scaled_base_unit<boost::units::cgs::
+gram_base_unit,
+boost::units::scale<10, boost::units::static_rational<3> > >,
+boost::units::list<boost::units::si::second_base_unit,
+boost::units::list<boost::units::si::ampere_base_unit,
+boost::units::list<boost::units::si::kelvin_base_unit,
+boost::units::list<boost::units::si::mole_base_unit,
+boost::units::list<boost::units::si::candela_base_unit,
+boost::units::list<boost::units::angle::radian_base_unit,
+boost::units::list<boost::units::angle::steradian_base_unit,
+boost::units::dimensionless_type> > > > > > > > > > >, int>,
+boost::units::quantity<boost::units::unit<boost::units::list<boost::units::dim<
+boost::units::time_base_dimension,
+boost::units::static_rational<1> >, boost::units::dimensionless_type>,
+boost::units::homogeneous_system<boost::units::list<boost::units::si::
+meter_base_unit,
+boost::units::list<boost::units::scaled_base_unit<boost::units::cgs::
+gram_base_unit,
+boost::units::scale<10, boost::units::static_rational<3> > >,
+boost::units::list<boost::units::si::second_base_unit,
+boost::units::list<boost::units::si::ampere_base_unit,
+boost::units::list<boost::units::si::kelvin_base_unit,
+boost::units::list<boost::units::si::mole_base_unit,
+boost::units::list<boost::units::si::candela_base_unit,
+boost::units::list<boost::units::angle::radian_base_unit,
+boost::units::list<boost::units::angle::steradian_base_unit,
+boost::units::dimensionless_type> > > > > > > > > > >, double> >::type {aka
+boost::units::quantity<boost::units::unit<boost::units::list<boost::units::dim<
+boost::units::length_base_dimension,
+boost::units::static_rational<1> >,
+boost::units::list<boost::units::dim<boost::units::time_base_dimension,
+boost::units::static_rational<1> >, boost::units::dimensionless_type> >,
+boost::units::homogeneous_system<boost::units::list<boost::units::si::
+meter_base_unit,
+boost::units::list<boost::units::scaled_base_unit<boost::units::cgs::
+gram_base_unit,
+boost::units::scale<10, boost::units::static_rational<3> > >,
+boost::units::list<boost::units::si::second_base_unit,
+boost::units::list<boost::units::si::ampere_base_unit,
+boost::units::list<boost::units::si::kelvin_base_unit,
+boost::units::list<boost::units::si::mole_base_unit,
+boost::units::list<boost::units::si::candela_base_unit,
+boost::units::list<boost::units::angle::radian_base_unit,
+boost::units::list<boost::units::angle::steradian_base_unit,
+boost::units::dimensionless_type> > > > > > > > > >, void>, double>}' to
+non-scalar type
+'boost::units::quantity<boost::units::unit<boost::units::list<boost::units::dim<
+boost::units::length_base_dimension,
+boost::units::static_rational<1> >,
+boost::units::list<boost::units::dim<boost::units::time_base_dimension,
+boost::units::static_rational<-1> >, boost::units::dimensionless_type> >,
+boost::units::homogeneous_system<boost::units::list<boost::units::si::
+meter_base_unit,
+boost::units::list<boost::units::scaled_base_unit<boost::units::cgs::
+gram_base_unit,
+boost::units::scale<10, boost::units::static_rational<3> > >,
+boost::units::list<boost::units::si::second_base_unit,
+boost::units::list<boost::units::si::ampere_base_unit,
+boost::units::list<boost::units::si::kelvin_base_unit,
+boost::units::list<boost::units::si::mole_base_unit,
+boost::units::list<boost::units::si::candela_base_unit,
+boost::units::list<boost::units::angle::radian_base_unit,
+boost::units::list<boost::units::angle::steradian_base_unit,
+boost::units::dimensionless_type> > > > > > > > > > > >' requested
+       (5 * boost::units::si::meters) * (1.0 * boost::units::si::seconds);
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</script></code></pre>
+
+
+</div>
+
+<div class="fragment fade-in-then-out">
+
+<img src="./figures/libraries/nholthaus.svg">
+
+#### Code:
+
+```cpp
+units::velocity::meters_per_second_t v =
+  units::length::meter_t{5.0} * units::time::second_t{1.0};
+```
+
+#### Error: 
+
+<pre><code class="compiler-error txt"><script type="text/template">
+x86-64 gcc 7.1
+
+<Compilation failed>
+
+In file included from <source>:3:0:
+/app/raw.githubusercontent.com/nholthaus/units/master/include/units.h: In
+instantiation of 'constexpr T units::convert(const T&) [with UnitFrom
+= units::unit<std::ratio<1>, units::base_unit<std::ratio<1>, std::ratio<0, 1>,
+std::ratio<1>, std::ratio<0, 1>, std::ratio<0, 1>, std::ratio<0, 1>, std::ratio<0,
+1>, std::ratio<0, 1>, std::ratio<0, 1> >, std::ratio<0, 1>, std::ratio<0, 1> >;
+UnitTo = units::unit<std::ratio<1>, units::base_unit<std::ratio<1>, std::ratio<0,
+1>, std::ratio<-1> > >; T = double]':
+/app/raw.githubusercontent.com/nholthaus/units/master/include/units.h:1976:41:
+required from 'constexpr units::unit_t<Units, T, NonLinearScale>::unit_t(const
+units::unit_t<UnitsRhs, Ty, NlsRhs>&) [with UnitsRhs = units::unit<std::ratio<1>,
+units::base_unit<std::ratio<1>, std::ratio<0, 1>, std::ratio<1>, std::ratio<0, 1>,
+std::ratio<0, 1>, std::ratio<0, 1>, std::ratio<0, 1>, std::ratio<0, 1>,
+std::ratio<0, 1> >, std::ratio<0, 1>, std::ratio<0, 1> >; Ty = double; NlsRhs
+= units::linear_scale; Units = units::unit<std::ratio<1>,
+units::base_unit<std::ratio<1>, std::ratio<0, 1>, std::ratio<-1> > >; T = double;
+NonLinearScale = units::linear_scale]'
+<source>:7:58:   required from here
+/app/raw.githubusercontent.com/nholthaus/units/master/include/units.h:1640:3:
+error: static assertion failed: Units are not compatible.
+   static_assert(traits::is_convertible_unit<UnitFrom, UnitTo>::value,
+   ^~~~~~~~~~~~~
+                 "Units are not compatible."); (N.B.! manually wrapped by chogg!)
+/app/raw.githubusercontent.com/nholthaus/units/master/include/units.h: In function
+'int main(int, char**)':
+/app/raw.githubusercontent.com/nholthaus/units/master/include/units.h:1975:20:
+note:   after user-defined conversion: constexpr units::unit_t<Units, T,
+NonLinearScale>::unit_t(const units::unit_t<UnitsRhs, Ty, NlsRhs>&) [with UnitsRhs
+= units::unit<std::ratio<1>, units::base_unit<std::ratio<1>, std::ratio<0, 1>,
+std::ratio<1>, std::ratio<0, 1>, std::ratio<0, 1>, std::ratio<0, 1>, std::ratio<0,
+1>, std::ratio<0, 1>, std::ratio<0, 1> >, std::ratio<0, 1>, std::ratio<0, 1> >; Ty
+= double; NlsRhs = units::linear_scale; Units = units::unit<std::ratio<1>,
+units::base_unit<std::ratio<1>, std::ratio<0, 1>, std::ratio<-1> > >; T = double;
+NonLinearScale = units::linear_scale]
+   inline constexpr unit_t(const unit_t<UnitsRhs, Ty, NlsRhs>& rhs) noexcept :
+                    ^~~~~~
+Compiler returned: 1
+</script></code></pre>
+
+</div>
+
+<div class="fragment fade-in-then-out">
+
+<img src="./figures/libraries/mp-units.svg">
+
+#### Code:
+
+```cpp
+quantity<si::metre / si::second> v1 = (5.0 * m) * (1.0 * s);
+```
+
+#### Error: 
+
+<pre><code class="compiler-error txt"><script type="text/template">
+x86-64 gcc 13.1
+
+<Compilation failed>
+
+<source>: In function 'int main()':
+<source>:8:49: error: conversion from 'quantity<mp_units::derived_unit<
+mp_units::si::metre, mp_units::si::second>(), [...]>'
+to non-scalar type 'quantity<mp_units::derived_unit<
+mp_units::si::metre, mp_units::per<mp_units::si::second> >(),[...]>' requested
+    8 |   quantity<si::metre / si::second> v1 = (5 * m) * (1. * s);
+      |                                         ~~~~~~~~^~~~~~~~~~
+Compiler returned: 1
+</script></code></pre>
+
+</div>
+
+<div class="fragment fade-in-then-out">
+
+<img height="90px" src="./figures/libraries/Au.png">
+
+#### Code:
+
+```cpp
+Quantity<UnitQuotientT<Meters, Seconds>, double> v = meters(5.0) * seconds(1.0);
+```
+
+#### Error: 
+
+<pre><code class="compiler-error txt"><script type="text/template">
+x86-64 gcc 7.1
+
+<Compilation failed>
+
+<source>: In function 'int main(int, char**)':
+<source>:9:70: error: conversion from
+'au::Quantity<au::UnitProduct<au::Meters, au::Seconds>, double>' to non-scalar type
+'au::Quantity<au::UnitProduct<au::Meters, au::Pow<au::Seconds, -1> >, double>'
+requested
+   Quantity<UnitQuotientT<Meters, Seconds>, double> v = meters(5.0) * seconds(1.0);
+                                                        ~~~~~~~~~~~~^~~~~~~~~~~~~~
+Compiler returned: 1
+</script></code></pre>
+
+</div>
+
+</div>
 
 Notes:
 
@@ -840,15 +1055,19 @@ The other reason people stop using units libraries is inscrutable compiler error
 a very simple example: we'll try initializing a _speed_ with a distance _times_ a duration, instead
 of divided by.
 
+**(click)**
 So here's what we get with boost.  I think this shows why despite the amazing benefits, many
-projects have opted _not_ to use a units library over the years.  This is very forbidding.  We're
-also for some reason mentioning kelvins and candelas multiple times.
+projects have opted _not_ to use a units library over the years.  This is very forbidding.  We also
+mention every dimension we know about, whether or not it's relevant, so we see kelvins and candelas
+multiple times.
 
+**(click)**
 Next up is nholthaus.  It's not really any easier to understand.  These `std::ratio<0, 1>`'s that
 litter the text are the _exponents for the dimensions_.  These are positional arguments.  So
 basically, we still have the problem that we have to mention every dimension, even the irrelevant
 ones, only now we can't even know what they are unless we read the library source code.
 
+**(click)**
 Now for mp-units.  Since it's C++20 only, I switched to a newer compiler.  But that's not the reason
 this is _such_ a breath of fresh air.  It's because of a feature which mp-units pioneered: _opaque
 unit types_.  What this means in practice is that when you say "meter", it's an actual, simple type,
@@ -856,6 +1075,7 @@ not an alias that resolves to a complicated compound template.  I think this is 
 significant advancements in C++ units libraries in the past decade, the other being vector space
 magnitudes.
 
+**(click)**
 So how about Au's compiler errors?  Similarly concise: we have opaque unit types as well.  In some
 ways they may be a little easier to read: you can see that this is the _product_ of meters and
 seconds up here, and the _product_ of meters and _seconds-to-the-minus-one_ down here.  But in any
