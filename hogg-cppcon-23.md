@@ -472,14 +472,24 @@ This makes the whole _ecosystem_ stronger, and it meets the _community's_ needs 
 
 ---
 
-# Framework for choosing a units library
-
-<!-- TODO(slide contents) -->
+# Choosing<br> a Units Library
 
 Notes:
 
 Of course, this diversity can be overwhelming for end users, each of whom can only use _one_
 library.  How do you choose which library is best _for you_?
+
+---
+
+## Framework for Choosing
+
+<ol>
+  <li class="fragment"><b>Can you get it</b> in your project?</li>
+  <li class="fragment">What does it <b>cost</b>, in terms of <b>developer experience</b>?</li>
+  <li class="fragment">What "units library specific" features does it have?</li>
+</ol>
+
+Notes:
 
 As a framework for making this decision, I suggest asking the following three questions, in order.
 
