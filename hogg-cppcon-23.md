@@ -1095,12 +1095,10 @@ Godbolt links:
 
 # Au: core features
 
-<!-- TODO(slide contents) -->
-
 Notes:
 
 Now for the third question in our framework, we can finally start evaluating units library features.
-We'll emphasize those we consider the most important.  Naturally, these tend to be particular
+We'll emphasize the ones we consider the most important.  Naturally, these tend to be particular
 strengths of Au, because we focused on what we thought was important when we built it.  The section
 _after_ this one will look at some other features where we fall short.
 
