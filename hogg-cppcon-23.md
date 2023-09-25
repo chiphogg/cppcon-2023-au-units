@@ -1107,28 +1107,147 @@ that --- but we will mention other libraries where appropriate.
 
 ---
 
-## Same program, only safer
+## Unit safety
 
 <!-- TODO(slide contents) -->
 
 Notes:
 
-The first feature is to be _agnostic_ as to the _underlying numeric types_ in the program.  Some
-projects just use `double` everywhere, which is fine.  But others may store their quantities in
-`float`, or various integral types, which is very common in embedded applications.
+Here's an important principle which I love to emphasize: unit safety.
 
-The best value proposition which a units library can provide is: _same program, only safer_.  If
-somebody without a units library is storing a value in some type, then we should let them use that
-_same type_ under the hood.  Otherwise, we complicate their decision: to get the safety they want,
-we force them to evaluate this superfluous change to their program at the same time.
+We say that a program is "unit safe" when the correct handling of physical units can be verified in
+_each individual line_, by inspection, in isolation.
 
-With Au, it's very easy to turn an arbitrary type into a quantity.  The _name of the unit_ is
-a function: you can pass it any numeric value, and get a quantity of that _same type_.  So, `6` is
-an `int`; `feet(6)` is a `Quantity<Feet, int>`.
+This is all about minimizing cognitive load.  Once you read a unit-safe line, you're done!  You know
+that _if_ your program contains a unit error, then it lives somewhere else.
 
-All of the libraries listed here support customizing the numeric type.  However, with nholthaus,
-this isn't present in the user-facing interfaces: there's a single global type which defaults to
-`double` and gets used for all quantity types.
+The way you get this is to _name_ the unit, at the _callsite_, every time you enter or exit the
+units library.  So, with a height of 1.87 meters, when we say `height = meters(1.87)`, we have
+_named the unit_ as we enter the library.  Our value is stored safely inside of the _quantity_,
+`height`.  We know that every operation we can perform on `height` will _safeguard_ that unit
+information.  And the only way to get that raw value out is to _name the unit_ once again.  So,
+let's say we're serializing this in a protobuf.  We would call
+`proto.set_height_m(height.in(meters))`.  "m", "meters": this is a "unit-safe handoff".  We don't
+need to see a _single other line_ of our program to know that _this line_ handles units correctly.
+
+Now, in fairness, I have received some pushback about this interface, and the lack of a function to
+just get the underlying value without naming the unit at the callsite.  _However_, one hundred
+percent of that pushback came in the _design phase_.  In the two-plus years we've been using it in
+production, I haven't received a single complaint.  Not only is unit safety just not a burden, but
+you really do come to appreciate it!  It's hard to go back to calling `.count()` on a duration.
+
+In terms of other libraries, mp-units is the only one I know which follows this principle, and its
+unit safety is every bit the equal of Au.
+
+---
+
+## Same program, only safer
+
+<!-- Godbolt links:
+Standard: https://godbolt.org/z/1GGW3svsT
+MIPS gcc: https://godbolt.org/z/9nxd494YM
+-->
+
+<div class="poor fragment r-stack" data-fragment-index="1">
+
+<div>
+
+(No units library)
+
+```cpp
+int degrees_per_second_from_rpm(int rpm) {
+  return rpm * 6; // Magic number!
+}
+```
+
+</div>
+  <div class="fragment same-program-only-safer fade-in-then-out" data-fragment-index="4">
+    <img src="./figures/same-program-only-safer/x86_1_no-units.png">
+  </div>
+  <div class="fragment same-program-only-safer" data-fragment-index="5">
+    <img src="./figures/same-program-only-safer/mips_1_no-units.png">
+  </div>
+</div>
+
+<div class="fair fragment r-stack" data-fragment-index="2">
+
+<div>
+<img height="90px" src="./figures/libraries/nholthaus.png">
+
+```cpp
+int degrees_per_second_from_rpm(int rpm) {
+  return degrees_per_second_t{revolutions_per_minute_t{rpm}}.to<int>();
+}
+```
+
+</div>
+  <div class="fragment same-program-only-safer" data-fragment-index="4">
+    <img src="./figures/same-program-only-safer/x86_2_nholthaus.png">
+  </div>
+  <div class="fragment same-program-only-safer" data-fragment-index="5">
+    <img src="./figures/same-program-only-safer/mips_2_nholthaus.png">
+  </div>
+</div>
+</div>
+
+<div class="good fragment r-stack" data-fragment-index="3">
+
+<div>
+<img height="90px" src="./figures/libraries/Au.png">
+
+```cpp
+int degrees_per_second_from_rpm(int rpm) {
+  return (revolutions / minute)(rpm).in(degrees / second);
+}
+```
+
+</div>
+  <div class="fragment same-program-only-safer" data-fragment-index="4">
+    <img src="./figures/same-program-only-safer/x86_3_au.png">
+  </div>
+  <div class="fragment same-program-only-safer" data-fragment-index="5">
+    <img src="./figures/same-program-only-safer/mips_3_au.png">
+  </div>
+</div>
+
+
+
+Notes:
+
+The next feature is: _same program, only safer_.  What this means is to be agnostic as to the
+underlying numeric types in the program.  Don't privilege one type; don't assume everyone uses
+`double`.
+
+If we offer unit safety, but force people to change their types to get it, then we complicate their
+decision.
+
+**(click)**
+Here's an example where we're tracking revolutions per minute, RPM, with an int, and we have
+a function that converts to degrees per second.  We've got this magic number, and a units library
+could make it better!  Of course we'd like to make the _interfaces_ safer too, but we'll just focus
+on the implementation for now.
+
+**(click)**
+With the nholthaus library, it's easy to make this **unit safe**.  The RPM value gets passed to the
+RPM type, and then we convert to degrees-per-second.
+
+**(click)**
+And it's easy to do this with Au as well.
+
+These may look similar, but there's a big difference under the hood.  nholthaus switches to `double`
+to perform this calculation.
+
+**(click)**
+This takes more steps, and even gives wrong answers for very large ints.  This is x86 assembly.
+
+**(click)**
+For some other platforms, like MIPS, the difference can be even more pronounced.
+
+This is why fluent support for mixed types is critical if we want to meet _everybody's_ needs.
+
+All of the libraries mentioned do support customizing the numeric type to some degree.  However,
+with nholthaus, this isn't present in the user-facing interfaces: their quantity types use a single
+global choice for the storage type.
 
 ---
 
@@ -1213,40 +1332,6 @@ suit their program, because they know that Au is watching out for the dangerous 
 In terms of libraries, the nholthaus and SI libraries don't protect against truncation; boost and
 mp-units follow the chrono library policy; and only Au has the overflow safety surface.  I would
 like to see other libraries try it out in practice.
-
----
-
-## Unit safety
-
-<!-- TODO(slide contents) -->
-
-Notes:
-
-Here's an important principle which I love to emphasize: unit safety.
-
-We say that a program is "unit safe" when the correct handling of physical units can be verified in
-_each individual line_, by inspection, in isolation.
-
-This is all about minimizing cognitive load.  Once you read a unit-safe line, you're done!  You know
-that _if_ your program contains a unit error, then it lives somewhere else.
-
-The way you get this is to _name_ the unit, at the _callsite_, every time you enter or exit the
-units library.  So, with a height of 1.87 meters, when we say `height = meters(1.87)`, we have
-_named the unit_ as we enter the library.  Our value is stored safely inside of the _quantity_,
-`height`.  We know that every operation we can perform on `height` will _safeguard_ that unit
-information.  And the only way to get that raw value out is to _name the unit_ once again.  So,
-let's say we're serializing this in a protobuf.  We would call
-`proto.set_height_m(height.in(meters))`.  "m", "meters": this is a "unit-safe handoff".  We don't
-need to see a _single other line_ of our program to know that _this line_ handles units correctly.
-
-Now, in fairness, I have received some pushback about this interface, and the lack of a function to
-just get the underlying value without naming the unit at the callsite.  _However_, one hundred
-percent of that pushback came in the _design phase_.  In the two-plus years we've been using it in
-production, I haven't received a single complaint.  Not only is unit safety just not a burden, but
-you really do come to appreciate it!  It's hard to go back to calling `.count()` on a duration.
-
-In terms of other libraries, mp-units is the only one I know which follows this principle, and its
-unit safety is every bit the equal of Au.
 
 ---
 

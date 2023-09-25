@@ -15,6 +15,10 @@ figcaption {
   background-color: #abd9e9;
 }
 
+.fair {
+    background-color: #ffffbf;
+}
+
 .poor {
   background-color: #fdae61;
 }
@@ -64,4 +68,16 @@ td.squish {
   background-size: 100% auto;
   display: inline-block;
   min-width: 500px;
+}
+
+.same-program-only-safer {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.same-program-only-safer img {
+  width: 30%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
