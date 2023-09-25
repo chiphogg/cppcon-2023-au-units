@@ -1109,7 +1109,75 @@ that --- but we will mention other libraries where appropriate.
 
 ## Unit safety
 
-<!-- TODO(slide contents) -->
+_A program is "unit safe" when the correct handling of physical units can be verified in **each
+individual line**, by **inspection**, in **isolation**._
+
+
+<div class="r-stack">
+  <div class="fragment fade-in-then-out">
+
+```cpp [1-2]
+auto height = meters(1.87);
+//            ^^^^^^
+
+
+
+
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+```cpp [4]
+auto height = meters(1.87);
+//            ^^^^^^
+
+QuantityD<Joules> potential_energy = m * g * height;
+
+
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+```cpp [6]
+auto height = meters(1.87);
+//            ^^^^^^
+
+QuantityD<Joules> potential_energy = m * g * height;
+
+const bool can_fit = (height < clearance);
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+```cpp [8-9]
+auto height = meters(1.87);
+//            ^^^^^^
+
+QuantityD<Joules> potential_energy = m * g * height;
+
+const bool can_fit = (height < clearance);
+
+proto.set_height_m(height.in(meters));
+//               ^           ^^^^^^
+```
+
+  </div>
+</div>
 
 Notes:
 
@@ -1121,23 +1189,34 @@ _each individual line_, by inspection, in isolation.
 This is all about minimizing cognitive load.  Once you read a unit-safe line, you're done!  You know
 that _if_ your program contains a unit error, then it lives somewhere else.
 
+**(click)**
 The way you get this is to _name_ the unit, at the _callsite_, every time you enter or exit the
-units library.  So, with a height of 1.87 meters, when we say `height = meters(1.87)`, we have
-_named the unit_ as we enter the library.  Our value is stored safely inside of the _quantity_,
-`height`.  We know that every operation we can perform on `height` will _safeguard_ that unit
-information.  And the only way to get that raw value out is to _name the unit_ once again.  So,
-let's say we're serializing this in a protobuf.  We would call
+units library.  So when we say `height = meters(1.87)`, we have _named the unit_ as we enter the
+library.  Our value is stored safely inside of the _quantity_, `height`.
+
+We know that every operation we can perform on `height` will _safeguard_ that unit information.
+
+**(click)**
+Multiplication.
+
+**(click)**
+Comparison.
+
+And the only way to get that raw value out is to _name the unit_ once again.
+
+**(click)**
+So, let's say we're serializing this in a protobuf.  We would call
 `proto.set_height_m(height.in(meters))`.  "m", "meters": this is a "unit-safe handoff".  We don't
 need to see a _single other line_ of our program to know that _this line_ handles units correctly.
 
-Now, in fairness, I have received some pushback about this interface, and the lack of a function to
-just get the underlying value without naming the unit at the callsite.  _However_, one hundred
-percent of that pushback came in the _design phase_.  In the two-plus years we've been using it in
-production, I haven't received a single complaint.  Not only is unit safety just not a burden, but
-you really do come to appreciate it!  It's hard to go back to calling `.count()` on a duration.
+Now, in fairness, I have received some pushback about this design, and how it forces people to
+repeat the unit.  However, _one hundred percent_ of that pushback came in the _design phase_.  In
+the two-plus years we've been using it in production, I haven't received a single complaint.  Not
+only is unit safety just not _actually_ a burden, but you really do come to appreciate it!  It's
+hard to go back to calling `.count()` on a duration.
 
 In terms of other libraries, mp-units is the only one I know which follows this principle, and its
-unit safety is every bit the equal of Au.
+unit safety is now every bit the equal of Au.
 
 ---
 
