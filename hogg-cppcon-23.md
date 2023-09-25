@@ -1332,39 +1332,143 @@ global choice for the storage type.
 
 ## Conversion safety
 
-<!-- TODO(slide contents) -->
+<div class="r-stack">
+  <div class="fragment fade-in-then-out">
 
-chrono code goes here
+```cpp []
+auto dt_s = std::chrono::seconds{30};
+
+
+
+
+
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+```cpp []
+auto dt_s = std::chrono::seconds{30};
+
+auto dt_ms = std::chrono::milliseconds{dt_s}; // 30'000 ms
+
+
+
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+```cpp []
+auto dt_s = std::chrono::seconds{30};
+
+auto dt_ms = std::chrono::milliseconds{dt_s}; // 30'000 ms
+
+// Does not compile!
+// auto dt_min = std::chrono::minutes{dt_s};
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+```cpp []
+auto dt_s = std::chrono::seconds{30};
+
+auto dt_ms = std::chrono::milliseconds{dt_s}; // 30'000 ms
+
+// Does not compile!
+// auto dt_min = std::chrono::minutes{dt_s};
+
+using chrono_minutes_double = std::chrono::duration<double, std::ratio<60>>;
+
+
+```
+
+  </div>
+  <div class="fragment fade-in">
+
+```cpp []
+auto dt_s = std::chrono::seconds{30};
+
+auto dt_ms = std::chrono::milliseconds{dt_s}; // 30'000 ms
+
+// Does not compile!
+// auto dt_min = std::chrono::minutes{dt_s};
+
+using chrono_minutes_double = std::chrono::duration<double, std::ratio<60>>;
+auto dt_min = chrono_minutes_double{dt_s}; // 0.5 min
+```
+
+  </div>
+</div>
+
+<div class="poor fragment">
+
+```cpp
+using nanos_u32 = std::chrono::duration<uint32_t, std::nano>;
+const auto five_sec = nanos_u32{std::chrono::seconds{5}}; // 0.705'032'704 s (!)
+```
+
+</div>
+
+<div class="good fragment">
+
+<img height="90px" src="./figures/libraries/Au.png">
 
 ```cpp
 QuantityU32<Nano<Seconds>> dt = seconds(5);
 ```
 
+  <div class="fragment">
+
+```txt
+error: conversion from 'Quantity<au::Seconds,int>' to non-scalar type
+'Quantity<au::Nano<au::Seconds>,unsigned int>' requested
 ```
-error: conversion from 'Quantity<au::Seconds,int>' to non-scalar type 'Quantity<au::Nano<au::Seconds>,unsigned int>' requested
-```
+
+  </div>
+</div>
 
 Notes:
 
 Of course, being able to store integers is one thing.  What happens to them in calculations is quite
 another --- especially when those calculations involve unit conversions.
 
-We have some intuition from the chrono library here, which uses integers heavily and has a proven
-track record doing so.  Let's take a duration of integer seconds.
+We have some intuition from the chrono library here, which has a proven track record of using
+integral quantity types safely.
 
-- We can assign it to an integer _millisecond_ duration, because we know that's exact.
-- We _can't_ assign it to an integer _minutes_ duration, because that could truncate!
-- We _can_ assign it to a _floating point_ minutes duration, because that will be more accurate.
+**(click)**
+Let's take a duration of integer seconds.
+
+- **(click)** We can assign it to an integer _millisecond_ duration, because we know that's exact.
+- **(click)** We _can't_ assign it to an integer _minutes_ duration, because that could truncate!
+- **(click)** But if we make a _floating point_ minutes duration,
+    - **(click)** we _can_ assign it to _that_, because it keeps more precision.
 
 Any units library that is designed to support integers should follow this policy as a baseline.  The
-nholthaus and SI libraries primarily have floating point applications in mind, so they silently
-permit the truncation in the middle case.  Boost, mp-units, and Au all prevent it.
+nholthaus and SI libraries mainly target floating point, so they silently permit the truncation in
+the middle case.  mp-units, Au, and _I believe_ boost all prevent it.
 
-That said, this is only a baseline.  Consider this case in the chrono library, where we store
-nanoseconds in a 32-bit integer.  We initialize it with a small number of seconds, 5 seconds.
-Instead of storing 5 billion nanoseconds, we find just 705 million, which is only 0.7 seconds!  Well
-of course we do, because 5 billion can't fit in a 32-bit integer.  But the point is that there's
-another kind of risk with integers: besides _truncation_, there's _overflow_.
+That said, this is only a baseline.
+
+**(click)**
+Consider this case in the chrono library, where we store nanoseconds in a 32-bit integer.  We
+initialize it with a small number of seconds, 5 seconds. Instead of storing 5 billion nanoseconds,
+we find just 705 million, which is only 0.7 seconds!  Well of course we do, because 5 billion can't
+fit in a 32-bit integer.  But the point is that there's another kind of risk with integers: besides
+_truncation_, there's _overflow_.
 
 Now of course, chrono takes this into account and they do have a strategy.  They designed their
 _primary user-facing_ types to make overflow unlikely. Storing nanoseconds in uint32 is _not_
