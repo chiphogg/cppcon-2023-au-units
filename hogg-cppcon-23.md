@@ -1486,25 +1486,32 @@ And here's the result: a compiler error.  Au knows this conversion multiplies by
 knows the max value of the type is less than 5 billion.  Au considers the overflow risk too high,
 and it prevents it from compiling.
 
----
-
-## More conversion safety: the "safety surface"
-
-<!-- TODO(slide contents) -->
-
-Safety surface from blog post
-
-Notes:
-
 In general, overflow risk is a function of both the conversion factor, and the size of the integer
 being used.  Thus, we can visualize this in a plot.
+
+---
+
+## The "Safety Surface"
+
+<img src="./figures/safety_surface.webp" width="70%">
+
+<div class="fragment">
+
+| Protection | <img src="./figures/libraries/boost.png" height="70px"> | <img src="./figures/libraries/nholthaus.png" height="70px"> | <img src="./figures/libraries/SI.png" height="70px"> | <img src="./figures/libraries/mp-units.png" height="70px"> | <img src="./figures/libraries/Au.png" height="70px"> |
+|--|--|--|--|--|--|
+| Truncation | ✔️ | ❌ | ❌ | ✔️ | ✔️ |
+| Overflow | ❌ | ❌ | ❌ | ❌ | ✔️ |
+
+</div>
+
+Notes:
 
 For each integer size, and each conversion factor, there is some smallest value that would overflow.
 We prevent the conversion when that value is small enough to be "scary".  What's "scary"?  Well, we
 definitely want people to feel confident using values less than 1000, because for those values they
 can't jump to the next SI prefix up.  Our threshold gives some breathing room.  It's over 2000,
-which lets us support conversion factors of a million in a 32-bit signed integer.  Go ahead and
-initialize your hertz frequency with a megahertz value!
+which lets us support conversion factors of a million in any 32-bit integer. Go ahead and initialize
+your hertz frequency with a megahertz value!
 
 If we trace the boundary between permitted and forbidden conversions, we get this _overflow safety
 surface_.  The practical effect is that users feel empowered to choose the integer types that best
