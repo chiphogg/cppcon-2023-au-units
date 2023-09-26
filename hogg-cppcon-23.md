@@ -2124,7 +2124,15 @@ those libraries interact!
 
 ## Feature inspirations
 
-<!-- TODO(slide contents) -->
+<div class="r-stack">
+  <img class="fragment fade-out" data-fragment-index="1" src="./figures/feature-inspirations/inspirations_1.svg">
+  <img class="fragment fade-in-then-out" data-fragment-index="1" src="./figures/feature-inspirations/inspirations_2.svg">
+  <img class="fragment fade-in-then-out" data-fragment-index="2" src="./figures/feature-inspirations/inspirations_3.svg">
+  <img class="fragment fade-in-then-out" data-fragment-index="3" src="./figures/feature-inspirations/inspirations_4.svg">
+  <img class="fragment fade-in-then-out" data-fragment-index="4" src="./figures/feature-inspirations/inspirations_5.svg">
+  <img class="fragment fade-in-then-out" data-fragment-index="5" src="./figures/feature-inspirations/inspirations_6.svg">
+  <img class="fragment fade-in-then-out" data-fragment-index="6" src="./figures/feature-inspirations/inspirations_7.svg">
+</div>
 
 Notes:
 
@@ -2135,31 +2143,37 @@ in their own library's idiom.
 
 So here are some examples.
 
+**(click)**
 - The single file delivery that makes the nholthaus library _so easy_ to obtain was a big
   inspiration for Au.  I think with the manifest comment, and the full install option, we even
   improved on this.
 
-- _Strongly typed units_, originally by mp-units, was a revolution in usability --- remember those
+**(click)**
+- _Opaque unit types_, originally by mp-units, was a revolution in usability --- remember those
   nice, clear compiler errors?  So this is an Au feature inspired by mp-units.
 
+**(click)**
 - One Au feature which mp-units now has is _unit-safe interfaces_.  It's really exciting to see
   better support for unit safety!
 
+**(click)**
 - _Vector space magnitudes_ is another Au feature that mp-units now has.  This is the one feature
   I know of that wasn't just inspired; it came from direct code sharing.  See, `std::ratio` works
   fine for the chrono library, but for a more general units library it utterly fails in multiple
-  ways.  We brought this feature to mp-units via pull request before Au was open sourced.
+  ways.  When we shared this feature, it solved three seemingly unrelated pre-existing issues!
 
-- Finally, _composable units_ is a kind of pseudo-inspired feature.  Au did have it for almost
-  a year before mp-units, but as far as I know this was just convergent evolution rather than
-  inpsiration.
+**(click)**
+- _Smart inverses_ is a brand-new inspired feature, added just last week!
 
 There's also an example of a "negative influence".  Units libraries are laboratories for ideas, and
-sometimes those ideas don't work out.  The nholthaus library has automatic conversion from
-dimensionless quantities, like _percent_, to raw numbers.  Unfortunately, individually reasonable
-decisions end up interacting badly here, and the symptom is that the round trip implicit conversion
-picks up a factor of one hundred.  We would have provided this feature, but we were able to learn
-from their experiences and avoid the mistake.
+sometimes those ideas don't work out.  
+
+**(click)**
+The nholthaus library has automatic conversion from dimensionless quantities, like _percent_, to raw
+numbers: `percent(75)` to `0.75`.  Unfortunately, individually reasonable decisions end up
+interacting badly here, and the symptom is that the round trip implicit conversion picks up a factor
+of one hundred.  We would have provided this feature, but we were able to learn from their
+experiences and avoid the mistake.
 
 So these are some ways the libraries have interacted in their _designs_.  But they can also interact
 more directly, in the same program!
