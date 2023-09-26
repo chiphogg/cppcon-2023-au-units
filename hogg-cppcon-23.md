@@ -2115,7 +2115,10 @@ we'd be glad to provide guidance as to how.
 
 # Inter-library interactions
 
-<!-- TODO(slide contents) -->
+Notes:
+
+So we've seen some properties of individual libraries in the ecosystem.  Now let's look at some ways
+those libraries interact!
 
 ---
 
