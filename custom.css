@@ -81,3 +81,7 @@ td.squish {
   top: 0px;
   right: 0px;
 }
+
+.nolinenum .hljs-ln-numbers {
+  display: none;
+}

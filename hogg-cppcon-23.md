@@ -1559,7 +1559,101 @@ developers are a critical and often-overlooked part of that community.
 
 ## Composability
 
-<!-- TODO(slide contents) -->
+Code:
+
+<div class="r-stack nolinenum">
+  <div class="fragment fade-in-then-out" data-fragment-index="1">
+
+```cpp [1]
+std::cout << meters(10) << std::endl;
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out" data-fragment-index="2">
+
+```cpp [2]
+std::cout << meters(10) << std::endl;
+std::cout << (meters / second)(20) << std::endl;
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out" data-fragment-index="3">
+
+```cpp [3]
+std::cout << meters(10) << std::endl;
+std::cout << (meters / second)(20) << std::endl;
+std::cout << (kilo(meters) / hour)(30) << std::endl;
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out" data-fragment-index="4">
+
+```cpp [4]
+std::cout << meters(10) << std::endl;
+std::cout << (meters / second)(20) << std::endl;
+std::cout << (kilo(meters) / hour)(30) << std::endl;
+std::cout << (meters / squared(second))(40) << std::endl;
+```
+
+  </div>
+</div>
+
+Output:
+
+<div class="r-stack nolinenum">
+  <div class="fragment fade-in-then-out" data-fragment-index="1">
+
+```txt [1]
+10 m
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out" data-fragment-index="2">
+
+```txt [2]
+10 m
+20 m / s
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out" data-fragment-index="3">
+
+```txt [3]
+10 m
+20 m / s
+30 km / h
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out" data-fragment-index="4">
+
+```txt [4]
+10 m
+20 m / s
+30 km / h
+40 m / s^2
+```
+
+  </div>
+</div>
 
 Notes:
 
@@ -1576,13 +1670,14 @@ And `kilo(meters) / hour`.
 
 And `meters / squared(second)`.
 
-You can call any of these quantity makers to make a quantity.  The fluidity of combining units and
-prefixes to make new units makes the library a delight to use.
+You can call any of these quantity makers to make a quantity, and we'll automatically generate the
+correct unit label.  The fluidity of combining units and prefixes to make new units makes the
+library a delight to use.
 
 Au was the only library I knew with this kind of composability for about a year, although most of
 that time predates our open source release.  Happily, this is no longer the case: the V2 interfaces
-of mp-units are every bit as fluently composable as Au.  I don't know of any other libraries that
-come close, though.
+of mp-units are every bit as fluently composable as Au, _and more_, thanks to C++20's non-type
+template parameters.  I don't know of any other libraries that come close, though.
 
 ---
 
