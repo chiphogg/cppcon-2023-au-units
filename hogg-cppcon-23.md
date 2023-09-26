@@ -1845,7 +1845,29 @@ suggest... then, leave a YouTube comment down below; don't forget to like and su
 
 ## Explicit systems of quantities
 
-<!-- TODO(slide contents) -->
+<img src="./figures/EM-Wave.gif">
+<figcaption>
+
+By And1mu - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Plane_electromagnetic_wave.svg
+
+</figcaption>
+
+<div class="container">
+  <div class="fragment">
+
+SI Units:
+
+$E = cB$
+
+  </div>
+  <div class="fragment">
+
+Gaussian Units:
+
+$E = B$
+
+  </div>
+</div>
 
 Notes:
 
@@ -1853,9 +1875,14 @@ So, Au can handle different systems of _units_: we can freely mix meters, feet, 
 it.  What we _can't_ do is handle two incompatible ideas about _what dimensions exist_ at the same
 time.
 
-What does that even mean?  Here's an example.  SI units measure electric fields in volts per meter,
-and magnetic fields are measured in Tesla.  In Gaussian units, they are _both_ measured in Gauss!
-They have different dimensions in SI, but the same dimension in Gaussian units.
+What does that even mean?  Here's an example.
+
+**(click)**
+SI units measure electric fields in volts per meter, and magnetic fields are measured in Tesla.
+
+**(click)**
+In Gaussian units, they are _both_ measured in Gauss! They have different dimensions in SI, but the
+same dimension in Gaussian units.
 
 You can use SI units with Au.  You can use Gaussian units with Au!  But you _can't_ use them both in
 the _same program_.
