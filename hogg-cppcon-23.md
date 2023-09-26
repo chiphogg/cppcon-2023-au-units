@@ -1816,8 +1816,6 @@ there's fertile ground here.
 
 # Au: missing features
 
-<!-- TODO(slide contents) -->
-
 Notes:
 
 So we've seen some pretty cool features of Au, which raises the question: why might you _not_ want
