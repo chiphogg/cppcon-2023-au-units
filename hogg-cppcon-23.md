@@ -1833,12 +1833,13 @@ First off: _decibels_, and other logarithmic units like _bels_ and _nepers_.  Fo
 nholthaus library is pretty much the only game in town.
 
 _These can be subtle._  The definition can depend on whether you're dealing with so-called "power"
-quantities or "root-power" quantities, which feels like it'll be hard to write generically.
+vs. "root-power" quantities.  This makes me worry that it'll be hard to write correct, generic
+interfaces.
 
 The best way forward is to accumulate a comprehensive collection of acceptance test cases from
-experts who use decibels in their daily job.  If we can get enough test cases and they're all
-mutually coherent, we can do this.  If you're a decibel expert and you have test cases to suggest...
-then, leave a YouTube comment down below; don't forget to like and subscribe to CppCon.
+experts who use decibels in their daily job.  If we can get enough test cases --- _and they're all
+mutually coherent_ --- we can do this.  If you're a decibel expert and you have test cases to
+suggest... then, leave a YouTube comment down below; don't forget to like and subscribe to CppCon.
 
 ---
 
