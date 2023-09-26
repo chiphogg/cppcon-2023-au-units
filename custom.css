@@ -85,3 +85,22 @@ td.squish {
 .nolinenum .hljs-ln-numbers {
   display: none;
 }
+
+.real-world td, .real-world th {
+  vertical-align: top;
+}
+
+.real-world td {
+  width: 30%;
+}
+
+.real-world-error {
+  padding: 0 1em 0 1em;
+  white-space: nowrap;
+  background-color: #cccccc;
+  border-radius: 0.5em;
+  margin: 0.1em;
+}
+.rwe-contain {
+  font-size: 70%;
+}

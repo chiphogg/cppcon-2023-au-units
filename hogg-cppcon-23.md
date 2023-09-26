@@ -1967,29 +1967,78 @@ upgrade to C++20 and check out mp-units.
 
 ### Aside: mistakes in the real world
 
-<!-- TODO(slide contents) -->
+<table class="real-world">
+  <tr>
+    <th>Tier</th>
+    <td class="fragment" data-fragment-index="1">Wrong dimension</td>
+    <td class="fragment" data-fragment-index="2">Right dimension,<br>Wrong magnitude</td>
+    <td class="fragment" data-fragment-index="3">Right dimension,<br>Right magnitude,<br>Wrong "kind"</td>
+  </tr>
+  <tr>
+    <th>e.g.</th>
+    <td class="fragment" data-fragment-index="1"><pre><code class="cpp">dist_m = time_s;</code></pre></td>
+    <td class="fragment" data-fragment-index="2"><pre><code class="cpp">dist_m = dist_cm;</code></pre></td>
+    <td class="fragment" data-fragment-index="3"><pre><code class="cpp">freq_hz = act_bq</code></pre></td>
+  </tr>
+  <tr>
+    <th>Real<br>World<br>Errors</th>
+    <td></td>
+    <td class="fragment rwe-contain" data-fragment-index="5">
+      <span class="real-world-error">Mars Climate</span>
+      <span class="real-world-error">Columbus</span>
+      <span class="real-world-error">Vasa</span>
+      <span class="real-world-error">Gimli glider</span>
+      <span class="real-world-error">Black Sabbath</span>
+      <span class="real-world-error">Korean Air 6316</span>
+      <span class="real-world-error">Moorpark Zoo</span>
+      <span class="real-world-error">Space Mountain</span>
+      <span class="real-world-error">Wild rice</span>
+      <span class="real-world-error">Med dose</span>
+    </td>
+    <td></td>
+</table>
+
+<div class="fragment" data-fragment-index="4">
+  Quantity errors from P2981:
+  <div class="rwe-contain fragment fade-in-then-out" data-fragment-index="4">
+    <span class="real-world-error">Mars Climate</span>
+    <span class="real-world-error">Columbus</span>
+    <span class="real-world-error">Vasa</span>
+    <span class="real-world-error">Gimli glider</span>
+    <span class="real-world-error">Black Sabbath</span>
+    <span class="real-world-error">Korean Air 6316</span>
+    <span class="real-world-error">Moorpark Zoo</span>
+    <span class="real-world-error">Space Mountain</span>
+    <span class="real-world-error">Wild rice</span>
+    <span class="real-world-error">Med dose</span>
+  </div>
+</div>
 
 Notes:
 
-By the way: we've got 3 tiers of quantity mistakes you can make.
+By the way: let's put this missing feature into context.  There are 3 tiers of quantity mistakes you
+can make.
 
-- First, wrong dimension.  You ask for a length, you get a temperature?  Total nonsense!
-- Second, right dimension, wrong magnitude.  You thought the distance was 100 meters, but it was 100
-  yards.
-- Third, right dimension, _right magnitude_, wrong kind.  You assigned a _radioactive activity_ to
+- **(click)** First, wrong dimension.  You ask for a length, you get a time?  Nonsense!
+- **(click)** Second, right dimension, wrong magnitude.  You set your
+  distance-in-meters using a value-in-centimeters.
+- **(click)** Third, right dimension, _right magnitude_, wrong kind.  You assigned a _radioactive activity_ to
   a _frequency_.  Au doesn't care about this, but it cares about the first two.
 
 So it feels like the first must be terrible, the second pretty bad, and the third somewhat bad.  But
 what mistakes do people make _in the real world_?
 
-The mp-units paper on safety lists 10 real-world errors, 9 of which are for quantities.  Now, most
-of these aren't **software** errors, but they do show us the kinds of mistakes that people make.
+**(click)**
 
-Which categories do you think these will end up in?
+The mp-units paper on safety, P2981, lists 11 real-world errors, 10 which apply to quantities. Now,
+most of these aren't **software** errors, but they do show us the kinds of unit mistakes that people
+make.
+
+So how are these distributed across the categories?
 
 **(click)**
 
-Answer: one hundred percent are in the middle category: right dimension, wrong units.  Turns out,
+Answer: ten out of ten are in the middle category: right dimension, wrong units.  Turns out,
 when you ask someone for a length, they tend to give you a length!  But their length of 6 might not
 be a length that you'd call 6.  So in terms of preventing bugs, handling unit conversion factors
 delivers _virtually all_ of the value.
