@@ -2054,20 +2054,58 @@ is clearly in the region of diminishing returns.
 
 ## Unit symbol APIs (e.g., literals)
 
-<!-- TODO(slide contents) -->
+<table class="udl-table">
+  <tr>
+    <th>Functions</th>
+    <th>UDLs</th>
+    <th class="fragment" data-fragment-index="4">"References"</th>
+  </tr>
+  <tr>
+    <td><pre><code class="cpp">meters(3.0)</code></pre></td>
+    <td><pre><code class="cpp">3.0_m</code></pre></td>
+    <td class="fragment" data-fragment-index="4"><pre><code class="cpp">3.0 * m</code></pre></td>
+  </tr>
+  <tr class="fragment" data-fragment-index="1">
+    <td><pre><code class="cpp">(meters / second)(8.0)</code></pre></td>
+    <td><pre><code class="cpp">8.0_mps  // New manual definition 😞</code></pre></td>
+    <td class="fragment" data-fragment-index="4"><pre><code class="cpp">8.0 * (m / s)</code></pre></td>
+  </tr>
+  <tr class="fragment" data-fragment-index="2">
+    <td class="fragment" data-fragment-index="1"><pre><code class="cpp">meters(3.0f)</code></pre></td>
+    <td class="fragment" data-fragment-index="1"><pre><code class="cpp">???</code></pre></td>
+    <td class="fragment" data-fragment-index="4"><pre><code class="cpp">3.0f * m</code></pre></td>
+  </tr>
+  <tr class="fragment" data-fragment-index="3">
+    <td class="fragment" data-fragment-index="1"><pre><code class="cpp">meters(dist_m)</code></pre></td>
+    <td class="fragment" data-fragment-index="1"><pre><code class="cpp">???</code></pre></td>
+    <td class="fragment" data-fragment-index="4"><pre><code class="cpp">dist_m * m</code></pre></td>
+  </tr>
+</table>
 
 Notes:
 
 Next up: user-defined literals, or UDLs.  Wait, we don't have those?  Who doesn't love writing `3_m`
 instead of `meters(3)`?
 
-Well, we do have these internally at Aurora; they were part of the original library.  At first, we
-were going to port them over, but then mp-units abandoned them, and made some really compelling
-arguments as to why.  They don't compose; they don't support different storage types well; they're
-labor-intensive to define; and so on.  mp-units also engineered a better solution, initially called
-quantity _references_.  You can see an example here: you can write "65 times mi slash h" to get 65
-miles per hour.  This solution lets you compose units, it lets you use whatever numeric type you
-want --- it's great!
+Well, we do have these internally at Aurora; they were part of the original library.  We were going
+to just port them over, but then mp-units abandoned them, and made some really compelling arguments
+as to why.
+
+**(click)**
+They don't compose;
+
+**(click)**
+they don't support different storage types well;
+
+**(click)**
+they _only_ support literals; and so on.
+
+Now what we _really_ want isn't literals; it's a way to _use unit symbols_ in our computations.
+
+**(click)**
+mp-units engineered a better solution for this, initially called quantity _references_.  You can see
+how it looks for all these use cases here. This solution lets you compose units, it lets you use
+whatever numeric type you want --- it's great!
 
 Our plan is to explore some version of this approach instead of going with the popular but deeply
 flawed UDLs.  That said, if you want UDLs in your project, it's easy enough to define your own, and

@@ -104,3 +104,10 @@ td.squish {
 .rwe-contain {
   font-size: 70%;
 }
+
+.udl-table {
+  width: 100%;
+}
+.udl-table td {
+  font-size: 93%;
+}
