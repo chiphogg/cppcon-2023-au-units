@@ -1529,6 +1529,11 @@ like to see other libraries try it out in practice.
 
 <!-- TODO(slide contents) -->
 
+- embedded device image
+- Drake meme: no `double`, yes `uint64_t`
+- safety surface
+- Drake meme: no `<iostream>`, yes `const char []`
+
 Notes:
 
 I'm not an embedded programmer.  So why do I claim that our library is embedded friendly?  Because
@@ -1683,28 +1688,126 @@ template parameters.  I don't know of any other libraries that come close, thoug
 
 ## Unit-aware inverses
 
+<div class="r-stack">
+  <div class="fragment">
+
+$\begin{align}
+f & = 400 \\, \text{Hz} \\\\
+T & = 1/f = 0.0025 \\, \text{s} \color{white}{= 2\\,500 \\, \text{μs}}
+\end{align}$
+
+  </div>
+  <div class="fragment">
+
+$\begin{align}
+f & = 400 \\, \text{Hz} \\\\
+T & = 1/f = 0.0025 \\, \text{s} = 2\\,500 \\, \text{μs}
+\end{align}$
+
+  </div>
+</div>
+
+<div class="fragment">
+Solve for (units of) 1...
+</div>
+
+<div class="r-stack">
+  <div class="fragment fade-in-then-out">
+
+$\begin{align}
+1 & = Tf \\\\
+& = (2\\,500\\,\color{ForestGreen}{[\text{μs}]})(400\color{ForestGreen}{[\text{Hz}]}) \\\\
+& \color{white}{= 1\\,000\\,000 [\text{μs} \cdot \text{Hz}]} \\\\
+& \color{white}{= 1\\,000\\,000 [1 / 1\\,000\\,000]} \\\\
+\color{white}{\therefore \underline{T_{\text{μs}}}[\text{μs}]} & \color{white}{= (\underline{1\\,000\\,000} [1 / 1\\,000\\,000]) / (\underline{400}[\text{Hz}])} \\\\
+\end{align}$
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+$\begin{align}
+1 & = Tf \\\\
+& = (2\\,500\\,\color{ForestGreen}{[\text{μs}]})(400\color{ForestGreen}{[\text{Hz}]}) \\\\
+& = 1\\,000\\,000 \color{ForestGreen}{[\text{μs} \cdot \text{Hz}]} \\\\
+& \color{white}{= 1\\,000\\,000 [1 / 1\\,000\\,000]} \\\\
+\color{white}{\therefore \underline{T_{\text{μs}}}[\text{μs}]} & \color{white}{= (\underline{1\\,000\\,000} [1 / 1\\,000\\,000]) / (\underline{400}[\text{Hz}])} \\\\
+\end{align}$
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+$\begin{align}
+1 & = Tf \\\\
+& = (2\\,500\\,\color{ForestGreen}{[\text{μs}]})(400\color{ForestGreen}{[\text{Hz}]}) \\\\
+& = 1\\,000\\,000 \color{ForestGreen}{[\text{μs} \cdot \text{Hz}]} \\\\
+& = 1\\,000\\,000 \color{ForestGreen}{[1 / 1\\,000\\,000]} \\\\
+\color{white}{\therefore \underline{T_{\text{μs}}}[\text{μs}]} & \color{white}{= (\underline{1\\,000\\,000} [1 / 1\\,000\\,000]) / (\underline{400}[\text{Hz}])} \\\\
+\end{align}$
+
+  </div>
+  <div class="fragment fade-in">
+
+$\begin{align}
+1 & = Tf \\\\
+& = (2\\,500\\,\color{ForestGreen}{[\text{μs}]})(400\color{ForestGreen}{[\text{Hz}]}) \\\\
+& = 1\\,000\\,000 \color{ForestGreen}{[\text{μs} \cdot \text{Hz}]} \\\\
+& = 1\\,000\\,000 \color{ForestGreen}{[1 / 1\\,000\\,000]} \\\\
+\therefore \underline{T_{\text{μs}}}\color{ForestGreen}{[\text{μs}]} & = (\underline{1\\,000\\,000} \color{ForestGreen}{[1 / 1\\,000\\,000]}) / (\underline{400}\color{ForestGreen}{[\text{Hz}]}) \\\\
+\end{align}$
+
+  </div>
+</div>
+
+<div class="fragment">
+
+```cpp
+inverse_as(micro(seconds), hertz(400));  // micro(seconds)(2'500)
+```
+
+</div>
+
 <!-- TODO(slide contents) -->
 
 Notes:
 
-Here's a fun one.  Say we have a process running at 400 Hz.  What's the period, as an integer?
+Here's a fun one.
 
-Well, period is one over frequency.  But one over 400... as an _integer_... that simply truncates to
-zero, right?
+**(click)**
+Say we have a process running at 400 Hz, and we want the period.  Well, that's one over frequency,
+point oh oh two five seconds.
 
-In seconds, yes, it does.  But we could represent this period as 2500 _microseconds_!
+Oh but we're on an embedded system, and we want it as an integer.  What now?  That's just... _zero_,
+right?  Anybody see another option?
 
-The key here is that if you specify the units for your result, then this _implies_ the units we
-should use for 1.  We can represent 1 in different units, different _dimensionless_ units.
+...
 
+**(click)**
+Let's get it in microseconds!  2500 microseconds.
+
+The key here is that if you specify the units for your result --- say, microseconds --- then this
+_implies_ the units we should use for 1.
+
+**(click)**
+Yes!  1 can have different units, different _dimensionless_ units.
+
+**(click)**
 Solve this equation for 1: we can see that its units should be the **product** of the units for
-period and frequency.  Hertz times milliseconds... that equals millionths.  One is one million
-millionths.  Therefore, the program we generate under the hood will divide 400 into one million.
+time and frequency.
 
+**(click)**
+Milliseconds times hertz... that equals
+
+**(click)**
+millionths.  One is one million millionths.
+
+**(click)**
+Therefore, the program we generate under the hood will divide 400 into _one million_, not into one.
+
+**(click)**
 Here's the software API we use to express this.  `inverse_as(micro(seconds), hertz(400));`.  This
 gives `micro(seconds)(2'500)`.
 
-As for other units libraries: mp-units added such a function in the past two weeks, and I haven't
+As for other units libraries: mp-units did add such a function in the past two weeks, but I haven't
 seen this in any other units library.  I'd like to see it explored more.  In fact, I'd like to see
 it taken further --- maybe with more general _quotients_ instead of only exact inverses.  I think
 there's fertile ground here.
