@@ -974,7 +974,7 @@ error: static assertion failed: Units are not compatible.
 /app/raw.githubusercontent.com/nholthaus/units/master/include/units.h: In function
 'int main(int, char**)':
 /app/raw.githubusercontent.com/nholthaus/units/master/include/units.h:1975:20:
-note:   after user-defined conversion: constexpr units::unit_t<Units, T,
+ note:   after user-defined conversion: constexpr units::unit_t<Units, T,
 NonLinearScale>::unit_t(const units::unit_t<UnitsRhs, Ty, NlsRhs>&) [with UnitsRhs
 = units::unit<std::ratio<1>, units::base_unit<std::ratio<1>, std::ratio<0, 1>,
 std::ratio<1>, std::ratio<0, 1>, std::ratio<0, 1>, std::ratio<0, 1>, std::ratio<0,
