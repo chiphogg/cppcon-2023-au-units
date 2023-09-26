@@ -1898,21 +1898,70 @@ So Au is basically a good 90% solution.  To be crystal clear, I mean we meet 100
 
 ## Quantity "kind"
 
-<!-- TODO(slide contents) -->
+<div class="r-stack">
+  <div>
+
+$1\\,\text{Hz} \stackrel{?}{>} 1\\,\text{Bq}$
+
+  </div>
+  <div style="font-weight: bold; font-size: 200%;" class="fragment">🚫</div>
+</div>
+
+<div class="fair fragment">
+
+<img height="70px" src="./figures/libraries/Au.png">
+
+```cpp
+constexpr bool b = (hertz(1) > becquerel(1));  // Not meaningful, but compiles
+```
+
+</div>
+
+<div class="good fragment">
+
+<img height="70px" src="./figures/libraries/mp-units.png">
+
+```cpp
+const bool b = (1 * si::hertz) > (1 * si::becquerel);
+```
+
+```txt
+<source>:15:30: error: no match for 'operator>' (operand types are
+'mp_units::quantity<mp_units::si::hertz(), int>' and
+'mp_units::quantity<mp_units::si::becquerel(), int>')
+   15 |   const bool b = (1 * si::hertz) > (1 * si::becquerel);
+      |                  ~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~
+      |                     |                  |
+      |                     |            quantity<mp_units::si::becquerel(),[...]>
+      |                     quantity<mp_units::si::hertz(),[...]>
+```
+
+<!-- Disclaimer: above error massaged to fit on slide. -->
+
+</div>
+
+<!-- mp-units: https://godbolt.org/z/YxbcYErT9 -->
 
 Notes:
 
 Next up: different "kinds" of the same quantity.  Can we compare, say, a radioactive _activity_ in
 becquerel, to a _frequency_ in hertz?  They are both equivalent to inverse seconds!
 
+**(click)**
+But ISO 80000, the standard for units, says this is _not meaningful_.
+
+**(click)**
 With Au, we say: sure!  We don't _need_ to turn _every_ impermissible operation into a compile time
 error.  If it passes the filters of same _dimension_ and same _magnitude_, then we freely allow
-assignment, because the cost of catching these mistakes would be preventing too many legitimate use
-cases.
+assignment, because catching these mistakes in our current implementation would prevent too many
+legitimate use cases.
 
+**(click)**
 That said, mp-units V2 has come up with a novel implementation for distinguishing different kinds.
-I think it looks very exciting and promising.  So if this is really important to you, upgrade to
-C++20 and check out mp-units.
+I think it looks very exciting and promising.  So if this feature is really important to you,
+upgrade to C++20 and check out mp-units.
+
+<!-- Godbolt(mp-units): https://godbolt.org/z/Mr94hTnjW -->
 
 ---
 
