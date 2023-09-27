@@ -2180,37 +2180,342 @@ more directly, in the same program!
 
 ---
 
+<!-- .element: class="topalign" -->
+
 ## Corresponding quantity mechanism
 
-<!-- TODO(slide contents) -->
+<div class="container">
+  <div>
+
+```cpp
+struct MyMeters {
+  int val;
+};
+```
+
+  </div>
+  <div class="fragment">
+
+`<=>`
+
+  </div>
+  <div>
+
+```cpp
+class Quantity<Meters, int> {
+  int value_;
+};
+```
+
+  </div>
+</div>
+
+<div class="r-stack long-code">
+  <div class="fragment fade-in-then-out">
+
+<pre><code class="cpp stretch" data-line-numbers="1-3,14-15"><script type="text/template">namespace au {
+template<>
+struct CorrespondingQuantity<MyMeters> {
+
+
+
+
+
+
+
+
+
+
+};
+} // namespace au
+</script></code></pre>
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+<pre><code class="cpp stretch" data-line-numbers="4"><script type="text/template">namespace au {
+template<>
+struct CorrespondingQuantity<MyMeters> {
+    using Unit = Meters;
+
+
+
+
+
+
+
+
+
+};
+} // namespace au
+</script></code></pre>
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+<pre><code class="cpp stretch" data-line-numbers="5"><script type="text/template">namespace au {
+template<>
+struct CorrespondingQuantity<MyMeters> {
+    using Unit = Meters;
+    using Rep = int;
+
+
+
+
+
+
+
+
+};
+} // namespace au
+</script></code></pre>
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+<pre><code class="cpp stretch" data-line-numbers="7-8"><script type="text/template">namespace au {
+template<>
+struct CorrespondingQuantity<MyMeters> {
+    using Unit = Meters;
+    using Rep = int;
+
+    // Support Quantity construction from MyMeters.
+    static constexpr Rep extract_value(MyMeters x) { return x.val; }
+
+
+
+
+
+};
+} // namespace au
+</script></code></pre>
+
+  </div>
+  <div class="fragment fade-in">
+
+<pre><code class="cpp stretch" data-line-numbers="10-13|"><script type="text/template">namespace au {
+template<>
+struct CorrespondingQuantity<MyMeters> {
+    using Unit = Meters;
+    using Rep = int;
+
+    // Support Quantity construction from MyMeters.
+    static constexpr Rep extract_value(MyMeters x) { return x.val; }
+
+    // Support Quantity conversion to MyMeters.
+    static constexpr MyMeters construct_from_value(Rep x) {
+      return {.value = x};
+    }
+};
+} // namespace au
+</script></code></pre>
+
+  </div>
+</div>
 
 Notes:
 
-Think about it --- if two libraries have a type that represents a quantity of seconds, _and_ if they
-use the same underlying numeric type to store the value, then those two types are _morally
-equivalent_.  It would be obnoxious if we had to get the value out from one library's type, and put
-it in the other's!
+Think about it --- if two libraries have a type that represents a quantity of meters, _and_ if they
+both store it in `int` under the hood, then those two types are _morally equivalent_.
 
+**(click)**
+It would be obnoxious if we had to get the value out from one library's type, and put it in the
+other's!
+
+**(click)**
 Well, Au gives you the ability to "bless" one of these moral equivalancies, by specializing the
-`CorrespondingQuantity` trait.  Au's Quantity has a template constructor that checks any type to see
-if this specialization exists.  If it does, then you can pass Au quantities to APIs expecting the
-other type, and vice versa.
+`CorrespondingQuantity` trait.  This defines which Au quantity corresponds to the type `MyMeters`.
 
-The point of this feature is to reduce the friction for migration as much as humanly possible.  It's
-part of being a good citizen of the C++ units library ecosystem: minimizing artificial barriers
-forces each library to compete on its own merits, rather than inertia.
+**(click)**
+You tell it the unit is meters,
 
-So in this example, say we were using this `MyMeters` struct in our project, and we want to upgrade
-to Au.  We can pass our `MyMeters` values to this API that takes an int quantity of meters.  In
-fact, we can even pass it to an int quantity of micro meters!  But not nanometers, because the
-overflow risk is too high: that's right, you get the overflow safety surface here too!
+**(click)**
+and the Rep is `int`.
 
-This feature means you can do your migration in arbitrarily small steps: migrate only one target at
-a time, without needing to update all of its callsites.
+**(click)**
+If you tell it how to extract the value in meters, then Quantity becomes _constructible from_
+a `MyMeters` object.
+
+**(click)**
+If you tell it how to build it _from_ a value in meters, then Quantity becomes _convertible to_
+a `MyMeters` object.
+
+**(click)**
+This is how we set up bidirectional convertibility between two types that don't know about each
+other.
+
+---
+
+<!-- .element: class="topalign" -->
+
+## Cross-library interop
+
+<div class="container">
+  <div>
+
+```cpp
+struct MyMeters {
+  int val;
+};
+```
+
+  </div>
+  <div>
+
+`<=>`
+
+  </div>
+  <div>
+
+```cpp
+class Quantity<Meters, int> {
+  int value_;
+};
+```
+
+  </div>
+</div>
+
+Initialization:
+
+<div class="r-stack" style="margin-top: -0.5em;">
+  <div class="fragment fade-out" data-fragment-index="1">
+
+```cpp [1]
+const MyMeters x{3};
+
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out" data-fragment-index="1">
+
+```cpp [1,3]
+const MyMeters x{3};
+
+Quantity<Meters, int>        q1 = x;  //==> meters(3)
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+```cpp [1,4]
+const MyMeters x{3};
+
+Quantity<Meters, int>        q1 = x;  //==> meters(3)
+Quantity<Milli<Meters>, int> q2 = x;  //==> milli(meters)(3'000)
+
+
+```
+
+  </div>
+  <div class="fragment fade-in">
+
+```cpp [1,5]
+const MyMeters x{3};
+
+Quantity<Meters, int>        q1 = x;  //==> meters(3)
+Quantity<Milli<Meters>, int> q2 = x;  //==> milli(meters)(3'000)
+Quantity<Nano<Meters>, int>  q3 = x;  //==> Compiler error!  Overflow safety
+```
+
+  </div>
+</div>
+
+<div class="fragment">
+
+API passing:
+
+<div class="r-stack" style="margin-top: -0.5em;">
+  <div class="fragment fade-in-then-out">
+
+```cpp
+// Legacy interfaces:
+MyMeters measure_length(const Object& o);
+void evaluate(const MyMeters& m);
+```
+
+```cpp
+
+
+
+
+```
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+```cpp
+// Legacy interfaces:
+MyMeters measure_length(const Object& o);
+void evaluate(const MyMeters& m);
+```
+
+```cpp
+// Client code:
+MyMeters m = measure_length(my_object);
+evaluate(m);
+```
+
+  </div>
+  <div class="fragment fade-in-then-out">
+
+```cpp
+// After refactoring:
+Quantity<Meters, int> measure_length(const Object& o);
+void evaluate(const Quantity<Meters, int>& m);
+```
+
+```cpp
+// Client code:
+MyMeters m = measure_length(my_object);
+evaluate(m);
+```
+
+  </div>
+</div>
+
+</div>
+
+Notes:
+
+Let's see this in action, with a `MyMeters` object representing 3 meters.
+
+**(click)**
+We can assign it to its corresponding quantity.
+
+**(click)**
+Yes, this includes safe conversions: here we assign to millimeters, and get 3000 of them.
+
+**(click)**
+Yes, this includes the overflow safety surface: assigning to int32 nanometers will not compile!
+
+**(click)**
+This interop even works across API boundaries.
+
+**(click)**
+Say we have these legacy APIs based on `MyMeters`.
+
+**(click)**
+Say we also have this client code that uses these APIs.  When we go to migrate them to Au,
+
+**(click)**
+...the client code continues to work without change!
+
+The point of this feature is to reduce the friction for migration as much as humanly possible. It
+means you can do it in arbitrarily small steps: migrate only one target at a time, without being
+forced to update all of its clients immediately: you can do them independently!
 
 True, there are limitations.  A _vector_ of quantities can't be automatically converted from one
 library's type to another's, for instance.  But in practice, this feature makes migration _much
-easier_.
+easier_.  And it's part of being a good citizen of the ecosystem: if it's easy to migrate, each
+library has to compete on its merits, rather than inertia.
 
 As we saw earlier, Au already provides this interoperability for chrono library durations.
 
