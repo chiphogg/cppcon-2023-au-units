@@ -1787,8 +1787,6 @@ inverse_as(micro(seconds), hertz(400));  // micro(seconds)(2'500)
 
 </div>
 
-<!-- TODO(slide contents) -->
-
 Notes:
 
 Here's a fun one.
@@ -1812,8 +1810,9 @@ _implies_ the units we should use for 1.
 Yes!  1 can have different units, different _dimensionless_ units.
 
 **(click)**
-Solve this equation for 1: we can see that its units should be the **product** of the units for
-time and frequency.
+Solve this equation for 1: we can see that its units should be the **product** of the units for time
+and frequency.  From now on, we'll use black to represent the numeric values in the actual program,
+and green to represent _unit information_ which gets handled at compile time.
 
 **(click)**
 Milliseconds times hertz... that equals
