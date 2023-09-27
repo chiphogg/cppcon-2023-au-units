@@ -2562,13 +2562,13 @@ seen it work really well in practice.
 
 ---
 
-# Conclusion
+<img src="./figures/libraries/Au-big.png">
 
-<!-- TODO(slide contents) -->
+<span class="repo">aurora-opensource/au</span>
 
 Notes:
 
-So, that's Au, the newest member of the C++ units library ecosystem.  It's let us handle physical
+So, that's Au, the newest member of the C++ units library ecosystem.  It lets us handle physical
 units **safely**, thanks to our pioneering unit-safe interfaces and the overflow safety surface.  It
 works **quickly**: not _just_ zero runtime overhead, but also easy installation and fast compile
 times.  And now, at long last, we are sharing it **broadly**.

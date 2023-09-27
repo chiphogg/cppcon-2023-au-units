@@ -55,11 +55,11 @@ table td img {
   zoom: 0.5;
 }
 
-table.libraries-considered td.repo {
+.repo {
   font-family: monospace;
 }
 
-table.libraries-considered td.repo::before {
+.repo::before {
   content:url("./figures/github-mark.svg");
   zoom: 0.5;
   margin-right: 1em;
