@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="195.79167mm"
+   height="153.45833mm"
+   viewBox="0 0 195.79167 153.45833"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="standard_units.svg"
+   inkscape:export-filename="/home/chogg/cppcon-2023-au-units/figures/community-over-time/bare_graph_3.png"
+   inkscape:export-xdpi="120"
+   inkscape:export-ydpi="120"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.1326109"
+     inkscape:cx="293.5695"
+     inkscape:cy="117.86926"
+     inkscape:window-width="3370"
+     inkscape:window-height="1376"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid824"
+       originx="0"
+       originy="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1966" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
+       id="rect848"
+       width="169.33333"
+       height="105.83333"
+       x="21.166666"
+       y="21.166666"
+       ry="0" />
+    <path
+       style="fill:none;stroke:#c4c4c4;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 30.13253,127 V 21.166666"
+       id="path1026"
+       inkscape:tile-cx="42.333332"
+       inkscape:tile-cy="74.083331"
+       inkscape:tile-w="0.26458299"
+       inkscape:tile-h="105.83333"
+       inkscape:tile-x0="42.201041"
+       inkscape:tile-y0="21.166666" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.07968px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.151992"
+       x="39.642269"
+       y="133.08212"
+       id="text7060"><tspan
+         sodipodi:role="line"
+         id="tspan7058"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.151992"
+         x="39.642269"
+         y="133.08212">2024</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.07968px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.151992"
+       x="82.139885"
+       y="133.08212"
+       id="text7672"><tspan
+         sodipodi:role="line"
+         id="tspan7670"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.151992"
+         x="82.139885"
+         y="133.08212">2026</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.07968px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.151992"
+       x="124.92795"
+       y="133.08212"
+       id="text10354"><tspan
+         sodipodi:role="line"
+         id="tspan10352"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.151992"
+         x="124.92795"
+         y="133.08212">2028</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.07968px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.151992"
+       x="167.44778"
+       y="133.08212"
+       id="text10766"><tspan
+         sodipodi:role="line"
+         id="tspan10764"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.151992"
+         x="167.44778"
+         y="133.08212">2030</tspan></text>
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path1026"
+       xlink:href="#path1026"
+       id="use10848"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path1026"
+       xlink:href="#path1026"
+       transform="translate(21.166639)"
+       id="use10850"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path1026"
+       xlink:href="#path1026"
+       transform="translate(42.333278)"
+       id="use10852"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path1026"
+       xlink:href="#path1026"
+       transform="translate(63.499918)"
+       id="use10854"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path1026"
+       xlink:href="#path1026"
+       transform="translate(84.666557)"
+       id="use10856"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path1026"
+       xlink:href="#path1026"
+       transform="translate(105.8332)"
+       id="use10858"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path1026"
+       xlink:href="#path1026"
+       transform="translate(126.99984)"
+       id="use10860"
+       width="100%"
+       height="100%" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path1026"
+       xlink:href="#path1026"
+       transform="translate(148.16647)"
+       id="use10862"
+       width="100%"
+       height="100%" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.0157px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.250392"
+       x="75.30732"
+       y="-9.9156199"
+       id="text16246"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan16244"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.250392"
+         x="75.30732"
+         y="-9.9156199">C++ Community</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.0157px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.250392"
+       x="104.47267"
+       y="148.00412"
+       id="text19684"><tspan
+         sodipodi:role="line"
+         id="tspan19682"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.250392"
+         x="104.47267"
+         y="148.00412">Time</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7169px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.317921"
+       x="104.53848"
+       y="16.871666"
+       id="text21770"><tspan
+         sodipodi:role="line"
+         id="tspan21768"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.317921"
+         x="104.53848"
+         y="16.871666">Robust Physical Units Support</tspan></text>
+    <path
+       style="fill:#ffcb80;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:0.53221363"
+       d="m 152.51042,21.166666 c 0,0 2.05824,2.976891 3.5751,7.352027 1.51686,4.375136 -0.99198,15.558457 4.18071,19.157696 5.17269,3.599239 4.29987,10.698998 6.56301,13.913176 2.47869,3.272347 12.37147,3.121089 15.11286,5.900168 2.74139,2.779079 0.75696,5.419952 2.52599,6.740385 1.76903,1.320433 6.03191,7.915654 6.03191,7.915654 l 0,-60.979106 h -37.98958"
+       id="path27533"
+       sodipodi:nodetypes="czzczzccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.90148px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.122537"
+       x="174.50629"
+       y="40.335766"
+       id="text30497"><tspan
+         sodipodi:role="line"
+         id="tspan30495"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.122537"
+         x="174.50629"
+         y="40.335766">Standard</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.122537"
+         x="174.50629"
+         y="46.462616"
+         id="tspan30499">Units</tspan></text>
+  </g>
+</svg>

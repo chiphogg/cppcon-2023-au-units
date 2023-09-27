@@ -407,18 +407,27 @@ correct.  Well, that's true, but it's only _part_ of the goal.
 
 ## All of the people, all of the time
 
-<!-- TODO(slide contents) -->
+<div class="r-stack" style="margin-top: -70px;">
+  <img class="fragment fade-in-then-out" src="./figures/community-over-time/bare_graph_1.png">
+  <img class="fragment fade-in-then-out" src="./figures/community-over-time/bare_graph_2.png">
+  <img class="fragment fade-in-then-out" src="./figures/community-over-time/bare_graph_3.png">
+</div>
 
 Notes:
 
+**(click)**
 The _full_ goal is to do this
 
-- for as _much of the C++ community_ as possible,
-- for as much of the _time_ as possible.
+- **(click)** for as _much of the C++ community_ as possible,
+- **(click)** for as much of the _time_ as possible.
 
-Starting _right now_, because we can't affect the past anymore.  If the vertical dimension
-shows the --- _very diverse_ --- community of C++ users, and the horizontal dimension shows time, we
-want to cover as _much_ of this diagram as possible with units support that's as _good_ as possible.
+Starting _right now_, because we can't affect the past anymore.  If the vertical dimension shows the
+_diverse_ community of C++ users, and the horizontal dimension shows time,
+
+**(click slowly 4x)**
+
+we want to cover as _much_ of this diagram as possible with units support that's as _good_ as
+possible.
 
 Accurately expressing our goal is the first step to getting a chance to meet it.
 
@@ -431,14 +440,19 @@ discussion tonight.  Now let's see how a standard units library fits in on the d
 
 ## Standard units library?
 
-<!-- TODO(slide contents) -->
+<div class="r-stack" style="margin-top: -70px;">
+  <img src="./figures/community-over-time/standard_units.png">
+</div>
 
 Notes:
 
-The sad news is that there's literally zero chance for a standard units library before C++29.  So it
-comes into play sometime around here, after a roughly six year gap.  And then it reaches various
-parts of the community only gradually: it takes time to upgrade to a new standard, and some use
-cases need validated toolchains, which won't even exist until years after the new standard drops.
+The sad news is that there's literally zero chance for a standard units library before C++29.
+
+**(click)**
+So it comes into play sometime around here, after a roughly six year gap.  And then it reaches
+various parts of the community only gradually: it takes time to upgrade to a new standard, and some
+use cases need validated toolchains, which won't even exist until years after the new standard
+drops.
 
 Again: should there _be_ a standard units library?  Absolutely!  But this just makes it clear that
 it can't be the _whole_ solution.
@@ -451,14 +465,23 @@ of libraries.
 
 ## The C++ Units Library Ecosystem
 
-<!-- TODO(slide contents) -->
+<div class="r-stack" style="margin-top: -70px;">
+  <img class="fragment fade-out" data-fragment-index="1" src="./figures/community-over-time/bare_graph_3.png">
+  <img class="fragment fade-in-then-out" data-fragment-index="1" src="./figures/community-over-time/base_with_abstract_libs_1.png">
+  <img class="fragment fade-in-then-out" src="./figures/community-over-time/base_with_abstract_libs_2.png">
+  <img class="fragment fade-in-then-out" src="./figures/community-over-time/base_with_abstract_libs_3.png">
+  <img class="fragment fade-in-then-out" src="./figures/community-over-time/base_with_abstract_libs_4.png">
+</div>
+
 
 Notes:
 
-Different users have different needs.  One project needs a specific validated toolchain which
-doesn't yet exist past C++14.  Another project needs robust support for C++17's `optional`, or
-C++20's concepts.  One project uses `double` for everything without a second thought.  Another
-project runs on embedded hardware that can only use integers.
+Different users have different needs.
+
+- **(click)** One project needs a specific validated toolchain which doesn't yet exist past C++14.
+- **(click)** Another project needs robust support for C++17's `optional`, or C++20's concepts.
+- **(click)** One project uses `double` for everything without a second thought.
+- **(click)** Another project runs on embedded hardware that can only use integers.
 
 It's difficult for any one library to satisfy all of these use cases well.  Therefore, the ecosystem
 has _niches_.  It can support multiple libraries, coexisting for extended periods of time.  _And
@@ -472,7 +495,7 @@ This makes the whole _ecosystem_ stronger, and it meets the _community's_ needs 
 
 ---
 
-# Choosing<br> a Units Library
+# Choosing<br>a Units Library
 
 Notes:
 
