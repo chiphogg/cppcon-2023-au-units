@@ -1480,11 +1480,9 @@ Let's take a duration of integer seconds.
 - **(click)** But if we make a _floating point_ minutes duration,
     - **(click)** we _can_ assign it to _that_, because it keeps more precision.
 
-Any units library that is designed to support integers should follow this policy as a baseline.  The
-nholthaus and SI libraries mainly target floating point, so they silently permit the truncation in
-the middle case.  mp-units, Au, and _I believe_ boost all prevent it.
-
-That said, this is only a baseline.
+This "truncation protection" policy is a great baseline for any units library that aims to support
+integers.  Of the five libraries considered here, it's implemented by boost, mp-units, and Au. That
+said, this is _only_ a baseline.
 
 **(click)**
 Consider this case in the chrono library, where we store nanoseconds in a 32-bit integer.  We
