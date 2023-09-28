@@ -671,6 +671,8 @@ the comparison.  Now let's see our decision framework in action.
 
 ---
 
+<!-- .element: class="topalign" -->
+
 ## 1. Can you get it?<br>a) C++ standard compatibility
 
 <table>
@@ -747,22 +749,62 @@ is a complete non-factor for _you_.
 
 ---
 
+<!-- .element: class="topalign" -->
+
 ## 1. Can you get it?<br>b) Delivery mechanism
 
-<!-- TODO(slide contents) -->
+<div class="r-stack">
+<div class="two_columns">
+<div class="fragment" data-fragment-index="1">
+  <img style="height: 500px;" src="./figures/delivery/full.png">
+  <div style="margin-top: -25px;" class="fragment" data-fragment-index="3">
+  <img style="height: 90px;" src="./figures/libraries/boost.png">
+  <img style="height: 90px;" src="./figures/libraries/SI.png">
+  <img style="height: 90px;" src="./figures/libraries/mp-units.png">
+  <br><img class="fragment" data-fragment-index="4" style="height: 90px; margin-top: -25px;" src="./figures/libraries/Au.png">
+  </div>
+</div>
+<div class="fragment" data-fragment-index="2">
+  <img style="height: 500px;" src="./figures/delivery/single-file.png">
+  <div style="margin-top: -25px;" class="fragment" data-fragment-index="3">
+  <img style="height: 90px;" src="./figures/libraries/nholthaus.png">
+  <br><img class="fragment" data-fragment-index="4" style="height: 90px; margin-top: -25px;" src="./figures/libraries/Au.png">
+  </div>
+</div>
+</div>
+<div style="width: 50%; position: absolute; right: 0" class="good fragment">
 
-Show same figure as before, with logos under which category
+```txt
+// Version identifier: 0.3.3
+// <iostream> support: INCLUDED
+// List of included units:
+//   amperes
+//   bits
+//   candelas
+//   grams
+//   kelvins
+//   meters
+//   moles
+//   radians
+//   seconds
+//   unos
+```
 
-- First click: Au logo in 2 places
-- Second click: screenshot (or text box?) of manifest showing up on top
+</div>
+</div>
+
+
 
 Notes:
 
-The next part of "can you get it": how is the project delivered?
+The next part of "can you get it": how is the project delivered?  There are two main paradigms here.
 
-There are two main paradigms here.  There's "full library" delivery, where you have a DAG of
-files, and users can include whichever headers they need.  Then there's the "single header"
-approach, where one gigantic file contains the whole library.
+**(click)**
+There's "full library" delivery, where you have a DAG of files, and users can include whichever
+headers they need.
+
+**(click)**
+Then there's the "single header" approach, where one gigantic file contains the whole library.
 
 The full library approach gives you more flexibility.  For example, you can have a separate header
 for unit test utilities, one for I/O helpers, maybe one for each unit of measure, and so on.  The
@@ -770,15 +812,13 @@ downside is that it's more complicated to get it into your project: you need to 
 rules expressed in _your project's_ build system, whether CMake, bazel, or something else.
 
 The single header approach is less flexible: you get everything in the header, and nothing outside
-of it.  But it makes up for that by its stunningly easy delivery: it's just one file that you put in
-your project.
+of it, so it's really hard to have something like a testing utilities file.  But it makes up for
+_that_ by its stunningly easy delivery: it's just one file that you put in your project.
 
 **(click)**
-
-Here's how the libraries shake out.  boost, SI, and mp-units are delivered as full libraries,
-which gives great flexibility, at the cost of more challenging setup.  nholthaus on the other hand
-takes this single file approach, which makes it amazingly easy to set up, but can reduce
-flexibility.  So what about Au?
+Here's how the libraries shake out.  boost, SI, and mp-units provide the flexibility of full
+installation.  nholthaus on the other hand goes for the easy setup of single-file.  So what about
+Au?
 
 **(click)**
 
@@ -790,8 +830,9 @@ dependency.
 **(click)**
 
 In fact, Au provides the _best_ single file solution, because it generates a manifest comment which
-lists the precise release number and git commit used, the presence or absence of I/O, and the units
-which were selected, bringing clarity and traceability to your repo.
+lists the precise release number or git commit used, the presence or absence of I/O, and the units
+which were selected, bringing clarity and traceability to your repo.  It's automatically generated,
+so it's never stale!
 
 We provide pre-generated single-file versions on our documentation site which include just the SI
 base units.  That's why the abstract claims you can be up and running in less time than it takes to
