@@ -421,15 +421,9 @@ The _full_ goal is to do this
 - **(click)** for as _much of the C++ community_ as possible,
 - **(click)** for as much of the _time_ as possible.
 
-Starting _right now_, because we can't affect the past anymore.  If the vertical dimension shows the
-_diverse_ community of C++ users, and the horizontal dimension shows time,
-
-**(click slowly 4x)**
-
-we want to cover as _much_ of this diagram as possible with units support that's as _good_ as
-possible.
-
-Accurately expressing our goal is the first step to getting a chance to meet it.
+Starting _right now_, because we can't affect the past anymore.  We want to cover as _much_ of this
+diagram as possible with units support that's as _good_ as possible.  Accurately expressing our goal
+is the first step to getting a chance to meet it.
 
 Now, we can use this model to evaluate candidate solutions.  For example: shouldn't there be
 a _standard units library_?  I think there should!  And I'm actively collaborating with others who
@@ -448,7 +442,6 @@ Notes:
 
 The sad news is that there's literally zero chance for a standard units library before C++29.
 
-**(click)**
 So it comes into play sometime around here, after a roughly six year gap.  And then it reaches
 various parts of the community only gradually: it takes time to upgrade to a new standard, and some
 use cases need validated toolchains, which won't even exist until years after the new standard
@@ -738,9 +731,9 @@ user interfaces.  That said, C++17 adoption is _rapidly_ expanding, so I expect 
 less very soon.
 
 C++20, where mp-units lives, does exclude the majority of users, but this steep cost buys amazingly
-useful features, especially concepts.  And think about it: if the library's goal is to help design
-a standard units library, then of course it should liberally use features from all _previous_
-standards without fear.
+useful features, especially concepts and expanded non-type template parameters.  And think about it:
+if the library's goal is to target a new standard, then of course it should liberally use features
+from all _previous_ standards without fear.
 
 Also, keep in mind how this criterion works in practice.  When we measure exclusion, we're looking
 at _all C++ projects simultaneously_.  What matters for _you_ is _your project_ only.  So for
@@ -806,10 +799,10 @@ headers they need.
 **(click)**
 Then there's the "single header" approach, where one gigantic file contains the whole library.
 
-The full library approach gives you more flexibility.  For example, you can have a separate header
-for unit test utilities, one for I/O helpers, maybe one for each unit of measure, and so on.  The
-downside is that it's more complicated to get it into your project: you need to have build target
-rules expressed in _your project's_ build system, whether CMake, bazel, or something else.
+The full library approach is more flexible.  For example, you can have a header for unit test
+utilities, one for I/O, maybe one for each unit, and so on.  The downside is that it's more
+complicated to install: you need to have build rules expressed in _your project's_ build system,
+whether CMake, bazel, or something else.
 
 The single header approach is less flexible: you get everything in the header, and nothing outside
 of it, so it's really hard to have something like a testing utilities file.  But it makes up for
@@ -829,17 +822,16 @@ dependency.
 
 **(click)**
 
-In fact, Au provides the _best_ single file solution, because it generates a manifest comment which
+In fact, Au provides the _best_ single file solution, because it includes a manifest comment which
 lists the precise release number or git commit used, the presence or absence of I/O, and the units
 which were selected, bringing clarity and traceability to your repo.  It's automatically generated,
-so it's never stale!
+so it's never stale or inaccurate!
 
-We provide pre-generated single-file versions on our documentation site which include just the SI
-base units.  That's why the abstract claims you can be up and running in less time than it takes to
-read the abstract.  Of course, you're better off taking 10 minutes to make the custom version that
-meets your needs best.
+Our doc site includes pre-generated single-file versions with just the SI base units.  That's why
+the abstract claims you can be up and running in less time than it takes to _read_ the abstract.  Of
+course, you're better off taking 10 minutes to make the custom version that meets your needs best.
 
-But the beauty of this hybrid approach is that you can use the single file version to get started
+The beauty of this hybrid approach is that you can use the single file version to get started
 quickly.  You'll obtain probably 95% of the benefits.  Then you can bother setting up the full
 install _only when you need it_, if ever.
 
@@ -1568,12 +1560,12 @@ being used.  Thus, we can visualize this in a plot.
 
 Notes:
 
-For each integer size, and each conversion factor, there is some smallest value that would overflow.
-We prevent the conversion when that value is small enough to be "scary".  What's "scary"?  Well, we
-definitely want people to feel confident using values less than 1000, because for those values they
-can't jump to the next SI prefix up.  Our threshold gives some breathing room.  It's over 2000,
-which lets us support conversion factors of a million in any 32-bit integer. Go ahead and initialize
-your hertz frequency with a megahertz value!
+For each integer type's range, and each conversion factor, there is some smallest value that would
+overflow.  We prevent the conversion when that value is small enough to be "scary".  What's "scary"?
+Well, we definitely want people to feel confident using values less than 1000, because for those
+values they can't jump to the next SI prefix up.  Our threshold gives some breathing room.  It's
+over 2000, which lets us support conversion factors of a million in any 32-bit integer. Go ahead and
+initialize your integer hertz frequency with a megahertz value!
 
 If we trace the boundary between permitted and forbidden conversions, we get this _overflow safety
 surface_.  The practical effect is that users feel empowered to choose the integer types that best
@@ -1852,8 +1844,8 @@ Yes!  1 can have different units, different _dimensionless_ units.
 
 **(click)**
 Solve this equation for 1: we can see that its units should be the **product** of the units for time
-and frequency.  From now on, we'll use black to represent the numeric values in the actual program,
-and green to represent _unit information_ which gets handled at compile time.
+and frequency.  Let's start using black to represent the numeric values in the actual program, and
+green to represent _unit information_ which gets handled at compile time.
 
 **(click)**
 Milliseconds times hertz... that equals
