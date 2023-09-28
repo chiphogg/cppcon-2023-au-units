@@ -668,7 +668,7 @@ the comparison.  Now let's see our decision framework in action.
 
 ## 1. Can you get it?<br>a) C++ standard compatibility
 
-<table>
+<table class="cpp-compat">
   <tr>
     <th></th>
     <th>C++ Version</th>
@@ -677,26 +677,26 @@ the comparison.  Now let's see our decision framework in action.
   <tr>
     <td><img src="./figures/libraries/mp-units.png"></td>
     <td class="cpp-version" style="background-image: url('./figures/cpp-versions/20.svg');">C++20</td>
-    <td class="squish">Concepts<br>Non-type template parameters</td>
+    <td><div class="squish">Concepts<br>Non-type template parameters</div></td>
   </tr>
   <tr>
     <td><img src="./figures/libraries/SI.png"></td>
     <td class="cpp-version" style="background-image: url('./figures/cpp-versions/17.svg');">C++17</td>
-    <td class="squish">Fold expressions<br><code>constexpr</code> if</td>
+    <td><div class="squish">Fold expressions<br><code>constexpr</code> if</div></td>
   </tr>
   <tr>
     <td><img src="./figures/libraries/nholthaus.png"><img src="./figures/libraries/Au.png"></td>
     <td class="cpp-version" style="background-image: url('./figures/cpp-versions/14.svg');">C++14</td>
-    <td class="squish">More permissive <code>constexpr</code><br><code>auto</code> return type</td>
+    <td><div class="squish">More permissive <code>constexpr</code><br><code>auto</code> return type</div></td>
   </tr>
   <tr>
     <td></td>
     <td class="cpp-version" style="background-image: url('./figures/cpp-versions/11.svg');">C++11</td>
-    <td class="squish">Primitive <code>constexpr</code><br>Variadic templates<br><code>static_assert</code></td>
+    <td><div class="squish">Primitive <code>constexpr</code><br>Variadic templates<br><code>static_assert</code></div></td>
   </tr>
   <tr>
     <td><img src="./figures/libraries/boost.png"></td>
-    <td>C++98/03</td>
+    <td class="good cpp-version">C++98/03</td>
     <td></td>
   </tr>
 </table>

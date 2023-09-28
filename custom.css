@@ -69,14 +69,23 @@ table td img {
   margin-right: 1em;
 }
 
-td.squish {
+.squish {
   font-size: 60%;
+}
+
+.cpp-compat td {
+  height: 110px;
+}
+
+.cpp-compat tr {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .cpp-version {
   background-size: 100% auto;
   display: inline-block;
-  min-width: 500px;
+  min-width: 400px;
 }
 
 .same-program-only-safer {
