@@ -1886,7 +1886,29 @@ it?  We'll do a quick tour of a few things we don't currently have.
 
 ## Decibels
 
-<!-- TODO(slide contents) -->
+<img src="./figures/slide_rule.jpg">
+<figcaption>
+
+By Joe Haupt, CC BY-SA 2.0 DEED, https://commons.wikimedia.org/wiki/File:Vintage_Small_Slide_Rule,_4.75_Inches_in_Length,_Made_in_England_(9610232930).jpg
+
+</figcaption>
+
+<div class="two_columns fragment">
+  <div>
+
+  "Power" quantity:
+
+$L = \color{OrangeRed}{10} \log_{10} \left(\frac{X}{X_0}\right) \\, \text{dB}$
+
+  </div>
+  <div>
+
+  "Root power" quantity:
+
+$L = \color{OrangeRed}{20} \log_{10} \left(\frac{X}{X_0}\right) \\, \text{dB}$
+
+  </div>
+</div>
 
 Notes:
 
