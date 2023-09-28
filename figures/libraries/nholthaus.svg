@@ -53,25 +53,28 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-21.5395,-71.825834)">
-    <rect
-       style="opacity:1;fill:#fefefe;fill-opacity:1;stroke:#000000;stroke-width:0.374517;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect23388"
-       width="45.667297"
-       height="14.631856"
-       x="21.726759"
-       y="72.013092"
-       ry="5.4483509" />
-    <text
-       xml:space="preserve"
-       style="font-size:7.49032px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:center;text-anchor:middle;stroke-width:0.187258"
-       x="44.749889"
-       y="81.856155"
-       id="text2300"><tspan
-         sodipodi:role="line"
-         id="tspan2298"
-         style="stroke-width:0.187258"
+    <g
+       id="g5545">
+      <rect
+         style="opacity:1;fill:#fefefe;fill-opacity:1;stroke:#000000;stroke-width:0.374517;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect23388"
+         width="45.667297"
+         height="14.631856"
+         x="21.726759"
+         y="72.013092"
+         ry="5.4483509" />
+      <text
+         xml:space="preserve"
+         style="font-size:7.49032px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:center;text-anchor:middle;stroke-width:0.187258"
          x="44.749889"
-         y="81.856155">nholthaus</tspan></text>
+         y="81.856155"
+         id="text2300"><tspan
+           sodipodi:role="line"
+           id="tspan2298"
+           style="stroke-width:0.187258"
+           x="44.749889"
+           y="81.856155">nholthaus</tspan></text>
+    </g>
     <text
        xml:space="preserve"
        transform="scale(0.26458333)"

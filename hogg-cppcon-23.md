@@ -2583,7 +2583,12 @@ more each library has to compete on its merits, rather than inertia.
 
 ## nholthaus compatibility layer
 
-<!-- TODO(slide contents) -->
+<div class="r-stack">
+<div class="fragment fade-in-then-out"><img style="height: 950px;" src="./figures/nholthaus/compat_1.png"></div>
+<div class="fragment fade-in-then-out"><img style="height: 950px;" src="./figures/nholthaus/compat_2.png"></div>
+<div class="fragment fade-in-then-out"><img style="height: 950px;" src="./figures/nholthaus/compat_3.png"></div>
+<div class="fragment fade-in-then-out"><img style="height: 950px;" src="./figures/nholthaus/compat_4.png"></div>
+</div>
 
 Notes:
 
@@ -2591,11 +2596,21 @@ We also created a compatibility layer for the nholthaus library, because we used
 we had Au.  This layer is publicly available in our repo, and we explain how to use it on our doc
 website.  But here's the basic picture.
 
-Remember that the nholthaus library is a single file, `units.h`.  Well, the first thing we did was
-move it to another file, `units_impl.h`.  The new `units.h` includes Au, and it includes our
-compatibility layer code.  So now, everyone who includes the old library also has access to the new
-library, and can begin migrating APIs piece by piece as they see fit.  When a package is fully
-migrated, we can depend directly on Au instead of on the `units.h` shim!
+**(click)**
+Remember that the nholthaus library is a single file, `units.h`.
+
+**(click)**
+Well, the first step is to move it to another file, `units_impl.h`.
+
+**(click)**
+The new `units.h` includes Au, and it includes our _compatibility layer code_, which can be found in
+our repo, and with its own unit tests.
+
+So now, everyone who includes the old library also has access to the new library, and can begin
+migrating APIs piece by piece as they see fit.
+
+**(click)**
+When a package is fully migrated, we can depend directly on Au instead of on the `units.h` shim!
 
 So, migrating in this way can be done _incrementally_, with minimal disruption to end users.  We've
 seen it work really well in practice.
