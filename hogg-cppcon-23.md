@@ -2119,7 +2119,7 @@ is clearly in the region of diminishing returns.
   <tr>
     <th>Functions</th>
     <th>UDLs</th>
-    <th class="fragment" data-fragment-index="4">"References"</th>
+    <th class="fragment" data-fragment-index="4">Unit Symbols</th>
   </tr>
   <tr>
     <td><pre><code class="cpp">meters(3.0)</code></pre></td>
@@ -2164,13 +2164,14 @@ they _only_ support literals; and so on.
 Now what we _really_ want isn't literals; it's a way to _use unit symbols_ in our computations.
 
 **(click)**
-mp-units engineered a better solution for this, initially called quantity _references_.  You can see
+mp-units engineered a better solution for this, which they call _unit symbols_.  You can see
 how it looks for all these use cases here. This solution lets you compose units, it lets you use
 whatever numeric type you want --- it's great!
 
 Our plan is to explore some version of this approach instead of going with the popular but deeply
-flawed UDLs.  That said, if you want UDLs in your project, it's easy enough to define your own, and
-we'd be glad to provide guidance as to how.
+flawed UDLs.  That said, if you want UDLs in your project, it's easy enough to define your own ---
+again, it's what we're currently doing internally --- and we'd be glad to provide guidance as to
+how.
 
 ---
 
@@ -2206,7 +2207,7 @@ So here are some examples.
 
 **(click)**
 - The single file delivery that makes the nholthaus library _so easy_ to obtain was a big
-  inspiration for Au.  I think with the manifest comment, and the full install option, we even
+  inspiration for Au.  I think with the manifest comment, and the full install _option_, we even
   improved on this.
 
 **(click)**
@@ -2224,15 +2225,15 @@ So here are some examples.
   ways.  When we shared this feature, it solved three seemingly unrelated pre-existing issues!
 
 **(click)**
-- _Smart inverses_ is a brand-new inspired feature, added just last week!
+- _Smart inverses_ is a brand-new inspired feature, which mp-units added just last week!
 
 There's also an example of a "negative influence".  Units libraries are laboratories for ideas, and
-sometimes those ideas don't work out.  
+sometimes those ideas don't work out.
 
 **(click)**
 The nholthaus library has automatic conversion from dimensionless quantities, like _percent_, to raw
 numbers: `percent(75)` to `0.75`.  Unfortunately, individually reasonable decisions end up
-interacting badly here, and the symptom is that the round trip implicit conversion picks up a factor
+interacting badly here, and one symptom is that the round trip implicit conversion picks up a factor
 of one hundred.  We would have provided this feature, but we were able to learn from their
 experiences and avoid the mistake.
 
@@ -2377,15 +2378,16 @@ struct CorrespondingQuantity<MyMeters> {
 Notes:
 
 Think about it --- if two libraries have a type that represents a quantity of meters, _and_ if they
-both store it in `int` under the hood, then those two types are _morally equivalent_.
+both store it in `int` under the hood,
 
 **(click)**
-It would be obnoxious if we had to get the value out from one library's type, and put it in the
-other's!
+...then those two types are _morally equivalent_.  It would be obnoxious if we had to get the value
+out from one library's type, and put it in the other's!
 
 **(click)**
 Well, Au gives you the ability to "bless" one of these moral equivalancies, by specializing the
-`CorrespondingQuantity` trait.  This defines which Au quantity corresponds to the type `MyMeters`.
+`CorrespondingQuantity` trait.  This specialization on `MyMeters` defines which Au quantity
+corresponds to the type `MyMeters`.
 
 **(click)**
 You tell it the unit is meters,
@@ -2394,12 +2396,11 @@ You tell it the unit is meters,
 and the Rep is `int`.
 
 **(click)**
-If you tell it how to extract the value in meters, then Quantity becomes _constructible from_
-a `MyMeters` object.
+If you tell it how to extract the value from MyMeters, then it makes Quantity _constructible from_
+`MyMeters`.
 
-**(click)**
-If you tell it how to build it _from_ a value in meters, then Quantity becomes _convertible to_
-a `MyMeters` object.
+**(click)** If you tell it how to build a `MyMeters` from a value, then it makes Quantity
+_convertible to_ `MyMeters`.
 
 **(click)**
 This is how we set up bidirectional convertibility between two types that don't know about each
@@ -2555,7 +2556,7 @@ We can assign it to its corresponding quantity.
 Yes, this includes safe conversions: here we assign to millimeters, and get 3000 of them.
 
 **(click)**
-Yes, this includes the overflow safety surface: assigning to int32 nanometers will not compile!
+Yes, this includes Au's overflow safety surface: assigning to int32 nanometers will not compile!
 
 **(click)**
 This interop even works across API boundaries.
@@ -2564,7 +2565,7 @@ This interop even works across API boundaries.
 Say we have these legacy APIs based on `MyMeters`.
 
 **(click)**
-Say we also have this client code that uses these APIs.  When we go to migrate them to Au,
+Say we also have this client code that uses these APIs.  When we go to migrate the APIs to Au,
 
 **(click)**
 ...the client code continues to work without change!
@@ -2575,10 +2576,8 @@ forced to update all of its clients immediately: you can do them independently!
 
 True, there are limitations.  A _vector_ of quantities can't be automatically converted from one
 library's type to another's, for instance.  But in practice, this feature makes migration _much
-easier_.  And it's part of being a good citizen of the ecosystem: if it's easy to migrate, each
-library has to compete on its merits, rather than inertia.
-
-As we saw earlier, Au already provides this interoperability for chrono library durations.
+easier_.  And it's part of being a good citizen of the ecosystem: the easier it is to migrate, the
+more each library has to compete on its merits, rather than inertia.
 
 ---
 
