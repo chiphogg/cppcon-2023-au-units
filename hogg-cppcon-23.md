@@ -1581,12 +1581,132 @@ like to see other libraries try it out in practice.
 
 ## Embedded friendliness
 
-<!-- TODO(slide contents) -->
+<div>
+  <img style="height: 200px; margin-top: -30px;" src="./figures/circuit_board.jpg">
+  <figcaption style="width: 50%; margin-left: 25%; margin-top: -40px;">
 
-- embedded device image
-- Drake meme: no `double`, yes `uint64_t`
-- safety surface
-- Drake meme: no `<iostream>`, yes `const char []`
+  By oomlout (Flickr), CC BY-SA 2.0 DEED, https://commons.wikimedia.org/wiki/File:ADAF-03-BRD_(14336910552).jpg
+
+  </figcaption>
+</div>
+
+<div class="r-stack">
+<div class="two_columns fragment" data-fragment-index="1">
+<div class="poor">
+
+  ### Tired:
+
+  <ul>
+  <li class="fragment" data-fragment-index="2">
+
+  `double`, `float`
+
+  </li>
+  <li class="fragment" data-fragment-index="3">
+
+  `<iostream>` 😰😱😵
+
+  </li>
+  </ul>
+</div>
+<div class="good">
+
+  ### Wired:
+
+  <ul>
+  <li class="fragment" data-fragment-index="2">
+
+  `int64_t`, `uint32_t`, ...
+
+  </li>
+  <li class="fragment" data-fragment-index="3">
+
+  `const char[]`
+
+  </li>
+  </ul>
+
+  <img class="fragment" data-fragment-index="30" src="./figures/safety_surface.webp" width="70%">
+</div>
+</div>
+<div class="fragment fade-out" data-fragment-index="10">
+<div class="r-stack fragment" data-fragment-index="4" style="background-color: white;">
+<div class="fragment fade-in-then-out" data-fragment-index="4">
+
+```cpp
+const auto &label = unit_label(Meters{} * Kilo<Grams>{} / squared(Seconds{}));
+
+
+
+
+
+
+
+```
+
+```txt
+
+
+```
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="5">
+
+```cpp
+const auto &label = unit_label(Meters{} * Kilo<Grams>{} / squared(Seconds{}));
+
+static_assert(std::is_same<decltype(label), const char(&)[15]>::value, "");
+//                                          ^^^^^^^^^^^^^^^^^
+
+
+
+
+```
+
+```txt
+
+
+```
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="6">
+
+```cpp
+const auto &label = unit_label(Meters{} * Kilo<Grams>{} / squared(Seconds{}));
+
+static_assert(std::is_same<decltype(label), const char(&)[15]>::value, "");
+//                                          ^^^^^^^^^^^^^^^^^
+
+printf("Label of length %d is: [%s]\n", sizeof(label), label);
+//                                      ^^^^^^^^^^^^^
+```
+
+```txt
+
+
+```
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="7">
+
+```cpp
+const auto &label = unit_label(Meters{} * Kilo<Grams>{} / squared(Seconds{}));
+
+static_assert(std::is_same<decltype(label), const char(&)[15]>::value, "");
+//                                          ^^^^^^^^^^^^^^^^^
+
+printf("Label of length %d is: [%s]\n", sizeof(label), label);
+//                                      ^^^^^^^^^^^^^
+```
+
+```txt
+Label of length 15 is: [(m * kg) / s^2]
+```
+
+</div>
+</div>
+</div>
+</div>
 
 Notes:
 
@@ -1594,25 +1714,27 @@ I'm not an embedded programmer.  So why do I claim that our library is embedded 
 Aurora's embedded developers have been treated as first class citizens with a seat at the table
 since the beginning of the design phase.
 
+**(click)**
 Let's get concrete.  What makes a units library "embedded friendly"?  A few things.
 
-- First: robust support for integer types.  Again, the library shouldn't force users to change the
-  numeric types in their program just to be safer with units: don't complicate the decision!  When
-  we used the nholthaus library in embedded code, it did have this effect.  Au doesn't even have
-  a "default" storage type: they're all on equal footing.
+- **(click)** First: robust support for integer types.  Again, the library shouldn't force users to
+  change the numeric types in their program just to be unit-safe: don't complicate the decision!
+  When we used the nholthaus library in embedded code, it did have this effect.  Au doesn't even
+  have a "default" storage type: they're all on equal footing.
 
-- Related to integer handling: we really need that conversion safety we talked about before.  This
-  should be a chrono duration-like policy at a minimum, but of course Au's overflow safety surface
-  is even better.
+- **(click)** String handling!  `<iostream>` is an incredibly heavyweight dependency, so it needs to
+  be easy to exclude it.  We provide all of our unit labels as `const char` **arrays**, not `const
+  char` **pointers**.  **(click)** This even applies to compound labels that we generate
+  automatically on the fly, such as meter-kilograms per squared second.  **(click)** Even these are
+  stored in simple arrays. **(click)** Using char arrays, not pointers, lets us support `sizeof()`,
+  **(click)** even for these compound labels.
 
-- Finally: string handling.  `<iostream>` is an incredibly heavyweight dependency, so it needs to be
-  easy to exclude it.  We provide all of our unit labels as `const char` **arrays**, not `const
-  char` **pointers**, which gives us the ability to call `sizeof()` on them.  This even applies to
-  compound labels that we generate automatically on the fly, such as `(m * kg) / s^2`: even these
-  are stored in simple arrays.
+- **(click)** Finally, Related to integer handling: **(click)** we really need that conversion
+  safety we talked about before.  This should be a chrono duration-like policy at a minimum, but of
+  course Au's overflow safety surface is even better.
 
 When we talk about meeting the needs of _the entire_ C++ community, remember that embedded
-developers are a critical and often-overlooked part of that community.
+developers are a critical but often-overlooked part of that community.
 
 ---
 
