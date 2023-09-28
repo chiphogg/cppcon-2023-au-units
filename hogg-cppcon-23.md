@@ -1842,13 +1842,17 @@ Composability: this is one of my favorites.  "Mommy, where do units come from?" 
 always come from _combining other units_.  So what we want is for the units library to let us
 compose units in these same ways.
 
+**(click)**
 We've seen that `meters` is a quantity maker: you can call it on any numeric type, and it makes
 a quantity of meters.
 
+**(click)**
 Well, so is `meters / second`.
 
+**(click)**
 And `kilo(meters) / hour`.
 
+**(click)**
 And `meters / squared(second)`.
 
 You can call any of these quantity makers to make a quantity, and we'll automatically generate the
@@ -2029,6 +2033,7 @@ Notes:
 First off: _decibels_, and other logarithmic units like _bels_ and _nepers_.  For these, the
 nholthaus library is pretty much the only game in town.
 
+**(click)**
 _These can be subtle._  The definition can depend on whether you're dealing with so-called "power"
 vs. "root-power" quantities.  This makes me worry that it'll be hard to write correct, generic
 interfaces.
@@ -2334,17 +2339,17 @@ those libraries interact!
 
 Notes:
 
-The first kind of interaction is when a feature in one library inspires a feature in another.  I say
-"inspires" because by and large, we don't see direct code sharing between the libraries.  It's more
-that when authors see an idea working well in another library, they go and implement it themselves
-in their own library's idiom.
+The first way is for a feature in one library to inspire a feature in another.  I say "inspire"
+because by and large, we don't see direct code sharing between the libraries.  It's more that when
+authors see an idea working well in another library, they go and implement it themselves in their
+own library's idiom.
 
 So here are some examples.
 
 **(click)**
 - The single file delivery that makes the nholthaus library _so easy_ to obtain was a big
-  inspiration for Au.  I think with the manifest comment, and the full install _option_, we even
-  improved on this.
+  inspiration for Au.  I think with the manifest comment, and the option to upgrade to a full
+  install, we even improved on this.
 
 **(click)**
 - _Opaque unit types_, originally by mp-units, was a revolution in usability --- remember those
