@@ -51,6 +51,8 @@ Quantity<Meters, double> distance;
 
 Notes:
 
+**Start `00:42`**
+
 Let's start by getting on the same page about what a units library is.
 
 Suppose you have a variable that has units, like this distance measured in meters.  Without a units
@@ -80,6 +82,8 @@ _With_ a units library, though, it produces a compiler error to tell you what mi
 
 Notes:
 
+**Start `01:47`**
+
 This kind of safety is critically important where I work, which is Aurora Innovation.  Our mission
 is to bring the benefits of self-driving technology to the world _safely, quickly, and broadly_ ---
 in that order.  In building our product, the Aurora Driver, we have _many_ use cases for tracking
@@ -95,6 +99,8 @@ focus on harder problems.
 <img src="./cppcon-2021.png" class="r-stretch">
 
 Notes:
+
+**Start `02:23`**
 
 This isn't our first units talk at CppCon.  We also presented a talk in 2021 which explained what
 we'd learned from our experience handling units in C++.  The talk was well received and is still
@@ -119,6 +125,8 @@ now fully publicly available.
 # A taste of Au
 
 Notes:
+
+**Start `03:37`**
 
 Let's start by getting a small taste of the library.  We're going to speed through a couple of
 examples, and mention some concepts and resources that will make the library _so_ easy to learn.
@@ -182,6 +190,8 @@ const auto time_to_goal =
 
 
 Notes:
+
+**Start: `04:00`**
 
 Let's begin with a very simple example.  We're driving at a constant speed, and we have a goal which
 is some known distance away.  How much time will it take to get there?
@@ -278,6 +288,8 @@ std::chrono::nanoseconds elapsed_time(uint64_t num_cpu_ticks) {
 
 Notes:
 
+**Start: `05:37`**
+
 Here's another example.  This one's from the embedded domain.  Let's say we have hardware which
 measures timestamps as the integer number of CPU cycles that have elapsed since startup.  Now, we
 want to work with that in more familiar time units such as nanoseconds.
@@ -328,6 +340,8 @@ But this is a good start.
 </div>
 
 Notes:
+
+**Start: `07:32`**
 
 We're getting a picture of the core idioms of the library.
 
@@ -392,6 +406,8 @@ when you're working with integers, but these are the most important.
 
 Notes:
 
+**Start: `09:23`**
+
 If you want to learn _by doing_, our docs are pretty good, and I especially want to emphasize two
 resources.
 
@@ -413,6 +429,8 @@ But first, I want to zoom way out and get clear on the bigger picture.
 
 Notes:
 
+**Start: `10:17`**
+
 What are we trying to accomplish when we write a units library?  Sounds obvious: it's to provide
 robust physical units support --- to make it easy and delightful to get this stuff effortlessly
 correct.  Well, that's true, but it's only _part_ of the goal.
@@ -428,6 +446,8 @@ correct.  Well, that's true, but it's only _part_ of the goal.
 </div>
 
 Notes:
+
+**Start: `10:33`**
 
 **(click)**
 The _full_ goal is to do this
@@ -453,6 +473,8 @@ discussion tonight.  Now let's see how a standard units library fits in on the d
 </div>
 
 Notes:
+
+**Start: `11:17`**
 
 The sad news is that there's literally zero chance for a standard units library before C++29.
 
@@ -483,6 +505,8 @@ of libraries.
 
 Notes:
 
+**Start: `12:02`**
+
 Different users have different needs.
 
 - **(click)** One project needs a specific validated toolchain which doesn't yet exist past C++14.
@@ -506,6 +530,8 @@ This makes the whole _ecosystem_ stronger, and it meets the _community's_ needs 
 
 Notes:
 
+**Start: `13:07`**
+
 Of course, this diversity can be overwhelming for end users, each of whom can only use _one_
 library.  How do you choose which library is best _for you_?
 
@@ -520,6 +546,8 @@ library.  How do you choose which library is best _for you_?
 </ol>
 
 Notes:
+
+**Start: `13:17`**
 
 As a framework for making this decision, I suggest asking the following three questions, in order.
 
@@ -584,6 +612,8 @@ Here, there are many, _many_ considerations.  We'll only have time to touch on a
 
 Notes:
 
+**Start: `14:10`**
+
 However, if you want a fuller comparison, you can check out the "alternatives" page on our
 documentation website, at this URL.
 
@@ -614,6 +644,8 @@ browse the full tables on our website.
 # Au and alternatives
 
 Notes:
+
+**Start: `14:55`**
 
 But before we get into those rows, let's introduce the columns: which units libraries we're
 comparing.  Here, too, there are too many to cover, and they range from obscure hobby projects to
@@ -659,6 +691,8 @@ as Au.  And second...
 </table>
 
 Notes:
+
+**Start: `15:22`**
 
 ...there's _boost units_.  We're waiving the GitHub stars requirement because this library has been
 around since before work started on _creating GitHub_.  Boost units is notable for the rigor and
@@ -744,6 +778,8 @@ supported in project."
 -->
 
 Notes:
+
+**Start: `16:59`**
 
 For the first question --- "can you get it?" --- we start by checking C++ standard compatibility.
 Each new C++ standard brings the benefits of new features, but also the cost of excluding more and
@@ -832,6 +868,8 @@ is a complete non-factor for _you_.
 
 Notes:
 
+**Start: `19:17`**
+
 The next part of "can you get it": how is the project delivered?  There are two main paradigms here.
 
 **(click)**
@@ -891,6 +929,8 @@ community for CMake support.  Pull requests welcome!
 </div>
 
 Notes:
+
+**Start: `21:40`**
 
 Now for the _cost you pay_ in your developer experience.  We'll start with the first cost: compile
 times.  We know they will increase, because the compiler is doing _more work_ to produce the _same
@@ -1149,6 +1189,8 @@ Compiler returned: 1
 
 Notes:
 
+**Start: `23:36`**
+
 The other reason people stop using units libraries is inscrutable compiler errors.  We'll look at
 a very simple example: we'll try initializing a _speed_ with a distance _times_ a duration, instead
 of divided by.
@@ -1194,6 +1236,8 @@ Godbolt links:
 # Au: core features
 
 Notes:
+
+**Start: `25:34`**
 
 Now for the third question in our framework, we can finally start evaluating units library features.
 We'll emphasize the ones we consider the most important.  Naturally, these tend to be particular
@@ -1278,6 +1322,8 @@ proto.set_height_m(height.in(meters));
 </div>
 
 Notes:
+
+**Start: `26:03`**
 
 Here's an important principle which I love to emphasize: unit safety.
 
@@ -1395,6 +1441,8 @@ int degrees_per_second_from_rpm(int rpm) {
 </div>
 
 Notes:
+
+**Start: `28:00`**
 
 The next feature is: _same program, only safer_.  What this means is to be agnostic as to the
 underlying numeric types in the program.  Don't privilege one type; don't assume everyone uses
@@ -1546,6 +1594,8 @@ error: conversion from 'Quantity<au::Seconds,int>' to non-scalar type
 
 Notes:
 
+**Start: `29:41`**
+
 Of course, being able to store integers is one thing.  What happens to them in calculations is quite
 another --- especially when those calculations involve unit conversions.
 
@@ -1606,6 +1656,8 @@ being used.  Thus, we can visualize this in a plot.
 </div>
 
 Notes:
+
+**Start: `31:56`**
 
 For each integer type's range, and each conversion factor, there is some smallest value that would
 overflow.  We prevent the conversion when that value is small enough to be "scary".  What's "scary"?
@@ -1680,6 +1732,8 @@ And units...
 </table>
 
 Notes:
+
+**Start: `33:09`**
 
 Next up: the size of a unit.  **This slide is a lightning round!**  If it whets your appetite, read
 more at this link.  So.  Why can't we just use `std::ratio` and call it a day?
@@ -1852,6 +1906,8 @@ Label of length 15 is: [(m * kg) / s^2]
 
 Notes:
 
+**Start: `34:39`**
+
 I'm not an embedded programmer.  So why do I claim that our library is embedded friendly?  Because
 Aurora's embedded developers have been treated as first class citizens with a seat at the table
 since the beginning of the design phase.
@@ -1980,6 +2036,8 @@ Output:
 
 Notes:
 
+**Start: `36:20`**
+
 Composability: this is one of my favorites.  "Mommy, where do units come from?"  Well, units almost
 always come from _combining other units_.  So what we want is for the units library to let us
 compose units in these same ways.
@@ -2098,6 +2156,8 @@ inverse_as(micro(seconds), hertz(400));  // micro(seconds)(2'500)
 
 Notes:
 
+**Start: `37:28`**
+
 Here's a fun one.
 
 **(click)**
@@ -2147,6 +2207,8 @@ there's fertile ground here.
 
 Notes:
 
+**Start: `39:13`**
+
 So we've seen some pretty cool features of Au, which raises the question: why might you _not_ want
 it?  We'll do a quick tour of a few things we don't currently have.
 
@@ -2179,6 +2241,8 @@ $L = \color{OrangeRed}{20} \log_{10} \left(\frac{X}{X_0}\right) \\, \text{dB}$
 </div>
 
 Notes:
+
+**Start: `39:24`**
 
 First off: _decibels_, and other logarithmic units like _bels_ and _nepers_.  For these, the
 nholthaus library is pretty much the only game in town.
@@ -2222,6 +2286,8 @@ $E = B$
 </div>
 
 Notes:
+
+**Start: `40:10`**
 
 So, Au can handle different systems of _units_: we can freely mix meters, feet, furlongs, you name
 it.  What we _can't_ do is handle two incompatible ideas about _what dimensions exist_ at the same
@@ -2296,6 +2362,8 @@ const bool b = (1 * si::hertz) > (1 * si::becquerel);
 
 Notes:
 
+**Start: `41:20`**
+
 Next up: different "kinds" of the same quantity.  Can we compare, say, a radioactive _activity_ in
 becquerel, to a _frequency_ in hertz?  They are both equivalent to inverse seconds!
 
@@ -2368,6 +2436,8 @@ upgrade to C++20 and check out mp-units.
 
 Notes:
 
+**Start: `42:13`**
+
 By the way: let's put this missing feature into context.  There are 3 tiers of quantity mistakes you
 can make.
 
@@ -2436,6 +2506,8 @@ is clearly in the region of diminishing returns.
 
 Notes:
 
+**Start: `44:17`**
+
 Next up: user-defined literals, or UDLs.  Wait, we don't have those?  Who doesn't love writing `3_m`
 instead of `meters(3)`?
 
@@ -2470,6 +2542,8 @@ how.
 
 Notes:
 
+**Start: `45:32`**
+
 So we've seen some properties of individual libraries in the ecosystem.  Now let's look at some ways
 those libraries interact!
 
@@ -2489,6 +2563,8 @@ those libraries interact!
 </div>
 
 Notes:
+
+**Start: `45:41`**
 
 The first way is for a feature in one library to inspire a feature in another.  I say "inspire"
 because by and large, we don't see direct code sharing between the libraries.  It's more that when
@@ -2682,6 +2758,8 @@ struct CorrespondingQuantity<MyMeters> {
 
 Notes:
 
+**Start: `48:31`**
+
 Think about it --- if two libraries have a type that represents a quantity of meters, _and_ if they
 both store it in `uint32_t` under the hood,
 
@@ -2858,6 +2936,8 @@ evaluate(m);
 
 Notes:
 
+**Start: `49:37`**
+
 Let's see this in action, with a `MyMeters` object representing 3 meters.
 
 **(click)**
@@ -2909,6 +2989,8 @@ more each library has to compete on its merits, rather than inertia.
 
 Notes:
 
+**Start: `51:02`**
+
 We also created a compatibility layer for the nholthaus library, because we used it at Aurora before
 we had Au.  This layer is publicly available in our repo, and we explain how to use it on our doc
 website.  But here's the basic picture.
@@ -2939,6 +3021,8 @@ seen it work really well in practice.
 <span class="repo">aurora-opensource/au</span>
 
 Notes:
+
+**Start: `52:03`**
 
 So, that's Au, the newest member of the C++ units library ecosystem.  It lets us handle physical
 units **safely**, thanks to our pioneering unit-safe interfaces and the overflow safety surface.  It
