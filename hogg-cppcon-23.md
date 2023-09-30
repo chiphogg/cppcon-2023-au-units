@@ -663,7 +663,7 @@ Notes:
 ...there's _boost units_.  We're waiving the GitHub stars requirement because this library has been
 around since before work started on _creating GitHub_.  Boost units is notable for the rigor and
 clarity of its documentation, and for being ahead of its time in many ways: they were _so close_ to
-inventing vector space magnitudes, for example.
+inventing vector space magnitudes, for example, a key feature we'll mention later.
 
 **(click)**
 Next up, the nholthaus library made a splash in 2016, kickstarting the modern C++ units library
@@ -1170,8 +1170,8 @@ Now for mp-units.  Since it's C++20 only, I switched to a newer compiler.  But t
 this is _such_ a breath of fresh air.  It's because of a feature which mp-units pioneered: _opaque
 unit types_.  What this means in practice is that when you say "meter", it's an actual, simple type,
 not an alias that resolves to a complicated compound template.  I think this is one of the two most
-significant advancements in C++ units libraries in the past decade, the other being vector space
-magnitudes.
+significant advancements in C++ units libraries in the past decade, the other being the vector space
+magnitudes we'll soon meet.
 
 **(click)**
 So how about Au's compiler errors?  Similarly concise: we have opaque unit types as well.  In some
@@ -1623,6 +1623,101 @@ suit their program, because they know that Au is watching out for the dangerous 
 In terms of libraries, the nholthaus and SI libraries don't protect against truncation; boost and
 mp-units follow the chrono library policy; and only Au has the overflow safety surface.  I would
 like to see other libraries try it out in practice.
+
+---
+
+## Vector space magnitudes
+
+<figcaption>
+  <a href="https://aurora-opensource.github.io/au/main/discussion/implementation/vector_space/#magnitude">
+  https://aurora-opensource.github.io/au/main/<b>discussion/implementation/vector_space/#magnitude</b>
+  </a>
+</figcaption>
+
+<div class="fragment">
+
+**Requirement:** _magnitudes_ must do everything _units_ can do!
+
+And units...
+
+</div>
+
+<ul>
+  <li class="fragment">...are <em>closed</em> under <b>products</b> and <b>rational powers</b>.</li>
+  <li class="fragment">...support <b>irrational</b> values such as $\pi$.</li>
+</ul>
+
+<table class="fragment">
+<tr>
+  <th></th>
+  <th>
+
+  `std::ratio`: $\frac{N}{D}$
+
+  </th>
+  <th>Vector space magnitudes: $\prod_{i} b_i^{p_i}$</th>
+</tr>
+<tr class="fragment">
+  <th>$\left(\frac{\text{AU}}{\text{m}}\right)$</th>
+  <th>$M = \frac{149\,597\,870\,700}{1}$</th>
+  <th>$M = 2^2 \cdot 3^1 \cdot 5^2 \cdot 73^1 \cdot 877^1 \cdot 7789^1$</th>
+</tr>
+<tr class="fragment">
+  <th>$\left(\frac{\text{AU}}{\text{m}}\right)^2$</th>
+  <th>$M =$ 🚫</th>
+  <th>$M = 2^4 \cdot 3^2 \cdot 5^4 \cdot 73^2 \cdot 877^2 \cdot 7789^2$</th>
+</tr>
+<tr class="fragment">
+  <th>$\sqrt{2}$</th>
+  <th>$M =$ 🚫</th>
+  <th>$2^\frac{1}{2}$</th>
+</tr>
+<tr class="fragment">
+  <th>$\frac{\text{deg}}{\text{rad}}$</th>
+  <th>$M =$ 🚫</th>
+  <th>$M = 2^{-2} \cdot 3^{-2} \cdot \pi^1 \cdot 5^{-1} (= \frac{\pi}{180})$</th>
+</tr>
+</table>
+
+Notes:
+
+Next up: the size of a unit.  **This slide is a lightning round!**  If it whets your appetite, read
+more at this link.  So.  Why can't we just use `std::ratio` and call it a day?
+
+**(click)**
+Because it does not meet the _basic requirement_ for a _multi-dimensional_ units library: simply
+put, our magnitude representation must support operations on units.
+
+**(click)**
+They've gotta be closed under products and rational powers,
+
+**(click)**
+and even support irrational numbers.
+
+**(click)**
+Let's get concrete, and compare the N-over-D approach of `std::ratio` to _vector space magnitudes_,
+which uses a _product of base powers_ --- it's using variadic templates, but only under the hood.
+
+**(click)**
+The _astronomical unit_, AU (no relation) has _this_ ratio to the meter.  This works just fine as
+a fraction, or as a product of prime powers.
+
+**(click)**
+Now let's square it.  With `std::ratio`, we overflow!  So basically we can't compute areas in space?
+I would scream, _if anyone could hear me do that_ there.  With the vector space approach, we just
+bump up the exponents: no sweat.
+
+**(click)**
+We see a similar story for radicals, like the square root of 2,
+
+**(click)**
+...and even transcendentals like PI, which just become another basis vector alongside the primes.
+
+Vector space magnitudes are the _only known solution_ that meets the basic requirements.  Au and
+mp-units have them fully, and nholthaus and boost have partial solutions.
+
+Lastly, don't get the wrong impression: these requirements **don't apply** to a time-only unit
+library, so `std::ratio` is _just fine_ for chrono.
 
 ---
 
