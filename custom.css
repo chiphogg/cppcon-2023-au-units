@@ -61,7 +61,6 @@ table td {
 
 table td img {
   height: 90px;
-  zoom: 0.5;
 }
 
 .repo {
@@ -78,7 +77,12 @@ table td img {
 }
 
 .cpp-compat td {
-  height: 110px;
+  height: 100px;
+}
+
+.cpp-compat img {
+  height: 90px;
+  margin-top: 0;
 }
 
 .cpp-compat tr {

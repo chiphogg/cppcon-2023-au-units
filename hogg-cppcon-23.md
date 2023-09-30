@@ -695,17 +695,20 @@ the comparison.  Now let's see our decision framework in action.
     <th>Example features</th>
   </tr>
   <tr>
-    <td><img src="./figures/libraries/mp-units.png"></td>
+    <td><img class="fragment" data-fragment-index="4" src="./figures/libraries/mp-units.png"></td>
     <td class="cpp-version" style="background-image: url('./figures/cpp-versions/20.svg');">C++20</td>
     <td><div class="squish">Concepts<br>Non-type template parameters</div></td>
   </tr>
   <tr>
-    <td><img src="./figures/libraries/SI.png"></td>
+    <td><img class="fragment" data-fragment-index="3" src="./figures/libraries/SI.png"></td>
     <td class="cpp-version" style="background-image: url('./figures/cpp-versions/17.svg');">C++17</td>
     <td><div class="squish">Fold expressions<br><code>constexpr</code> if</div></td>
   </tr>
   <tr>
-    <td><img src="./figures/libraries/nholthaus.png"><img src="./figures/libraries/Au.png"></td>
+    <td>
+      <img class="fragment" data-fragment-index="2" src="./figures/libraries/nholthaus.png">
+      <img class="fragment" data-fragment-index="2" src="./figures/libraries/Au.png">
+    </td>
     <td class="cpp-version" style="background-image: url('./figures/cpp-versions/14.svg');">C++14</td>
     <td><div class="squish">More permissive <code>constexpr</code><br><code>auto</code> return type</div></td>
   </tr>
@@ -715,11 +718,19 @@ the comparison.  Now let's see our decision framework in action.
     <td><div class="squish">Primitive <code>constexpr</code><br>Variadic templates<br><code>static_assert</code></div></td>
   </tr>
   <tr>
-    <td><img src="./figures/libraries/boost.png"></td>
+    <td><img class="fragment" data-fragment-index="1" src="./figures/libraries/boost.png"></td>
     <td class="good cpp-version">C++98/03</td>
     <td></td>
   </tr>
 </table>
+
+<b>Legend:</b>
+"C++ version is
+(<span class="good">fully</span> /
+<span class="fair">partially</span> /
+<span class="poor">not-at-all</span>)
+supported in project."
+
 
 <!--
 2023 ISO survey: https://isocpp.org/files/papers/CppDevSurvey-2023-summary.pdf
@@ -739,17 +750,21 @@ need to get some major benefit from that new version.
 
 So where do the libraries show up on this chart?
 
+**(click)**
 No surprise here, boost is the compatibility champ, supporting all versions of C++ back to 98.
 
+**(click)**
 I think in today's world, C++14 is a strong local optimum.  The marginal exclusion compared to C++11
 is very small, but the features you gain are extremely useful for units libraries.  Both Au and
 nholthaus units live here.
 
+**(click)**
 I think C++17 makes less sense _right this minute_.  On the one hand, you lose a much bigger chunk
 of users.  On the other, the features you do gain mostly help with implementation details, not end
 user interfaces.  That said, C++17 adoption is _rapidly_ expanding, so I expect this to matter much
 less very soon.
 
+**(click)**
 C++20, where mp-units lives, does exclude the majority of users, but this steep cost buys amazingly
 useful features, especially concepts and expanded non-type template parameters.  And think about it:
 if the library's goal is to target a new standard, then of course it should liberally use features
