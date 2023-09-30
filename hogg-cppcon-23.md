@@ -1325,6 +1325,9 @@ Standard: https://godbolt.org/z/1GGW3svsT
 MIPS gcc: https://godbolt.org/z/9nxd494YM
 -->
 
+<div class="r-stack">
+
+<div>
 <div class="poor fragment r-stack" data-fragment-index="1">
 
 <div>
@@ -1338,12 +1341,12 @@ int degrees_per_second_from_rpm(int rpm) {
 ```
 
 </div>
-  <div class="fragment same-program-only-safer fade-in-then-out" data-fragment-index="4">
-    <img src="./figures/same-program-only-safer/x86_1_no-units.png">
-  </div>
-  <div class="fragment same-program-only-safer" data-fragment-index="5">
-    <img src="./figures/same-program-only-safer/mips_1_no-units.png">
-  </div>
+<div class="fragment same-program-only-safer fade-in-then-out" data-fragment-index="4">
+  <img src="./figures/same-program-only-safer/x86_1_no-units.png">
+</div>
+<div class="fragment same-program-only-safer" data-fragment-index="5">
+  <img src="./figures/same-program-only-safer/mips_1_no-units.png">
+</div>
 </div>
 
 <div class="fair fragment r-stack" data-fragment-index="2">
@@ -1357,13 +1360,6 @@ int degrees_per_second_from_rpm(int rpm) {
 }
 ```
 
-</div>
-  <div class="fragment same-program-only-safer" data-fragment-index="4">
-    <img src="./figures/same-program-only-safer/x86_2_nholthaus.png">
-  </div>
-  <div class="fragment same-program-only-safer" data-fragment-index="5">
-    <img src="./figures/same-program-only-safer/mips_2_nholthaus.png">
-  </div>
 </div>
 </div>
 
@@ -1379,15 +1375,24 @@ int degrees_per_second_from_rpm(int rpm) {
 ```
 
 </div>
-  <div class="fragment same-program-only-safer" data-fragment-index="4">
+  <div style="height: 100px; position: relative;" class="fragment fade-in-then-out same-program-only-safer" data-fragment-index="4">
     <img src="./figures/same-program-only-safer/x86_3_au.png">
   </div>
-  <div class="fragment same-program-only-safer" data-fragment-index="5">
+  <div style="height: 100px; position: relative;" class="fragment same-program-only-safer" data-fragment-index="5">
     <img src="./figures/same-program-only-safer/mips_3_au.png">
   </div>
 </div>
 
+</div>
 
+
+<div style="text-align: right;" class="fragment fade-in-then-out" data-fragment-index="4">
+  <img src="./figures/same-program-only-safer/x86_2_nholthaus.png">
+</div>
+<div style="text-align: right;" class="fragment" data-fragment-index="5">
+  <img src="./figures/same-program-only-safer/mips_2_nholthaus.png">
+</div>
+</div>
 
 Notes:
 
