@@ -3,6 +3,10 @@
   top: 0 !important;
 }
 
+.reveal .slide-number {
+  font-size: 24pt;
+}
+
 figcaption {
   font-size: 50%;
 }
