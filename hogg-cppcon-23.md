@@ -585,21 +585,28 @@ Here, there are many, _many_ considerations.  We'll only have time to touch on a
 Notes:
 
 However, if you want a fuller comparison, you can check out the "alternatives" page on our
-documentation website.
+documentation website, at this URL.
 
-Here are screenshots of the comparison table for each question in the framework:
+I'm going to show some screenshots to give you a sense of what this looks like.  Don't bother trying
+to squint and read details!  This slide will be purely visual.  All we need to know is that:
 
-- **(click)** one,
-- **(click)** two,
-- **(click)** and three.
+- each row is a point of comparison;
+- each _column_ is a _library_;
+- and we use a blue/yellow/orange colorscheme, as a colorblind-friendly alternative to
+  green/yellow/red.
 
-The rows represent the points of comparison, and the columns represent the units libraries we're
-comparing.
+So here are the tables for the questions in our framework:
 
-We can see visually: there are _many_ features that distinguish units libraries in the third table,
-once you've got past the gauntlet of the first two tables.  Of course, not all rows are created
-equal, and the ones higher up tend to be more important than the ones lower down, sometimes much
-more.  Don't worry about the details: we'll hit the highlights _in this talk_, and you can always
+- **(click)** one, "can you get it?"
+- **(click)** two, "what does it cost?"
+- **(click)** and three, the units library features.
+
+It's pretty clear that once you get past the gauntlet of the first two questions, there are _many_
+features that distinguish units libraries.  In case this feels a little overwhelming, keep in mind
+that not all rows are created equal, and the ones higher up tend to be more important than the ones
+lower down, sometimes much more.
+
+Again: don't worry about the details: we'll hit the highlights _in this talk_, and you can always
 browse the full tables on our website.
 
 ---
