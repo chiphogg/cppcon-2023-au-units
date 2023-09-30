@@ -2270,7 +2270,7 @@ is clearly in the region of diminishing returns.
   <tr class="fragment" data-fragment-index="1">
     <td><pre><code class="cpp">(meters / second)(8.0)</code></pre></td>
     <td><pre><code class="cpp">8.0_mps  // New manual definition 😞</code></pre></td>
-    <td class="fragment" data-fragment-index="4"><pre><code class="cpp">8.0 * (m / s)</code></pre></td>
+    <td class="fragment" data-fragment-index="4"><pre><code class="cpp">8.0 * m / s</code></pre></td>
   </tr>
   <tr class="fragment" data-fragment-index="2">
     <td class="fragment" data-fragment-index="1"><pre><code class="cpp">meters(3.0f)</code></pre></td>
