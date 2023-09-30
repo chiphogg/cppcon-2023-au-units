@@ -371,9 +371,23 @@ when you're working with integers, but these are the most important.
 
 ## Au: learning more
 
-<div class="container">
-<img style="margin: 10px; "class="fragment" src="./figures/au-tutorial.png">
-<img style="margin: 10px; "class="fragment" src="./figures/au-troubleshooting.png">
+<div class="two_columns">
+<div style="margin: 10px; "class="fragment">
+  <img src="./figures/au-tutorial.png">
+  <figcaption>
+  <a href="https://aurora-opensource.github.io/au/main/tutorial/">
+  https://aurora-opensource.github.io/au/main/<b>tutorial/</b>
+  </a>
+  </figcaption>
+</div>
+<div style="margin: 10px; "class="fragment">
+  <img src="./figures/au-troubleshooting.png">
+  <figcaption>
+  <a href="https://aurora-opensource.github.io/au/main/troubleshooting/">
+  https://aurora-opensource.github.io/au/main/<b>troubleshooting/</b>
+  </a>
+  </figcaption>
+</div>
 </div>
 
 Notes:
@@ -528,6 +542,12 @@ Here, there are many, _many_ considerations.  We'll only have time to touch on a
 ---
 
 ## Full comparison
+
+<figcaption>
+  <a href="https://aurora-opensource.github.io/au/main/alternatives/">
+  https://aurora-opensource.github.io/au/main/<b>alternatives/</b>
+  </a>
+</figcaption>
 
 <div class="container">
 
@@ -1868,6 +1888,14 @@ template parameters.  I don't know of any other libraries that come close, thoug
 
 ## Unit-aware inverses
 
+<figcaption>
+  <a href="https://aurora-opensource.github.io/au/main/reference/math/#inverse-functions">
+  https://aurora-opensource.github.io/au/main/<b>reference/math/#inverse-functions</b>
+  </a>
+</figcaption>
+
+
+
 <div class="r-stack">
   <div class="fragment">
 
@@ -2387,6 +2415,12 @@ more directly, in the same program!
 
 ## Corresponding quantity mechanism
 
+<figcaption>
+  <a href="https://aurora-opensource.github.io/au/main/howto/interop/">
+  https://aurora-opensource.github.io/au/main/<b>howto/interop/</b>
+  </a>
+</figcaption>
+
 <div class="container">
   <div>
 
@@ -2552,6 +2586,12 @@ other.
 <!-- .element: class="topalign" -->
 
 ## Cross-library interop
+
+<figcaption>
+  <a href="https://aurora-opensource.github.io/au/main/howto/interop/">
+  https://aurora-opensource.github.io/au/main/<b>howto/interop/</b>
+  </a>
+</figcaption>
 
 <div class="container">
   <div>
@@ -2723,6 +2763,12 @@ more each library has to compete on its merits, rather than inertia.
 ---
 
 ## nholthaus compatibility layer
+
+<figcaption>
+  <a href="https://aurora-opensource.github.io/au/main/howto/interop/nholthaus/">
+  https://aurora-opensource.github.io/au/main/<b>howto/interop/nholthaus/</b>
+  </a>
+</figcaption>
 
 <div class="r-stack">
 <div class="fragment fade-in-then-out"><img style="height: 950px;" src="./figures/nholthaus/compat_1.png"></div>
