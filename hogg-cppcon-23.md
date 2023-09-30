@@ -2392,7 +2392,7 @@ more directly, in the same program!
 
 ```cpp
 struct MyMeters {
-  int val;
+  uint32_t val;
 };
 ```
 
@@ -2405,8 +2405,8 @@ struct MyMeters {
   <div>
 
 ```cpp
-class Quantity<Meters, int> {
-  int value_;
+class Quantity<Meters, uint32_t> {
+  uint32_t value_;
 };
 ```
 
@@ -2460,7 +2460,7 @@ struct CorrespondingQuantity<MyMeters> {
 template<>
 struct CorrespondingQuantity<MyMeters> {
     using Unit = Meters;
-    using Rep = int;
+    using Rep = uint32_t;
 
 
 
@@ -2480,7 +2480,7 @@ struct CorrespondingQuantity<MyMeters> {
 template<>
 struct CorrespondingQuantity<MyMeters> {
     using Unit = Meters;
-    using Rep = int;
+    using Rep = uint32_t;
 
     // Support Quantity construction from MyMeters.
     static constexpr Rep extract_value(MyMeters x) { return x.val; }
@@ -2500,7 +2500,7 @@ struct CorrespondingQuantity<MyMeters> {
 template<>
 struct CorrespondingQuantity<MyMeters> {
     using Unit = Meters;
-    using Rep = int;
+    using Rep = uint32_t;
 
     // Support Quantity construction from MyMeters.
     static constexpr Rep extract_value(MyMeters x) { return x.val; }
@@ -2519,7 +2519,7 @@ struct CorrespondingQuantity<MyMeters> {
 Notes:
 
 Think about it --- if two libraries have a type that represents a quantity of meters, _and_ if they
-both store it in `int` under the hood,
+both store it in `uint32_t` under the hood,
 
 **(click)**
 ...then those two types are _morally equivalent_.  It would be obnoxious if we had to get the value
@@ -2534,7 +2534,7 @@ corresponds to the type `MyMeters`.
 You tell it the unit is meters,
 
 **(click)**
-and the Rep is `int`.
+and the Rep is `uint32_t`.
 
 **(click)**
 If you tell it how to extract the value from MyMeters, then it makes Quantity _constructible from_
@@ -2558,7 +2558,7 @@ other.
 
 ```cpp
 struct MyMeters {
-  int val;
+  uint32_t val;
 };
 ```
 
@@ -2571,8 +2571,8 @@ struct MyMeters {
   <div>
 
 ```cpp
-class Quantity<Meters, int> {
-  int value_;
+class Quantity<Meters, uint32_t> {
+  uint32_t value_;
 };
 ```
 
@@ -2599,7 +2599,7 @@ const MyMeters x{3};
 ```cpp [1,3]
 const MyMeters x{3};
 
-Quantity<Meters, int>        q1 = x;  //==> meters(3)
+Quantity<Meters, uint32_t>        q1 = x;  //==> meters(3)
 
 
 
@@ -2611,8 +2611,8 @@ Quantity<Meters, int>        q1 = x;  //==> meters(3)
 ```cpp [1,4]
 const MyMeters x{3};
 
-Quantity<Meters, int>        q1 = x;  //==> meters(3)
-Quantity<Milli<Meters>, int> q2 = x;  //==> milli(meters)(3'000)
+Quantity<Meters, uint32_t>        q1 = x;  //==> meters(3)
+Quantity<Milli<Meters>, uint32_t> q2 = x;  //==> milli(meters)(3'000)
 
 
 ```
@@ -2623,9 +2623,9 @@ Quantity<Milli<Meters>, int> q2 = x;  //==> milli(meters)(3'000)
 ```cpp [1,5]
 const MyMeters x{3};
 
-Quantity<Meters, int>        q1 = x;  //==> meters(3)
-Quantity<Milli<Meters>, int> q2 = x;  //==> milli(meters)(3'000)
-Quantity<Nano<Meters>, int>  q3 = x;  //==> Compiler error!  Overflow safety
+Quantity<Meters, uint32_t>        q1 = x;  //==> meters(3)
+Quantity<Milli<Meters>, uint32_t> q2 = x;  //==> milli(meters)(3'000)
+Quantity<Nano<Meters>, uint32_t>  q3 = x;  //==> Compiler error!  Overflow safety
 ```
 
   </div>
@@ -2671,8 +2671,8 @@ evaluate(m);
 
 ```cpp
 // After refactoring:
-Quantity<Meters, int> measure_length(const Object& o);
-void evaluate(const Quantity<Meters, int>& m);
+Quantity<Meters, uint32_t> measure_length(const Object& o);
+void evaluate(const Quantity<Meters, uint32_t>& m);
 ```
 
 ```cpp
