@@ -2485,6 +2485,7 @@ those libraries interact!
   <img class="fragment fade-in-then-out" data-fragment-index="4" src="./figures/feature-inspirations/inspirations_5.svg">
   <img class="fragment fade-in-then-out" data-fragment-index="5" src="./figures/feature-inspirations/inspirations_6.svg">
   <img class="fragment fade-in-then-out" data-fragment-index="6" src="./figures/feature-inspirations/inspirations_7.svg">
+  <img class="fragment fade-in-then-out" data-fragment-index="7" src="./figures/feature-inspirations/inspirations_8.svg">
 </div>
 
 Notes:
@@ -2518,8 +2519,8 @@ So here are some examples.
 **(click)**
 - _Smart inverses_ is a brand-new inspired feature, which mp-units added just last week!
 
-There's also an example of a "negative influence".  Units libraries are laboratories for ideas, and
-sometimes those ideas don't work out.
+There are also "negative influence".  Units libraries are laboratories for ideas, and sometimes
+those ideas don't work out.
 
 **(click)**
 The nholthaus library has automatic conversion from dimensionless quantities, like _percent_, to raw
@@ -2527,6 +2528,13 @@ numbers: `percent(75)` to `0.75`.  Unfortunately, individually reasonable decisi
 interacting badly here, and one symptom is that the round trip implicit conversion picks up a factor
 of one hundred.  We would have provided this feature, but we were able to learn from their
 experiences and avoid the mistake.
+
+**(click)**
+One Au feature which mp-units declined was our `zero` type, which makes it super easy to check signs
+for quantity types.  `Zero` shapeshifts to any one quantity type, but it doesn't work with
+interfaces that are _generic_, or get refactored to _become_ generic.  I don't consider the problems
+serious, but the approach mp-units is taking is a valid alternative, and I'm excited to see what
+time will teach us about both of these strategies.
 
 So these are some ways the libraries have interacted in their _designs_.  But they can also interact
 more directly, in the same program!
