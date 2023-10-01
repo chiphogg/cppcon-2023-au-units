@@ -657,6 +657,7 @@ as Au.  And second...
 
 ## Libraries considered
 
+<div class="r-stack">
 <table class="libraries-considered">
   <tr>
     <th></th>
@@ -668,12 +669,12 @@ as Au.  And second...
     <td>Boost Units</td>
     <td class="repo">boostorg/units</td>
   </tr>
-  <tr class="fragment">
+  <tr class="fragment" data-fragment-index="1">
     <td><img src="./figures/libraries/nholthaus.png"></td>
     <td>nholthaus units</td>
     <td class="repo">nholthaus/units</td>
   </tr>
-  <tr class="fragment">
+  <tr class="fragment" data-fragment-index="2">
     <td><img src="./figures/libraries/SI.png"></td>
     <td>SI</td>
     <td class="repo">bernedom/SI</td>
@@ -689,6 +690,10 @@ as Au.  And second...
     <td class="repo">aurora-opensource/au</td>
   </tr>
 </table>
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+<img src="./figures/libraries/SI_logo_big.jpeg">
+</div>
+</div>
 
 Notes:
 
@@ -706,9 +711,9 @@ This library's hallmark is being _extremely_ accessible and low friction --- ser
 easy to get started and to use.
 
 **(click)**
-Next we have the SI library, whose amazingly inviting logo promotes a solid and user-friendly set of
-APIs.  Despite being relatively newer, it has skyrocketed up the GitHub stars chart, with no sign of
-slowing down.
+Next we have the SI library, whose **(click)** amazingly inviting logo promotes a solid and
+user-friendly set of APIs.  Despite being relatively newer, it has skyrocketed up the GitHub stars
+chart, with no sign of slowing down.
 
 **(click)**
 Finally, we have mp-units, which takes full advantage of bleeding edge post-C++20 features to see
