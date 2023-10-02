@@ -1745,7 +1745,7 @@ more at this link.  So.  Why can't we just use `std::ratio` and call it a day?
 
 **(click)**
 Because it does not meet the _basic requirement_ for a _multi-dimensional_ units library: simply
-put, our magnitude representation must support operations on units.
+put, our magnitude representation must support the operations that units support.
 
 **(click)**
 They've gotta be closed under products and rational powers,
@@ -1755,7 +1755,7 @@ and even support irrational numbers.
 
 **(click)**
 Let's get concrete, and compare the N-over-D approach of `std::ratio` to _vector space magnitudes_,
-which uses a _product of base powers_ --- it's using variadic templates, but only under the hood.
+which uses a _product of base powers_, where the bases are _prime numbers_.  For example:
 
 **(click)**
 The _astronomical unit_, AU (no relation) has _this_ ratio to the meter.  This works just fine as
