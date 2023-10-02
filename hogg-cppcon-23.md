@@ -2062,12 +2062,9 @@ And `meters / squared(second)`.
 
 You can call any of these quantity makers to make a quantity, and we'll automatically generate the
 correct unit label.  The fluidity of combining units and prefixes to make new units makes the
-library a delight to use.
-
-Au was the only library I knew with this kind of composability for about a year, although most of
-that time predates our open source release.  Happily, this is no longer the case: the V2 interfaces
-of mp-units are every bit as fluently composable as Au, _and more_, thanks to C++20's non-type
-template parameters.  I don't know of any other libraries that come close, though.
+library a delight to use.  You'll find similar composability in boost and mp-units --- in fact,
+mp-units is _best_ for composability, because thanks to C++20, they can have it for _type names_,
+too.
 
 ---
 
