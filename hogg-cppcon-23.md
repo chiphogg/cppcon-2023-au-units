@@ -78,19 +78,26 @@ _With_ a units library, though, it produces a compiler error to tell you what mi
 
 ## Aurora Innovation
 
+<div class="r-stack">
 <img src="./aurora-truck-car.jpg" class="r-stretch">
+<div class="fragment" style="position: absolute; bottom: 0;">
+<img src="./figures/sqb.png">
+</div>
+</div>
 
 Notes:
 
 **Start `01:47`**
 
-This kind of safety is critically important where I work, which is Aurora Innovation.  Our mission
-is to bring the benefits of self-driving technology to the world _safely, quickly, and broadly_ ---
-in that order.  In building our product, the Aurora Driver, we have _many_ use cases for tracking
-physical units in C++: everything from embedded systems, to the autonomy stack, to remote assistance
-and user interfaces --- it's a ubiquitous need.  And while tracking units is a very small part of
-the problem, it's also critically important, and we need to solve it _robustly_ so we can keep our
-focus on harder problems.
+This kind of safety is critically important where I work, which is Aurora Innovation.
+
+**(click)**
+Our mission is to bring the benefits of self-driving technology to the world _safely, quickly, and
+broadly_ --- in that order.  In building our product, the Aurora Driver, we have _many_ use cases
+for tracking physical units in C++: everything from embedded systems, to the autonomy stack, to
+remote assistance and user interfaces --- it's a ubiquitous need.  And while tracking units is
+a very small part of the problem, it's also critically important, and we need to solve it _robustly_
+so we can keep our focus on harder problems.
 
 ---
 
