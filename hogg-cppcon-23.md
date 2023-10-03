@@ -1656,7 +1656,10 @@ being used.  Thus, we can visualize this in a plot.
 
 ## The "Safety Surface"
 
-<img src="./figures/safety_surface.webp" width="70%">
+<div class="r-stack safety-surface">
+<img class="fragment fade-out" data-fragment-index="1" src="./figures/safety-surface/safety-surface_01_points.svg">
+<img class="fragment" data-fragment-index="1" src="./figures/safety-surface/safety-surface_02_surface.svg">
+</div>
 
 <div class="fragment">
 
@@ -1834,7 +1837,7 @@ library, so `std::ratio` is _just fine_ for chrono.
   </li>
   </ul>
 
-  <img class="fragment" data-fragment-index="30" src="./figures/safety_surface.webp" width="70%">
+  <img class="fragment" data-fragment-index="30" src="./figures/safety-surface/safety-surface_02_surface.svg" width="70%">
 </div>
 </div>
 <div class="fragment fade-out" data-fragment-index="10">

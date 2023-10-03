@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   class="svglite"
+   width="720.00pt"
+   height="432.00pt"
+   viewBox="0 0 720.00 432.00"
+   version="1.1"
+   id="svg32302"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs32182">
+    <style
+       type="text/css"
+       id="style32180"><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+  </defs>
+  <rect
+     width="100%"
+     height="100%"
+     style="stroke: none; fill: #FFFFFF;"
+     id="rect32184" />
+  <defs
+     id="defs32189">
+    <clipPath
+       id="cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=">
+      <rect
+         x="0.00"
+         y="0.00"
+         width="720.00"
+         height="432.00"
+         id="rect32186" />
+    </clipPath>
+  </defs>
+  <g
+     clip-path="url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MzIuMDA=)"
+     id="g32193">
+    <rect
+       x="0.00"
+       y="0.000000000000057"
+       width="720.00"
+       height="432.00"
+       style="stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;"
+       id="rect32191" />
+  </g>
+  <defs
+     id="defs32198">
+    <clipPath
+       id="cpMTYzLjQxfDcxNC41Mnw0NC42OXwzNjguMjU=">
+      <rect
+         x="163.41"
+         y="44.69"
+         width="551.11"
+         height="323.56"
+         id="rect32195" />
+    </clipPath>
+  </defs>
+  <rect
+     x="163.41"
+     y="44.689999"
+     width="551.10999"
+     height="323.56"
+     style="fill:#ebebeb;stroke:none;stroke-width:1.07"
+     id="rect32200" />
+  <polyline
+     points="163.41,359.73 714.52,359.73 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32202" />
+  <polyline
+     points="163.41,308.65 714.52,308.65 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32204" />
+  <polyline
+     points="163.41,257.56 714.52,257.56 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32206" />
+  <polyline
+     points="163.41,206.47 714.52,206.47 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32208" />
+  <polyline
+     points="163.41,155.38 714.52,155.38 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32210" />
+  <polyline
+     points="163.41,104.29 714.52,104.29 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32212" />
+  <polyline
+     points="163.41,53.21 714.52,53.21 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32214" />
+  <polyline
+     points="208.59,368.25 208.59,44.69 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32216" />
+  <polyline
+     points="389.28,368.25 389.28,44.69 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32218" />
+  <polyline
+     points="569.97,368.25 569.97,44.69 "
+     style="stroke:#ffffff;stroke-width:0.53;stroke-linecap:butt"
+     id="polyline32220" />
+  <polyline
+     points="163.41,334.19 714.52,334.19 "
+     style="stroke:#ffffff;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32222" />
+  <polyline
+     points="163.41,283.10 714.52,283.10 "
+     style="stroke:#ffffff;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32224" />
+  <polyline
+     points="163.41,232.01 714.52,232.01 "
+     style="stroke:#ffffff;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32226" />
+  <polyline
+     points="163.41,180.93 714.52,180.93 "
+     style="stroke:#ffffff;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32228" />
+  <polyline
+     points="163.41,129.84 714.52,129.84 "
+     style="stroke:#ffffff;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32230" />
+  <polyline
+     points="163.41,78.75 714.52,78.75 "
+     style="stroke:#ffffff;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32232" />
+  <polyline
+     points="298.93,368.25 298.93,44.69 "
+     style="stroke:#ffffff;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32234" />
+  <polyline
+     points="479.62,368.25 479.62,44.69 "
+     style="stroke:#ffffff;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32236" />
+  <polyline
+     points="660.31,368.25 660.31,44.69 "
+     style="stroke:#ffffff;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32238" />
+  <text
+     x="158.48"
+     y="342.94"
+     text-anchor="end"
+     style="font-size:24px;font-family:Arial;fill:#4d4d4d"
+     textLength="15.27"
+     lengthAdjust="spacingAndGlyphs"
+     id="text32258">1</text>
+  <text
+     x="158.48"
+     y="291.85001"
+     text-anchor="end"
+     style="font-size:24px;font-family:Arial;fill:#4d4d4d"
+     textLength="68.709999"
+     lengthAdjust="spacingAndGlyphs"
+     id="text32260">1,000</text>
+  <text
+     x="158.48"
+     y="240.75999"
+     text-anchor="end"
+     style="font-size:24px;font-family:Arial;fill:#4d4d4d"
+     textLength="122.15"
+     lengthAdjust="spacingAndGlyphs"
+     id="text32262">1,000,000</text>
+  <text
+     x="158.48"
+     y="189.67"
+     text-anchor="end"
+     style="font-size:24px;font-family:Arial;fill:#4d4d4d"
+     textLength="45.310001"
+     lengthAdjust="spacingAndGlyphs"
+     id="text32264">1e9</text>
+  <text
+     x="158.48"
+     y="138.59"
+     text-anchor="end"
+     style="font-size:24px;font-family:Arial;fill:#4d4d4d"
+     textLength="60.580002"
+     lengthAdjust="spacingAndGlyphs"
+     id="text32266">1e12</text>
+  <text
+     x="158.48"
+     y="87.5"
+     text-anchor="end"
+     style="font-size:24px;font-family:Arial;fill:#4d4d4d"
+     textLength="60.580002"
+     lengthAdjust="spacingAndGlyphs"
+     id="text32268">1e15</text>
+  <polyline
+     points="160.67,334.19 163.41,334.19 "
+     style="stroke:#333333;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32270" />
+  <polyline
+     points="160.67,283.10 163.41,283.10 "
+     style="stroke:#333333;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32272" />
+  <polyline
+     points="160.67,232.01 163.41,232.01 "
+     style="stroke:#333333;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32274" />
+  <polyline
+     points="160.67,180.93 163.41,180.93 "
+     style="stroke:#333333;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32276" />
+  <polyline
+     points="160.67,129.84 163.41,129.84 "
+     style="stroke:#333333;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32278" />
+  <polyline
+     points="160.67,78.75 163.41,78.75 "
+     style="stroke:#333333;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32280" />
+  <polyline
+     points="298.93,370.99 298.93,368.25 "
+     style="stroke:#333333;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32282" />
+  <polyline
+     points="479.62,370.99 479.62,368.25 "
+     style="stroke:#333333;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32284" />
+  <polyline
+     points="660.31,370.99 660.31,368.25 "
+     style="stroke:#333333;stroke-width:1.07;stroke-linecap:butt"
+     id="polyline32286" />
+  <text
+     x="298.92999"
+     y="390.67999"
+     text-anchor="middle"
+     style="font-size:24px;font-family:Arial;fill:#4d4d4d"
+     textLength="30.540001"
+     lengthAdjust="spacingAndGlyphs"
+     id="text32288">20</text>
+  <text
+     x="479.62"
+     y="390.67999"
+     text-anchor="middle"
+     style="font-size:24px;font-family:Arial;fill:#4d4d4d"
+     textLength="30.540001"
+     lengthAdjust="spacingAndGlyphs"
+     id="text32290">40</text>
+  <text
+     x="660.31"
+     y="390.67999"
+     text-anchor="middle"
+     style="font-size:24px;font-family:Arial;fill:#4d4d4d"
+     textLength="30.540001"
+     lengthAdjust="spacingAndGlyphs"
+     id="text32292">60</text>
+  <text
+     xml:space="preserve"
+     style="font-size:38.8108px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.970271"
+     x="442.42953"
+     y="37.522419"
+     id="text62882"><tspan
+       id="tspan62880"
+       style="stroke-width:0.970271"
+       x="442.42953"
+       y="37.522419">The Overflow Safety Surface</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:25.9185px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.647964"
+     x="442.66876"
+     y="415.49008"
+     id="text63992"><tspan
+       id="tspan63990"
+       style="stroke-width:0.647964"
+       x="442.66876"
+       y="415.49008">Bits in max value (for integral types)</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:25.9185px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.647964"
+     x="-217.40686"
+     y="30.899759"
+     id="text66164"
+     transform="rotate(-90)"><tspan
+       id="tspan66162"
+       style="stroke-width:0.647964"
+       x="-217.40686"
+       y="30.899759">Conversion Factor</tspan></text>
+  <path
+     style="fill:#abd9e9;stroke:none;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:0.53333336"
+     d="M 714.52,53.21 218.90191,334.20004 163.41,334.19 v 34.06 h 551.11002 z"
+     id="path67842" />
+  <path
+     style="fill:#fdae61;fill-opacity:0.53333336;stroke:none;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 714.52,53.21 218.90191,334.20004 163.41,334.19 l 0,-289.500001 h 551.11002 z"
+     id="path69143" />
+  <g
+     id="g68642">
+    <g
+       id="g68604">
+      <circle
+         cx="687.41998"
+         cy="67.970001"
+         r="3.9000001"
+         style="fill:#ffffbf;stroke-width:1.42;fill-opacity:1"
+         id="circle32252" />
+      <circle
+         cx="696.45001"
+         cy="62.84"
+         r="3.9000001"
+         style="fill:#ffffbf;stroke-width:1.42;fill-opacity:1"
+         id="circle32254" />
+      <text
+         xml:space="preserve"
+         style="font-size:13.8223px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.345556"
+         x="646.14185"
+         y="91.727951"
+         id="text53252"><tspan
+           id="tspan53250"
+           style="text-align:start;text-anchor:start;stroke-width:0.345556"
+           x="646.14185"
+           y="91.727951"> int64_t</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:13.8223px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.345556"
+         x="646.14185"
+         y="52.435177"
+         id="text53256"><tspan
+           id="tspan53254"
+           style="text-align:start;text-anchor:start;stroke-width:0.345556"
+           x="646.14185"
+           y="52.435177">uint64_t</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 687.46276,71.869414 0.0517,8.760573"
+         id="path67957" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 696.3979,58.930885 V 54.63718"
+         id="path67959" />
+    </g>
+    <g
+       id="g68594">
+      <circle
+         cx="398.31"
+         cy="232.00999"
+         r="3.9000001"
+         style="fill:#ffffbf;stroke-width:1.42;fill-opacity:1"
+         id="circle32248" />
+      <circle
+         cx="407.35001"
+         cy="226.89"
+         r="3.9000001"
+         style="fill:#ffffbf;stroke-width:1.42;fill-opacity:1"
+         id="circle32250" />
+      <text
+         xml:space="preserve"
+         style="font-size:13.8223px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.345556"
+         x="374.9758"
+         y="254.06947"
+         id="text47922"><tspan
+           id="tspan47920"
+           style="text-align:start;text-anchor:start;stroke-width:0.345556"
+           x="374.9758"
+           y="254.06947">int32_t</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:13.8223px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.345556"
+         x="374.9758"
+         y="214.77672"
+         id="text47926"><tspan
+           id="tspan47924"
+           style="text-align:start;text-anchor:start;stroke-width:0.345556"
+           x="374.9758"
+           y="214.77672">uint32_t</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 398.46427,235.72633 0.0517,8.76057"
+         id="path68041" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 407.39941,222.7878 0,-6.36216"
+         id="path68043" />
+    </g>
+    <g
+       id="g68584">
+      <circle
+         cx="253.75999"
+         cy="314.16"
+         r="3.9000001"
+         style="fill:#ffffbf;stroke-width:1.42;fill-opacity:1"
+         id="circle32244" />
+      <circle
+         cx="262.79001"
+         cy="309.03"
+         r="3.9000001"
+         style="fill:#ffffbf;stroke-width:1.42;fill-opacity:1"
+         id="circle32246" />
+      <text
+         xml:space="preserve"
+         style="font-size:13.8223px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.345556"
+         x="247.11853"
+         y="336.85471"
+         id="text44794"><tspan
+           id="tspan44792"
+           style="text-align:start;text-anchor:start;stroke-width:0.345556"
+           x="247.11853"
+           y="336.85471">int16_t</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:13.8223px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.345556"
+         x="247.11853"
+         y="297.56195"
+         id="text44798"><tspan
+           id="tspan44796"
+           style="text-align:start;text-anchor:start;stroke-width:0.345556"
+           x="247.11853"
+           y="297.56195">uint16_t</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
+         d="m 253.82,317.96528 0.0517,8.76057"
+         id="path68041-2" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
+         d="m 262.75514,305.02675 v -6.36216"
+         id="path68043-0" />
+    </g>
+    <g
+       id="g68574">
+      <circle
+         cx="181.48"
+         cy="334.19"
+         r="3.9000001"
+         style="fill:#ffffbf;stroke-width:1.42;fill-opacity:1"
+         id="circle32240" />
+      <circle
+         cx="190.52"
+         cy="334.19"
+         r="3.9000001"
+         style="fill:#ffffbf;stroke-width:1.42;fill-opacity:1"
+         id="circle32242" />
+      <text
+         xml:space="preserve"
+         style="font-size:13.8223px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.345556"
+         x="166.81961"
+         y="358.46429"
+         id="text39770"><tspan
+           id="tspan39768"
+           style="text-align:start;text-anchor:start;stroke-width:0.345556"
+           x="166.81961"
+           y="358.46429">int8_t</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:13.8223px;line-height:1.25;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono';text-align:start;text-anchor:start;stroke-width:0.345556"
+         x="166.81961"
+         y="319.17154"
+         id="text44202"><tspan
+           id="tspan44200"
+           style="text-align:start;text-anchor:start;stroke-width:0.345556"
+           x="166.81961"
+           y="319.17154">uint8_t</tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
+         d="m 181.51813,338.54977 0.0517,8.76056"
+         id="path68041-2-6" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
+         d="m 190.45327,330.13486 0,-8.49926"
+         id="path68043-0-1" />
+    </g>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-size:30px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.75"
+     x="546.92389"
+     y="309.79761"
+     id="text74773"><tspan
+       id="tspan74771"
+       style="stroke-width:0.75"
+       x="546.92389"
+       y="309.79761">Permitted</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:30px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.75"
+     x="292.96954"
+     y="142.71364"
+     id="text74857"><tspan
+       id="tspan74855"
+       style="stroke-width:0.75"
+       x="292.96954"
+       y="142.71364">Forbidden</tspan></text>
+</svg>

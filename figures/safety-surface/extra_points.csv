@@ -1,0 +1,4 @@
+type,bits,threshold
+left,5,1
+corner,11,1
+right,66,34367478479198044
