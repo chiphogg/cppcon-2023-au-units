@@ -55,6 +55,10 @@ table.libraries-considered td {
   padding-left: 0.5em;
 }
 
+table.libraries-considered tr, table.libraries-considered td {
+  font-size: 80%;
+}
+
 table td {
   vertical-align: middle;
 }
@@ -77,7 +81,7 @@ table td img {
 }
 
 .cpp-compat td {
-  height: 100px;
+  height: 90px;
 }
 
 .cpp-compat img {
@@ -141,4 +145,29 @@ table td img {
 .safety-surface {
   display: flex;
   justify-content: center;
+}
+
+.safety-surface img {
+  width: 80%;
+}
+
+.learning-more img {
+  width: 70%;
+}
+
+.over-time {
+  display: flex;
+  justify-content: center;
+}
+
+.compile-times img {
+  width: 80%;
+}
+
+.inspirations img {
+  width: 80%;
+}
+
+.vsm {
+  font-size: 90%;
 }

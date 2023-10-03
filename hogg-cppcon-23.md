@@ -42,11 +42,11 @@ Quantity<Meters, double> distance;
 </div>
 
 <div class="fragment" data-fragment-index="2" style="width: 50%; display: block; float: left;">
-<img src="./02_basic_concept_0_left.png" style="width: 74%; padding: 0; margin: 0">
+<img src="./02_basic_concept_0_left.png" style="width: 55%; padding: 0; margin: 0">
 </div>
 
 <div class="fragment" data-fragment-index="3" style="width: 50%; display: block; float: left;">
-<img src="./02_basic_concept_1_right.png" style="width: 74%; padding: 0; margin: 0">
+<img src="./02_basic_concept_1_right.png" style="width: 55%; padding: 0; margin: 0">
 </div>
 
 Notes:
@@ -79,8 +79,8 @@ _With_ a units library, though, it produces a compiler error to tell you what mi
 ## Aurora Innovation
 
 <div class="r-stack">
-<img src="./aurora-truck-car.jpg" class="r-stretch">
-<div class="fragment" style="position: absolute; bottom: 0; width: 100%; text-align: center;">
+<img src="./aurora-truck-car.jpg">
+<div class="fragment" style="position: absolute; width: 100%; text-align: center;">
 <img src="./figures/sqb.png" style="width: 60%;">
 </div>
 </div>
@@ -392,7 +392,7 @@ when you're working with integers, but these are the most important.
 
 ## Au: learning more
 
-<div class="two_columns">
+<div class="two_columns learning-more">
 <div style="margin: 10px; "class="fragment">
   <img src="./figures/au-tutorial.png">
   <figcaption>
@@ -446,7 +446,7 @@ correct.  Well, that's true, but it's only _part_ of the goal.
 
 ## All of the people, all of the time
 
-<div class="r-stack" style="margin-top: -70px;">
+<div class="r-stack over-time" style="margin-top: -70px;">
   <img class="fragment fade-in-then-out" src="./figures/community-over-time/bare_graph_1.png">
   <img class="fragment fade-in-then-out" src="./figures/community-over-time/bare_graph_2.png">
   <img class="fragment fade-in-then-out" src="./figures/community-over-time/bare_graph_3.png">
@@ -475,7 +475,7 @@ discussion tonight.  Now let's see how a standard units library fits in on the d
 
 ## Standard units library?
 
-<div class="r-stack" style="margin-top: -70px;">
+<div class="r-stack over-time" style="margin-top: -70px;">
   <img src="./figures/community-over-time/standard_units.png">
 </div>
 
@@ -501,7 +501,7 @@ of libraries.
 
 ## The C++ Units Library Ecosystem
 
-<div class="r-stack" style="margin-top: -70px;">
+<div class="r-stack over-time" style="margin-top: -70px;">
   <img class="fragment fade-out" data-fragment-index="1" src="./figures/community-over-time/bare_graph_3.png">
   <img class="fragment fade-in-then-out" data-fragment-index="1" src="./figures/community-over-time/base_with_abstract_libs_1.png">
   <img class="fragment fade-in-then-out" src="./figures/community-over-time/base_with_abstract_libs_2.png">
@@ -584,7 +584,7 @@ Here, there are many, _many_ considerations.  We'll only have time to touch on a
   </a>
 </figcaption>
 
-<div class="container">
+<div class="two_columns">
 
 <div>
 <div class="fragment">
@@ -844,14 +844,14 @@ is a complete non-factor for _you_.
   <img style="height: 90px;" src="./figures/libraries/boost.png">
   <img style="height: 90px;" src="./figures/libraries/SI.png">
   <img style="height: 90px;" src="./figures/libraries/mp-units.png">
-  <br><img class="fragment" data-fragment-index="4" style="height: 90px; margin-top: -25px;" src="./figures/libraries/Au.png">
+  <img class="fragment" data-fragment-index="4" style="height: 90px; margin-top: -25px;" src="./figures/libraries/Au.png">
   </div>
 </div>
 <div class="fragment" data-fragment-index="2">
   <img style="height: 500px;" src="./figures/delivery/single-file.png">
   <div style="margin-top: -25px;" class="fragment" data-fragment-index="3">
   <img style="height: 90px;" src="./figures/libraries/nholthaus.png">
-  <br><img class="fragment" data-fragment-index="4" style="height: 90px; margin-top: -25px;" src="./figures/libraries/Au.png">
+  <img class="fragment" data-fragment-index="4" style="height: 90px; margin-top: -25px;" src="./figures/libraries/Au.png">
   </div>
 </div>
 </div>
@@ -934,7 +934,7 @@ community for CMake support.  Pull requests welcome!
 
 ## 2. DevEx cost?  a) Compile times
 
-<div class="r-stack">
+<div class="r-stack compile-times">
 <img class="fragment fade-in-then-out" src="./figures/compile-time/cumulative_compile_times_1_base.png">
 <img class="fragment fade-in-then-out" src="./figures/compile-time/cumulative_compile_times_2_base-noio.png">
 <img class="fragment fade-in-then-out" src="./figures/compile-time/cumulative_compile_times_3_base-noio-split.png">
@@ -1410,7 +1410,7 @@ int degrees_per_second_from_rpm(int rpm) {
 <div class="fair fragment r-stack" data-fragment-index="2">
 
 <div>
-<img height="90px" src="./figures/libraries/nholthaus.png">
+<img height="90px" style="margin-bottom: -20px;" src="./figures/libraries/nholthaus.png">
 
 ```cpp
 int degrees_per_second_from_rpm(int rpm) {
@@ -1424,7 +1424,7 @@ int degrees_per_second_from_rpm(int rpm) {
 <div class="good fragment r-stack" data-fragment-index="3">
 
 <div>
-<img height="90px" src="./figures/libraries/Au.png">
+<img height="90px" style="margin-bottom: -20px;" src="./figures/libraries/Au.png">
 
 ```cpp
 int degrees_per_second_from_rpm(int rpm) {
@@ -1433,11 +1433,11 @@ int degrees_per_second_from_rpm(int rpm) {
 ```
 
 </div>
-  <div style="height: 100px; position: relative;" class="fragment fade-in-then-out same-program-only-safer" data-fragment-index="4">
-    <img src="./figures/same-program-only-safer/x86_3_au.png">
+  <div style="height: 120px; position: absolute; bottom: 0;" class="fragment fade-in-then-out same-program-only-safer" data-fragment-index="4">
+  <img src="./figures/same-program-only-safer/x86_3_au.png">
   </div>
-  <div style="height: 100px; position: relative;" class="fragment same-program-only-safer" data-fragment-index="5">
-    <img src="./figures/same-program-only-safer/mips_3_au.png">
+  <div style="height: 120px; position: absolute; bottom: 0;" class="fragment same-program-only-safer" data-fragment-index="5">
+  <img src="./figures/same-program-only-safer/mips_3_au.png">
   </div>
 </div>
 
@@ -1588,7 +1588,7 @@ const auto five_sec = nanos_u32{std::chrono::seconds{5}}; // 0.705'032'704 s (!)
 
 <div class="good fragment">
 
-<img height="90px" src="./figures/libraries/Au.png">
+<img height="90px" style="margin-bottom: -20px;" src="./figures/libraries/Au.png">
 
 ```cpp
 QuantityU32<Nano<Seconds>> dt = seconds(5);
@@ -1701,7 +1701,7 @@ like to see other libraries try it out in practice.
   </a>
 </figcaption>
 
-<div class="fragment">
+<div class="fragment vsm">
 
 **Requirement:** _magnitudes_ must do everything _units_ can do!
 
@@ -1837,7 +1837,7 @@ library, so `std::ratio` is _just fine_ for chrono.
   </li>
   </ul>
 
-  <img class="fragment" data-fragment-index="30" src="./figures/safety-surface/safety-surface_02_surface.svg" width="70%">
+  <img class="fragment" data-fragment-index="30" src="./figures/safety-surface/safety-surface_02_surface.svg" width="50%">
 </div>
 </div>
 <div class="fragment fade-out" data-fragment-index="10">
@@ -2228,7 +2228,7 @@ it?  We'll do a quick tour of a few things we don't currently have.
 
 ## Decibels
 
-<img src="./figures/slide_rule.jpg">
+<img src="./figures/slide_rule.jpg" style="width: 80%;">
 <figcaption>
 
 By Joe Haupt, CC BY-SA 2.0 DEED, https://commons.wikimedia.org/wiki/File:Vintage_Small_Slide_Rule,_4.75_Inches_in_Length,_Made_in_England_(9610232930).jpg
@@ -2273,7 +2273,7 @@ suggest... then, leave a YouTube comment down below; don't forget to like and su
 
 ## Explicit systems of quantities
 
-<img src="./figures/EM-Wave.gif">
+<img src="./figures/EM-Wave.gif" style="width: 35%;">
 <figcaption>
 
 By And1mu - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Plane_electromagnetic_wave.svg
@@ -2339,7 +2339,7 @@ $1\\,\text{Hz} \stackrel{?}{>} 1\\,\text{Bq}$
 
 <div class="fair fragment">
 
-<img height="70px" src="./figures/libraries/Au.png">
+<img height="70px" style="margin-bottom: -20px;" src="./figures/libraries/Au.png">
 
 ```cpp
 constexpr bool b = (hertz(1) > becquerel(1));  // Not meaningful, but compiles
@@ -2349,7 +2349,7 @@ constexpr bool b = (hertz(1) > becquerel(1));  // Not meaningful, but compiles
 
 <div class="good fragment">
 
-<img height="70px" src="./figures/libraries/mp-units.png">
+<img height="70px" style="margin-bottom: -20px;" src="./figures/libraries/mp-units.png">
 
 ```cpp
 const bool b = (1 * si::hertz) > (1 * si::becquerel);
@@ -2563,7 +2563,7 @@ those libraries interact!
 
 ## Feature inspirations
 
-<div class="r-stack">
+<div class="r-stack inspirations">
   <img class="fragment fade-out" data-fragment-index="1" src="./figures/feature-inspirations/inspirations_1.svg">
   <img class="fragment fade-in-then-out" data-fragment-index="1" src="./figures/feature-inspirations/inspirations_2.svg">
   <img class="fragment fade-in-then-out" data-fragment-index="2" src="./figures/feature-inspirations/inspirations_3.svg">
@@ -2840,7 +2840,7 @@ class Quantity<Meters, uint32_t> {
   </div>
 </div>
 
-Initialization:
+#### Initialization:
 
 <div class="r-stack" style="margin-top: -0.5em;">
   <div class="fragment fade-out" data-fragment-index="1">
@@ -2894,7 +2894,7 @@ Quantity<Nano<Meters>, uint32_t>  q3 = x;  //==> Compiler error!  Overflow safet
 
 <div class="fragment">
 
-API passing:
+#### API passing:
 
 <div class="r-stack" style="margin-top: -0.5em;">
   <div class="fragment fade-in-then-out">
