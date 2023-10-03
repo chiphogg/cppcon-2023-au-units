@@ -45,11 +45,6 @@ div.cover {
   transform: translate(-50%, -50%);
 }
 
-.reveal .slides {
-    border: 5px solid black;
-    min-height: 100%;
-}
-
 table.libraries-considered td {
   vertical-align: middle;
   padding-left: 0.5em;
