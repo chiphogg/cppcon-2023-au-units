@@ -42,11 +42,11 @@ Quantity<Meters, double> distance;
 </div>
 
 <div class="fragment" data-fragment-index="2" style="width: 50%; display: block; float: left;">
-<img src="./02_basic_concept_0_left.png" style="width: 50%; padding: 0; margin: 0">
+<img src="./02_basic_concept_0_left.png" style="width: 74%; padding: 0; margin: 0">
 </div>
 
 <div class="fragment" data-fragment-index="3" style="width: 50%; display: block; float: left;">
-<img src="./02_basic_concept_1_right.png" style="width: 50%; padding: 0; margin: 0">
+<img src="./02_basic_concept_1_right.png" style="width: 74%; padding: 0; margin: 0">
 </div>
 
 Notes:
@@ -80,8 +80,8 @@ _With_ a units library, though, it produces a compiler error to tell you what mi
 
 <div class="r-stack">
 <img src="./aurora-truck-car.jpg" class="r-stretch">
-<div class="fragment" style="position: absolute; bottom: 0;">
-<img src="./figures/sqb.png">
+<div class="fragment" style="position: absolute; bottom: 0; width: 100%; text-align: center;">
+<img src="./figures/sqb.png" style="width: 60%;">
 </div>
 </div>
 

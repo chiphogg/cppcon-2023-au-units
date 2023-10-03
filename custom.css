@@ -137,3 +137,8 @@ table td img {
 .udl-table td {
   font-size: 93%;
 }
+
+.safety-surface {
+  display: flex;
+  justify-content: center;
+}
