@@ -1,3 +1,19 @@
+# Notes for PDF users
+
+If you're reading these slides as a PDF, know that this is **not their intended format**.  You
+shouldn't expect to be able to read the slides and understand the presentation. The biggest missing
+piece is the **speaker's notes**.  Without them, the slides will **not all make sense**, and you
+could easily **misinterpret** some of them.
+
+To view with the speaker's notes, you can view the [online slides], and press `s` to invoke the
+notes.  You can also go to the repository itself, [chiphogg/cppcon-2023-au-units][repo], either to
+host the slides locally, or to see how the talk is implemented or was made.
+
+[online slides]: https://chogg.name/cppcon-2023-au-units/
+[repo]: https://github.com/chiphogg/cppcon-2023-au-units
+
+---
+
 <section data-background="./The_Au_Library-_TitleCard_copy.png" data-background-size="contain">
 
 Notes:
