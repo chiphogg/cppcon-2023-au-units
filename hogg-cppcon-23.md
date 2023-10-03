@@ -2625,7 +2625,8 @@ serious, but the approach mp-units is taking is a valid alternative, and I'm exc
 time will teach us about both of these strategies.
 
 So these are some ways the libraries have interacted in their _designs_.  But they can also interact
-more directly, in the same program!
+more directly, in the same program!  This can happen for third party libraries, or when migrating
+from one units library to another.  Let's see how it works.
 
 ---
 
@@ -2772,8 +2773,8 @@ Notes:
 
 **Start: `48:31`**
 
-Think about it --- if two libraries have a type that represents a quantity of meters, _and_ if they
-both store it in `uint32_t` under the hood,
+Think about this --- if two libraries have a type that represents a quantity of meters, _and_ if
+they both store it in `uint32_t` under the hood,
 
 **(click)**
 ...then those two types are _morally equivalent_.  It would be obnoxious if we had to get the value
